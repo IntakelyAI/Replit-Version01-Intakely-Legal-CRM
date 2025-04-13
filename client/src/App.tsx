@@ -34,7 +34,7 @@ function Router() {
       <Route path="/knowledge-base" component={KnowledgeBase} />
       <Route path="/call-center" component={CallCenter} />
       <Route path="/analytics" component={Analytics} />
-      <Route path="/assistant" component={Dashboard} /> {/* Temporarily using Dashboard for Assistant */}
+      <Route path="/assistant" component={Dashboard} />
       <Route path="/user-profile" component={UserProfile} />
       <Route path="/app-settings" component={AppSettings} />
       <Route path="/settings" component={AppSettings} />
