@@ -34,7 +34,7 @@ function EnhancedLayoutContent({ children }: EnhancedLayoutProps) {
   };
   
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-background">
       {/* Main Navigation */}
       <MainNavigationEnhanced />
       

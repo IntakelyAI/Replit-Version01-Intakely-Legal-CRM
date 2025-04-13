@@ -1,7 +1,7 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import EnhancedLayout from "@/components/layout/enhanced-layout";
+import EnhancedAppLayout from "@/components/layout/enhanced-app-layout";
 import Dashboard from "@/pages/dashboard";
 import LawFirms from "@/pages/law-firms";
 import Clients from "@/pages/clients";
@@ -67,11 +67,12 @@ function Router() {
 }
 
 function App() {
+  // Use our enhanced app layout with the proper navigation structure
   return (
     <QueryClientProvider client={queryClient}>
-      <EnhancedLayout>
+      <EnhancedAppLayout>
         <Router />
-      </EnhancedLayout>
+      </EnhancedAppLayout>
     </QueryClientProvider>
   );
 }
