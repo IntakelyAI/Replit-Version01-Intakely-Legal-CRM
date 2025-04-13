@@ -201,7 +201,7 @@ const RecentFirmItem = ({ name, path, isActive, onSelect }: RecentFirmItemProps)
   );
 };
 
-export default function MainNavigationEnhanced() {
+export default function FixedNavigation() {
   const [location] = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
@@ -298,16 +298,16 @@ export default function MainNavigationEnhanced() {
             isActive={isActivePath("/assistant")}
           />
           
-          {/* Direct Agent Builder Navigation Item */}
+          {/* Direct Agent Builder Navigation Item with dropdown */}
           <MainNavigationItem
             icon={<Bot className="h-5 w-5" />}
             label="Agent Builder"
             isCollapsed={isCollapsed}
             isActive={isActivePath("/agent-builder")}
-            onClick={navigateToAgentBuilder}
+            onClick={handleAgentBuilderClick}
           />
           
-          {/* Show the Agent Builder submenu when expandedItem is "agentBuilder" */}
+          {/* Agent Builder submenu shown when expanded */}
           {expandedItem === "agentBuilder" && !isCollapsed && (
             <div className="pl-10 space-y-1 mt-1">
               <SubMenuItem
@@ -341,7 +341,7 @@ export default function MainNavigationEnhanced() {
                 isActive={isActivePath("/agent-builder/analytics")}
               />
             </div>
-          }
+          )}
           
           {/* Law Firms (Expandable) */}
           <ExpandableMenuItem
@@ -378,53 +378,6 @@ export default function MainNavigationEnhanced() {
                 <span>Create New Space</span>
               </Button>
             )}
-          </ExpandableMenuItem>
-          
-          {/* For debugging only - Hide this second AgentBuilder item */}
-            <div className="space-y-1">
-              <SubMenuItem
-                icon={<Users className="h-4 w-4" />}
-                label="Agents"
-                path="/agent-builder/agents"
-                isActive={isActivePath("/agent-builder/agents")}
-              />
-              <SubMenuItem
-                icon={<FileText className="h-4 w-4" />}
-                label="Knowledge Base"
-                path="/agent-builder/knowledge-base"
-                isActive={isActivePath("/agent-builder/knowledge-base")}
-              />
-              <SubMenuItem
-                icon={<Phone className="h-4 w-4" />}
-                label="Phone Numbers"
-                path="/agent-builder/phone-numbers"
-                isActive={isActivePath("/agent-builder/phone-numbers")}
-              />
-              <SubMenuItem
-                icon={<FileText className="h-4 w-4" />}
-                label="Batch Call"
-                path="/agent-builder/batch-call"
-                isActive={isActivePath("/agent-builder/batch-call")}
-              />
-              <SubMenuItem
-                icon={<Clock className="h-4 w-4" />}
-                label="Call History"
-                path="/agent-builder/call-history"
-                isActive={isActivePath("/agent-builder/call-history")}
-              />
-              <SubMenuItem
-                icon={<BarChart3 className="h-4 w-4" />}
-                label="Analytics"
-                path="/agent-builder/analytics"
-                isActive={isActivePath("/agent-builder/analytics")}
-              />
-              <SubMenuItem
-                icon={<Wrench className="h-4 w-4" />}
-                label="Tools"
-                path="/agent-builder/tools"
-                isActive={isActivePath("/agent-builder/tools")}
-              />
-            </div>
           </ExpandableMenuItem>
           
           {/* Intakely Operations (Expandable) */}

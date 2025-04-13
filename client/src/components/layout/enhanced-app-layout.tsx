@@ -2,7 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AIAssistantProvider } from "@/components/providers/ai-assistant-provider";
 import { FirmProvider } from "@/components/providers/firm-provider";
 import { Toaster } from "@/components/ui/toaster";
-import MainNavigationEnhanced from "./main-navigation-enhanced";
+import FixedNavigation from "./fixed-navigation";
 import LawFirmNavigationEnhanced from "./law-firm-navigation-enhanced";
 import { cn } from "@/lib/utils";
 import { useLocation } from "wouter";
@@ -35,7 +35,7 @@ function AppLayoutContent({ children }: EnhancedAppLayoutProps) {
     <div className="flex min-h-screen bg-background">
       {/* Main Navigation */}
       <div className="fixed inset-y-0 left-0 z-30">
-        <MainNavigationEnhanced />
+        <FixedNavigation />
       </div>
       
       {/* Law Firm Navigation */}
