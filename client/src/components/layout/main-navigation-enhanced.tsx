@@ -241,6 +241,13 @@ export default function MainNavigationEnhanced() {
     selectFirm(recentFirms.find(f => f.name === firmName)?.path.split('/').pop() || '');
   };
   
+  // Function to handle the Agent Builder click
+  const handleAgentBuilderClick = () => {
+    setIsCollapsed(true); // Collapse the main navigation
+    toggleExpandedItem("agentBuilder"); // Open the agent builder menu
+    window.location.href = "/agent-builder"; // Navigate to the agent builder page
+  };
+  
   return (
     <div
       className={cn(
@@ -282,6 +289,15 @@ export default function MainNavigationEnhanced() {
             path="/assistant"
             isCollapsed={isCollapsed}
             isActive={isActivePath("/assistant")}
+          />
+          
+          {/* Direct Agent Builder Navigation Item */}
+          <MainNavigationItem
+            icon={<Bot className="h-5 w-5" />}
+            label="Agent Builder"
+            isCollapsed={isCollapsed}
+            isActive={isActivePath("/agent-builder")}
+            onClick={handleAgentBuilderClick}
           />
           
           {/* Law Firms (Expandable) */}
@@ -327,7 +343,7 @@ export default function MainNavigationEnhanced() {
             label="Agent Builder"
             isCollapsed={isCollapsed}
             isOpen={expandedItem === "agentBuilder"}
-            onToggle={() => toggleExpandedItem("agentBuilder")}
+            onToggle={handleAgentBuilderClick}
           >
             <div className="space-y-1">
               <SubMenuItem
