@@ -298,14 +298,34 @@ export default function FixedNavigation() {
             isActive={isActivePath("/assistant")}
           />
           
-          {/* Direct Agent Builder Navigation Item with dropdown */}
-          <MainNavigationItem
-            icon={<Bot className="h-5 w-5" />}
-            label="Agent Builder"
-            isCollapsed={isCollapsed}
-            isActive={isActivePath("/agent-builder")}
+          {/* Main Agent Builder button - this only toggles the submenu */}
+          <div 
+            className={cn(
+              "flex items-center rounded-md px-2 py-2 cursor-pointer transition-colors",
+              (isActivePath("/agent-builder") || expandedItem === "agentBuilder")
+                ? "bg-primary/10 text-primary hover:bg-primary/20" 
+                : "hover:bg-accent hover:text-accent-foreground",
+              isCollapsed ? "justify-center" : "justify-between"
+            )}
             onClick={handleAgentBuilderClick}
-          />
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-md">
+                <Bot className="h-5 w-5" />
+              </div>
+              {!isCollapsed && (
+                <span className="text-sm font-medium">Agent Builder</span>
+              )}
+            </div>
+            {!isCollapsed && (
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 transition-transform duration-200",
+                  expandedItem === "agentBuilder" ? "rotate-180" : "rotate-0"
+                )}
+              />
+            )}
+          </div>
           
           {/* Agent Builder submenu shown when expanded */}
           {expandedItem === "agentBuilder" && !isCollapsed && (
@@ -340,6 +360,18 @@ export default function FixedNavigation() {
                 path="/agent-builder/analytics"
                 isActive={isActivePath("/agent-builder/analytics")}
               />
+              
+              {/* Go to main Agent Builder page */}
+              <div className="mt-2 px-3">
+                <Button 
+                  variant="outline" 
+                  className="w-full text-xs"
+                  onClick={navigateToAgentBuilder}
+                >
+                  <Bot className="mr-2 h-3.5 w-3.5" />
+                  <span>Agent Builder Dashboard</span>
+                </Button>
+              </div>
             </div>
           )}
           
