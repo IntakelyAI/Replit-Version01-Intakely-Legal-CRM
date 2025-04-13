@@ -28,19 +28,18 @@ type SidebarItemProps = {
 
 const SidebarItem = ({ href, icon, children, active }: SidebarItemProps) => {
   return (
-    <Link href={href}>
-      <a 
-        className={cn(
-          "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
-          active 
-            ? "bg-primary/10 text-primary hover:bg-primary/20" 
-            : "hover:bg-accent/50"
-        )}
-      >
-        {icon}
-        <span>{children}</span>
-      </a>
-    </Link>
+    <div 
+      onClick={() => window.location.href = href}
+      className={cn(
+        "group flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors cursor-pointer",
+        active 
+          ? "bg-primary/10 text-primary hover:bg-primary/20" 
+          : "hover:bg-accent/50"
+      )}
+    >
+      {icon}
+      <span>{children}</span>
+    </div>
   );
 };
 
