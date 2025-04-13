@@ -1,0 +1,267 @@
+### Navigation Structure - Architectural Document
+
+## Overview
+
+The Intakely Legal AI Agentic CRM employs a multi-level navigation system designed to provide intuitive access to all platform features while maintaining a clean, organized interface. The navigation is structured into three primary levels:
+
+1. **Primary Navigation (Main Menu)** - The leftmost sidebar providing access to core platform areas
+2. **Secondary Navigation (Law Firm Menu)** - Context-specific navigation that appears when a law firm is selected
+3. **Tertiary Navigation (Expandable Sections)** - Deeper navigation options that appear when expanding menu items
+
+
+## 1. Primary Navigation (Main Menu)
+
+The main navigation sidebar serves as the entry point to all major platform sections.
+
+### Top Menu Items
+
+| Menu Item | Icon | Type | Path | Description
+|-----|-----|-----|-----|-----
+| Personal Assistant | MessageSquare | Link | /assistant | AI assistant interface for user queries
+| Spaces : Law Firms | Building2 | Expandable | N/A | Access to law firm workspaces
+| Agent Builder | Bot | Expandable | N/A | Tools for creating and managing AI agents
+| Intakely Operations | BarChart3 | Expandable | N/A | Platform administration and operations
+
+
+### Bottom Menu Items
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Contacts | Users | /contacts | Global contacts management
+| Channels | MessagesSquare | /channels | Communication channels
+| Notifications | Bell | /notifications | System notifications (with badge)
+| Settings | Settings | /settings | Global system settings
+
+
+### Expandable Sections
+
+#### Spaces : Law Firms
+
+When expanded, shows:
+
+- Search bar for finding law firms
+- Recent law firms list
+- "Create New Space" button
+
+
+#### Agent Builder
+
+When expanded, shows:
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Agents | Users | /agent-builder/agents | Manage AI agents
+| Knowledge Base | FileText | /agent-builder/knowledge-base | Manage agent knowledge
+| Phone Numbers | Phone | /agent-builder/phone-numbers | Configure phone numbers
+| Batch Call | FileText | /agent-builder/batch-call | Batch calling functionality
+| Call History | Clock | /agent-builder/call-history | View call logs
+| Analytics | BarChart2 | /agent-builder/analytics | Agent performance metrics
+| Tools | Wrench | /agent-builder/tools | Agent configuration tools
+
+
+#### Intakely Operations
+
+When expanded, shows:
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Internal User Management & Team Assignments | UserCog | /operations/user-management | Manage platform users and teams
+| Market Targeting, Lead Generation & Outreach | Target | /operations/market-targeting | Marketing and lead generation tools
+| Sales Demos & Conversion Tracking | PresentationChart | /operations/sales-demos | Sales demonstration management
+| AI-Led Onboarding & Workspace Provisioning | BotIcon | /operations/ai-onboarding | Automated onboarding processes
+| Subscription, Contract & Billing Terms | CreditCard | /operations/subscription | Billing and subscription management
+| Customer Success & Lifecycle Nurturing | HeartHandshake | /operations/customer-success | Customer success workflows
+| Intakely Internal Operations | ClipboardList | /operations/internal-operations | Internal task management
+| Internal Automation & AI Workflows | Workflow | /operations/internal-automation | Automation configuration
+| Internal Activity & Event Logging | Activity | /operations/activity-logging | System activity logs
+| Internal Performance Metrics & KPIs | BarChart2 | /operations/performance-metrics | Performance analytics
+
+
+## 2. Secondary Navigation (Law Firm Menu)
+
+When a law firm is selected from the Spaces menu, a secondary navigation sidebar appears with firm-specific functionality.
+
+### Top Section
+
+Displays the selected law firm name with a Building2 icon and quick action buttons (Team, Private, Pin).
+
+### Main Menu Items
+
+| Menu Item | Icon | Type | Path | Description
+|-----|-----|-----|-----|-----
+| Communications | MessageSquare | Link | /communications | Firm communications hub
+| Appointments | Calendar | Link | /appointments | Calendar and scheduling
+| Interactions/Tasks/Tags | ListTodo | Link | /interactions | Task management and interactions
+| Agenda | List | Link | /agenda | Meeting agendas and notes
+| Documents | FileText | Link | /documents | Document management
+| Billing | CreditCard | Link | /billing | Invoicing and payments
+| Intake/Matter/Cases | Briefcase | Link | /cases | Case management
+| Leads/Clients/Companies/Contacts | Users | Expandable | N/A | Contact management hub
+| AccountSettings | Settings | Expandable | N/A | Firm-specific settings
+
+
+## 3. Tertiary Navigation (Expandable Sections in Law Firm Menu)
+
+### Leads/Clients/Companies/Contacts
+
+When expanded, shows multiple subsections:
+
+#### Leads Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Leads | Crown | /leads | Lead management
+| LeadType | Layers | /leads/types | Lead categorization
+| LeadSource | Layers | /leads/sources | Lead origin tracking
+| LeadStatuses | Layers | /leads/statuses | Lead status management
+| LeadPipelineCategory | Layers | /leads/pipeline-categories | Pipeline categorization
+| LeadPipelineStages | Layers | /leads/pipeline-stages | Pipeline stage management
+| LeadNurturing | Layers | /leads/nurturing | Lead nurturing workflows
+| LeadConversion | Layers | /leads/conversion | Conversion tracking
+| MarketingCampaignManagement | BarChart | /leads/marketing | Marketing campaign tools
+
+
+#### Clients Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Clients | Users | /clients | Client management
+| ClientType | Layers | /clients/types | Client categorization
+| ClientStatuses | Layers | /clients/statuses | Client status tracking
+| ClientPipelineCategory | Layers | /clients/pipeline-categories | Client pipeline categories
+| ClientPipelineStages | Layers | /clients/pipeline-stages | Client pipeline stages
+| ClientOnboarding | ClipboardList | /clients/onboarding | Client onboarding process
+
+
+#### Company Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Company | Building | /companies | Company management
+| CompanyType | Layers | /companies/types | Company categorization
+| CompanyStatuses | Layers | /companies/statuses | Company status tracking
+
+
+#### Contacts Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Contacts | UserCircle | /contacts | Contact management
+| ContactTypes | Layers | /contacts/types | Contact categorization
+
+
+#### Linked Info Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Addresses | Building2 | /linked-info/addresses | Address management
+| City | Building2 | /linked-info/cities | City information
+| State/Region | Building2 | /linked-info/states | State/region information
+| Zip Code | Building2 | /linked-info/zip-codes | Postal code management
+| Country | Building2 | /linked-info/countries | Country information
+| SocialLinksInfo | LinkIcon | /linked-info/social | Social media links
+| AdditionalInfo | FileText | /linked-info/additional | Supplementary information
+| EmploymentInfo | Briefcase | /linked-info/employment | Employment details
+| SpouseInfo | Users | /linked-info/spouse | Spouse information
+| FinancialInfo | CreditCard | /linked-info/financial | Financial details
+| FinancialResponsibleParty | CreditCard | /linked-info/financial-responsible | Financial responsibility
+| EmergencyContact | Users | /linked-info/emergency | Emergency contacts
+| DateInformation | Calendar | /linked-info/dates | Important dates
+
+
+#### Referrals & Compliance Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| ComplianceChecks | FileCheck | /compliance/checks | Compliance verification
+| ComplianceTypes | Layers | /compliance/types | Compliance categorization
+| Referrals | Users | /compliance/referrals | Referral management
+
+
+### AccountSettings
+
+When expanded, shows multiple subsections:
+
+#### LawFirm Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| LawFirmDetails | FileText | /settings/law-firm/details | Firm profile management
+| OfficeTimings | Clock | /settings/law-firm/office-timings | Office hours configuration
+| PrimaryPracticeAreas | Briefcase | /settings/law-firm/practice-areas | Practice area management
+| Specialization | Briefcase | /settings/law-firm/specialization | Specialization settings
+| Branches | Building2 | /settings/law-firm/branches | Branch office management
+
+
+#### Staff Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| StaffAIAgents | UserCircle | /settings/staff/ai-agents | AI agent configuration
+| StaffUsers | UserCircle | /settings/staff/users | Staff user management
+| StaffRoles | Layers | /settings/staff/roles | Role configuration
+| EmploymentTypes | Briefcase | /settings/staff/employment-types | Employment type settings
+| Departments | Building | /settings/staff/departments | Department management
+| Teams | Users | /settings/staff/teams | Team configuration
+| TimeCards | Clock | /settings/staff/time-cards | Time tracking
+| StaffCaseAssignments | Briefcase | /settings/staff/case-assignments | Case assignment management
+
+
+#### Onboarding-Forms Subsection
+
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Step01-LawFirmDetails-Form | FileText | /settings/onboarding/law-firm-details | Initial onboarding form
+
+
+## Navigation Behavior
+
+### Interaction Patterns
+
+1. **Collapsible Main Menu**: The primary navigation can be collapsed to a narrow icon bar to maximize workspace.
+2. **Context-Sensitive Secondary Menu**: The law firm menu appears only when a firm is selected.
+3. **Expandable Sections**: Menu items with children can be expanded/collapsed to show/hide deeper navigation options.
+4. **Tooltips**: When the main menu is collapsed, tooltips appear on hover to identify icons.
+5. **Visual Indicators**: Active and expanded items receive visual highlighting.
+6. **Badges**: Notification counts appear as badges on relevant menu items.
+
+
+### State Management
+
+The navigation system maintains several states:
+
+- Expanded/collapsed state of the main menu
+- Currently expanded section in the main menu
+- Selected law firm (triggering the secondary menu)
+- Expanded sections within the secondary menu
+
+
+## Technical Implementation
+
+The navigation is implemented using React components with the following structure:
+
+1. **MainNavigation**: Primary sidebar component (`components/main-navigation.tsx`)
+2. **LawFirmNavigation**: Secondary sidebar component (`components/law-firm-navigation.tsx`)
+3. **ClientLayout**: Layout component that orchestrates the navigation components (`app/ClientLayout.tsx`)
+
+
+The navigation uses a combination of Next.js Link components for direct navigation and button elements for expandable sections. State is managed using React's useState hooks.
+
+## Design Considerations
+
+1. **Scalability**: The menu structure can accommodate additional items as the platform grows.
+2. **Discoverability**: Features are organized logically to ensure users can find what they need.
+3. **Context**: The secondary menu provides firm-specific context without cluttering the main interface.
+4. **Efficiency**: Collapsible menus and expandable sections allow for efficient use of screen space.
+5. **Consistency**: Visual styling and interaction patterns are consistent across all navigation levels.
+
+
+## Future Enhancements
+
+Potential improvements to the navigation structure include:
+
+1. **Customizable Menus**: Allow users to pin frequently used items or customize menu order.
+2. **Search Integration**: Add global search functionality across all navigation items.
+3. **Role-Based Navigation**: Show/hide menu items based on user permissions.
+4. **Navigation History**: Track and provide quick access to recently visited sections.
+5. **Keyboard Shortcuts**: Implement keyboard navigation for power users.
