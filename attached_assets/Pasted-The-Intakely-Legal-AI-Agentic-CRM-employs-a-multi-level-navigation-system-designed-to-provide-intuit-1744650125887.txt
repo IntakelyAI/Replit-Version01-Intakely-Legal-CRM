@@ -1,0 +1,64 @@
+The Intakely Legal AI Agentic CRM employs a multi-level navigation system designed to provide intuitive access to all platform features while maintaining a clean, organized interface. The navigation is structured into three primary levels:
+Primary Navigation (Main Menu) - The leftmost sidebar providing access to core platform areas
+Secondary Navigation (Law Firm Menu) - Context-specific navigation that appears when a law firm is selected
+Tertiary Navigation (Expandable Sections) - Deeper navigation options that appear when expanding menu items
+1. Primary Navigation (Main Menu)
+The main navigation sidebar serves as the entry point to all major platform sections.
+Top Menu Items
+Personal Assistant
+Spaces : Law Firms
+Agent Builder
+Intakely Operations
+
+Bottom Menu Items
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Contacts | Users | /contacts | Global contacts management
+| Channels | MessagesSquare | /channels | Communication channels
+| Notifications | Bell | /notifications | System notifications (with badge)
+| Settings | Settings | /settings | Global system settings
+Expandable Sections
+Spaces : Law Firms
+When expanded, shows:
+Search bar for finding law firms
+Recent law firms list
+"Create New Space" button
+Agent Builder
+When expanded, shows:
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Agents | Users | /agent-builder/agents | Manage AI agents
+| Knowledge Base | FileText | /agent-builder/knowledge-base | Manage agent knowledge
+| Phone Numbers | Phone | /agent-builder/phone-numbers | Configure phone numbers
+| Batch Call | FileText | /agent-builder/batch-call | Batch calling functionality
+| Call History | Clock | /agent-builder/call-history | View call logs
+| Analytics | BarChart2 | /agent-builder/analytics | Agent performance metrics
+| Tools | Wrench | /agent-builder/tools | Agent configuration tools
+Intakely Operations
+When expanded, shows:
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Internal User Management & Team Assignments | UserCog | /operations/user-management | Manage platform users and teams
+| Market Targeting, Lead Generation & Outreach | Target | /operations/market-targeting | Marketing and lead generation tools
+| Sales Demos & Conversion Tracking | PresentationChart | /operations/sales-demos | Sales demonstration management
+| AI-Led Onboarding & Workspace Provisioning | BotIcon | /operations/ai-onboarding | Automated onboarding processes
+| Subscription, Contract & Billing Terms | CreditCard | /operations/subscription | Billing and subscription management
+| Customer Success & Lifecycle Nurturing | HeartHandshake | /operations/customer-success | Customer success workflows
+| Intakely Internal Operations | ClipboardList | /operations/internal-operations | Internal task management
+| Internal Automation & AI Workflows | Workflow | /operations/internal-automation | Automation configuration
+| Internal Activity & Event Logging | Activity | /operations/activity-logging | System activity logs
+| Internal Performance Metrics & KPIs | BarChart2 | /operations/performance-metrics | Performance analytics
+2. Secondary Navigation (Law Firm Menu)
+When a law firm is selected from the Spaces menu, a secondary navigation sidebar appears with firm-specific functionality.
+Top Section
+Displays the selected law firm name with a Building2 icon and quick action buttons (Team, Private, Pin).
+Main Menu Items
+Communications
+Appointments
+Interactions/Tasks/Tags
+Agenda
+Documents
+Billing
+Intake/Matter/Cases
+Leads/Clients/Companies/Contacts
+AccountSettings
