@@ -332,9 +332,59 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
           onClick={toggleCollapsed}
         >
           {collapsed ? (
-            <ChevronRight className="h-4 w-4" />
+            <div className="flex items-center justify-center bg-muted/40 rounded w-5 h-5">
+              <svg 
+                width="14" 
+                height="14" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-foreground"
+              >
+                <path 
+                  d="M15 6l-6 6 6 6" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                />
+                <path 
+                  d="M9 6l-6 6 6 6" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="opacity-20" 
+                />
+              </svg>
+            </div>
           ) : (
-            <ChevronLeft className="h-4 w-4" />
+            <div className="flex items-center justify-center bg-muted/40 rounded w-5 h-5">
+              <svg 
+                width="14" 
+                height="14" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-foreground"
+              >
+                <path 
+                  d="M9 18l6-6-6-6" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                />
+                <path 
+                  d="M15 18l6-6-6-6" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="opacity-20" 
+                />
+              </svg>
+            </div>
           )}
         </Button>
       </div>

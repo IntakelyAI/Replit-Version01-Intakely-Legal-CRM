@@ -178,6 +178,35 @@ export function AppShell({ children }: PropsWithChildren) {
         <div className="fixed inset-y-0 left-12 z-20 w-[260px] bg-background border-r border-border/30">
           <div className="flex h-10 items-center justify-between px-3 border-b border-border/30">
             <div className="flex items-center gap-2">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground mr-1" 
+                title="Back to main menu"
+                onClick={() => {
+                  setMainMenuCollapsed(false);
+                  setSecondaryMenuVisible(false);
+                }}
+              >
+                <div className="flex items-center justify-center bg-muted/40 rounded w-5 h-5">
+                  <svg 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-foreground"
+                  >
+                    <path 
+                      d="M15 6l-6 6 6 6" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                    />
+                  </svg>
+                </div>
+              </Button>
               <span className="w-2 h-2 rounded-full bg-orange-500"></span>
               <span className="text-sm font-medium">California Regional Space</span>
             </div>
