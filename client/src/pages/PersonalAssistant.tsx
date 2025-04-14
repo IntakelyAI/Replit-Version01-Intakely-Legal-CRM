@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { 
   Card, 
   CardContent, 
@@ -30,10 +31,7 @@ export default function PersonalAssistant() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-        <p className="text-sm text-muted-foreground">
-          Welcome back! Here's an overview of your legal operations.
-        </p>
+        <h1 className="text-2xl font-bold">Ahmad's Personal Assistant</h1>
       </div>
 
       {/* Quote Card */}
@@ -48,44 +46,50 @@ export default function PersonalAssistant() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="overflow-hidden">
-          <CardContent className="p-6">
-            <div className="flex items-center mb-2">
-              <Users className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm">Active Clients</span>
-            </div>
-            <div className="flex items-baseline">
-              <span className="text-3xl font-bold">328</span>
-              <span className="text-xs text-green-500 ml-2">+7.2% from last month</span>
-            </div>
-          </CardContent>
-        </Card>
+        <Link href="/clients">
+          <Card className="overflow-hidden border-l-2 border-transparent hover:border-primary transition-all hover:bg-accent/10 cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center mb-2">
+                <Users className="h-4 w-4 text-primary mr-2" />
+                <span className="text-sm">Active Clients</span>
+              </div>
+              <div className="flex items-baseline">
+                <span className="text-3xl font-bold">328</span>
+                <span className="text-xs text-green-500 ml-2">+7.2% from last month</span>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="overflow-hidden">
-          <CardContent className="p-6">
-            <div className="flex items-center mb-2">
-              <Briefcase className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm">Ongoing Cases</span>
-            </div>
-            <div className="flex items-baseline">
-              <span className="text-3xl font-bold">143</span>
-              <span className="text-xs text-green-500 ml-2">+2.5% from last month</span>
-            </div>
-          </CardContent>
-        </Card>
+        <Link href="/cases">
+          <Card className="overflow-hidden border-l-2 border-transparent hover:border-primary transition-all hover:bg-accent/10 cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center mb-2">
+                <Briefcase className="h-4 w-4 text-primary mr-2" />
+                <span className="text-sm">Ongoing Cases</span>
+              </div>
+              <div className="flex items-baseline">
+                <span className="text-3xl font-bold">143</span>
+                <span className="text-xs text-green-500 ml-2">+2.5% from last month</span>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
 
-        <Card className="overflow-hidden">
-          <CardContent className="p-6">
-            <div className="flex items-center mb-2">
-              <Phone className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm">AI Calls Made</span>
-            </div>
-            <div className="flex items-baseline">
-              <span className="text-3xl font-bold">87</span>
-              <span className="text-xs text-green-500 ml-2">+12.9% from last month</span>
-            </div>
-          </CardContent>
-        </Card>
+        <Link href="/agent-builder/call-history">
+          <Card className="overflow-hidden border-l-2 border-transparent hover:border-primary transition-all hover:bg-accent/10 cursor-pointer">
+            <CardContent className="p-6">
+              <div className="flex items-center mb-2">
+                <Phone className="h-4 w-4 text-primary mr-2" />
+                <span className="text-sm">AI Calls Made</span>
+              </div>
+              <div className="flex items-baseline">
+                <span className="text-3xl font-bold">87</span>
+                <span className="text-xs text-green-500 ml-2">+12.9% from last month</span>
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
 
       {/* Tabs Section */}

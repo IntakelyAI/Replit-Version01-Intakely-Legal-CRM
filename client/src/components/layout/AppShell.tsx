@@ -32,20 +32,93 @@ interface SecondaryNavItemProps {
   hasSubmenu?: boolean;
 }
 
-const SecondaryNavItem = ({ icon, label, path, isActive, hasSubmenu = false }: SecondaryNavItemProps) => {
+interface TertiaryNavItemProps {
+  label: string;
+  path: string;
+  isActive?: boolean;
+}
+
+const TertiaryNavItem = ({ label, path, isActive }: TertiaryNavItemProps) => {
   return (
     <Link href={path}>
       <div 
         className={`
-          flex items-center px-3 py-2 rounded-md mb-1 cursor-pointer
-          ${isActive ? 'bg-primary/10' : 'hover:bg-accent/50'}
+          flex items-center px-3 py-1.5 rounded-sm mb-0.5 cursor-pointer border-l-2 transition-all
+          ${isActive 
+            ? 'border-primary bg-primary/5 font-medium' 
+            : 'border-transparent hover:bg-accent/30 hover:border-primary'
+          }
         `}
       >
-        <span className={`mr-2 text-primary`}>{icon}</span>
-        <span className="text-sm flex-1">{label}</span>
-        {hasSubmenu && <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+        <span className="text-xs ml-1">{label}</span>
       </div>
     </Link>
+  );
+};
+
+const SecondaryNavItem = ({ icon, label, path, isActive, hasSubmenu = false }: SecondaryNavItemProps) => {
+  const [expanded, setExpanded] = useState(false);
+  const [location] = useLocation();
+  
+  // Toggle the submenu
+  const toggleSubmenu = (e: React.MouseEvent) => {
+    if (hasSubmenu) {
+      e.preventDefault();
+      setExpanded(!expanded);
+    }
+  };
+  
+  // Check if path is part of the current location
+  const isPathActive = isActive || location.includes(path);
+  
+  return (
+    <div className="mb-1">
+      <Link href={hasSubmenu ? '#' : path}>
+        <div 
+          onClick={toggleSubmenu}
+          className={`
+            flex items-center px-3 py-2 rounded-sm cursor-pointer border-l-2 transition-all
+            ${isPathActive 
+              ? 'border-primary bg-primary/5 font-medium' 
+              : 'border-transparent hover:bg-accent/30 hover:border-primary'
+            }
+          `}
+        >
+          <span className={`mr-2 ${isPathActive ? 'text-primary' : ''}`}>{icon}</span>
+          <span className="text-sm flex-1">{label}</span>
+          {hasSubmenu && (
+            <span className={`transition-transform duration-200 ${expanded ? 'rotate-180' : 'rotate-0'}`}>
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+            </span>
+          )}
+        </div>
+      </Link>
+      
+      {hasSubmenu && expanded && (
+        <div className="ml-6 mt-1 space-y-0.5 border-l border-border/40 pl-2 py-1">
+          <TertiaryNavItem 
+            label="All Items" 
+            path={`${path}`} 
+            isActive={location === path}
+          />
+          <TertiaryNavItem 
+            label="Active Items" 
+            path={`${path}/active`} 
+            isActive={location.includes(`${path}/active`)}
+          />
+          <TertiaryNavItem 
+            label="Archived Items" 
+            path={`${path}/archived`} 
+            isActive={location.includes(`${path}/archived`)}
+          />
+          <TertiaryNavItem 
+            label="Add New" 
+            path={`${path}/new`} 
+            isActive={location.includes(`${path}/new`)}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
@@ -97,19 +170,19 @@ export function AppShell({ children }: PropsWithChildren) {
       
       {/* Secondary menu rendered when a law firm is selected */}
       {secondaryMenuVisible && (
-        <div className="fixed inset-y-0 left-12 z-20 w-[260px] bg-[#161616] border-r border-border/30">
+        <div className="fixed inset-y-0 left-12 z-20 w-[260px] bg-background border-r border-border/30">
           <div className="flex h-10 items-center justify-between px-3 border-b border-border/30">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-orange-500"></span>
-              <span className="text-sm font-medium text-white">California Regional Space</span>
+              <span className="text-sm font-medium">California Regional Space</span>
             </div>
             <div className="flex items-center gap-1">
-              <Button variant="ghost" size="icon" className="h-6 w-6 p-0 text-muted-foreground hover:text-white" title="Search">
+              <Button variant="ghost" size="icon" className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground" title="Search">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                   <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
                 </svg>
               </Button>
-              <Button variant="ghost" size="icon" className="h-6 w-6 p-0 text-muted-foreground hover:text-white" title="Options">
+              <Button variant="ghost" size="icon" className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground" title="Options">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
                   <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
                 </svg>
@@ -119,20 +192,20 @@ export function AppShell({ children }: PropsWithChildren) {
           
           {/* Tab options */}
           <div className="flex border-b border-border/30">
-            <div className="flex-1 text-center py-2 bg-[#2c2c2c] text-sm border-r border-border/30">Team</div>
-            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-white">Private</div>
-            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-white">Pin</div>
+            <div className="flex-1 text-center py-2 bg-accent/50 text-sm border-r border-border/30">Team</div>
+            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30">Private</div>
+            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30">Pin</div>
           </div>
           
           {/* Action buttons */}
           <div className="flex border-b border-border/30">
-            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-white border-r border-border/30 flex items-center justify-center gap-1 cursor-pointer">
+            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30 border-r border-border/30 flex items-center justify-center gap-1 cursor-pointer">
               <Plus className="h-3.5 w-3.5" /> Add
             </div>
-            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-white border-r border-border/30 flex items-center justify-center gap-1 cursor-pointer">
+            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30 border-r border-border/30 flex items-center justify-center gap-1 cursor-pointer">
               <Import className="h-3.5 w-3.5" /> Import
             </div>
-            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-white flex items-center justify-center gap-1 cursor-pointer">
+            <div className="flex-1 text-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent/30 flex items-center justify-center gap-1 cursor-pointer">
               <Folder className="h-3.5 w-3.5" /> Folder
             </div>
           </div>
