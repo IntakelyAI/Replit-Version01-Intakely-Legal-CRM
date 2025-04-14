@@ -17,7 +17,7 @@ function Router() {
   return (
     <AppShell>
       <Switch>
-        <Route path="/" component={Dashboard} />
+        <Route path="/" component={PersonalAssistant} />
         <Route path="/assistant" component={PersonalAssistant} />
         <Route path="/agent-builder" component={AgentBuilder} />
         <Route path="/spaces" component={Spaces} />

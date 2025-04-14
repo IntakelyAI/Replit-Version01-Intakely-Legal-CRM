@@ -14,7 +14,6 @@ export function Header({ setSidebarOpen }: HeaderProps) {
   const getPageName = () => {
     switch(location) {
       case '/':
-        return 'Dashboard';
       case '/assistant':
         return 'Personal Assistant';
       case '/agent-builder':
@@ -30,7 +29,7 @@ export function Header({ setSidebarOpen }: HeaderProps) {
       case '/settings':
         return 'Settings';
       default:
-        return 'Dashboard';
+        return 'Personal Assistant';
     }
   };
 
