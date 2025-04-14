@@ -27,13 +27,12 @@ import {
   ClipboardList,
   Activity,
   ChevronLeft,
+  Calendar,
+  ListTodo,
+  CreditCard as CreditCardIcon,
+  Briefcase,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { 
-  Collapsible, 
-  CollapsibleContent, 
-  CollapsibleTrigger 
-} from "@/components/ui/collapsible";
 import { Button } from '@/components/ui/button';
 
 type SidebarProps = {
@@ -53,6 +52,7 @@ interface NavigationItemProps {
   isCollapsed?: boolean;
 }
 
+// Fix the nested <a> issue by using a different pattern for links in collapsed mode
 const NavigationItem = ({ 
   icon, 
   label, 
@@ -71,27 +71,35 @@ const NavigationItem = ({
   if (isCollapsed) {
     return (
       <div className="relative group">
-        <div 
-          className={cn(
-            "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
-            isActive ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
-          )}
-          onClick={path ? undefined : handleClick}
-        >
-          {path ? (
-            <Link href={path}>
-              <a className="flex items-center justify-center h-full w-full">
-                {icon}
-              </a>
-            </Link>
-          ) : (
-            <div onClick={handleClick}>
+        {path ? (
+          <Link href={path}>
+            <div 
+              className={cn(
+                "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
+                isActive ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
+              )}
+            >
               {icon}
             </div>
-          )}
-        </div>
+          </Link>
+        ) : (
+          <div 
+            onClick={handleClick}
+            className={cn(
+              "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
+              isActive ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
+            )}
+          >
+            {icon}
+          </div>
+        )}
         <div className="absolute left-full top-0 ml-2 hidden z-50 group-hover:block bg-popover border shadow-md rounded-md py-2 px-3 whitespace-nowrap">
           <span className="text-sm font-medium">{label}</span>
+          {badge && (
+            <span className="ml-2 bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
+              {badge}
+            </span>
+          )}
         </div>
       </div>
     );
@@ -121,9 +129,9 @@ const NavigationItem = ({
 
   return (
     <Link href={path || '#'}>
-      <a
+      <div
         className={cn(
-          "flex items-center h-8 px-2 text-sm rounded-md",
+          "flex items-center h-8 px-2 text-sm rounded-md cursor-pointer",
           isActive 
             ? "bg-primary/10 text-primary font-medium" 
             : "hover:bg-accent/60 hover:text-primary"
@@ -137,7 +145,7 @@ const NavigationItem = ({
             {badge}
           </span>
         )}
-      </a>
+      </div>
     </Link>
   );
 };
@@ -150,6 +158,7 @@ interface ExpandableMenuItemProps {
   children: React.ReactNode;
   isActive?: boolean;
   isCollapsed?: boolean;
+  path?: string;
 }
 
 const ExpandableMenuItem = ({ 
@@ -159,20 +168,34 @@ const ExpandableMenuItem = ({
   onToggle, 
   children,
   isActive,
-  isCollapsed
+  isCollapsed,
+  path
 }: ExpandableMenuItemProps) => {
   if (isCollapsed) {
     return (
       <div className="relative group">
-        <div 
-          onClick={onToggle}
-          className={cn(
-            "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
-            isActive || isOpen ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
-          )}
-        >
-          {icon}
-        </div>
+        {path ? (
+          <Link href={path}>
+            <div 
+              className={cn(
+                "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
+                isActive || isOpen ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
+              )}
+            >
+              {icon}
+            </div>
+          </Link>
+        ) : (
+          <div 
+            onClick={onToggle}
+            className={cn(
+              "flex justify-center items-center h-8 w-8 rounded-md cursor-pointer mx-auto my-2",
+              isActive || isOpen ? "bg-primary/10 text-primary" : "hover:bg-accent/50 text-foreground hover:text-primary"
+            )}
+          >
+            {icon}
+          </div>
+        )}
         <div className="absolute left-full top-0 ml-2 hidden z-50 group-hover:block bg-popover border shadow-md rounded-md py-2 w-48">
           <div className="px-3 py-1 border-b mb-1 text-sm font-medium">{label}</div>
           <div className="max-h-[60vh] overflow-y-auto px-1">
@@ -222,9 +245,9 @@ const SubMenuItem = ({
 }: NavigationItemProps) => {
   return (
     <Link href={path || '#'}>
-      <a
+      <div
         className={cn(
-          "flex items-center h-7 px-2 text-sm rounded-sm",
+          "flex items-center h-7 px-2 text-sm rounded-sm cursor-pointer",
           isActive 
             ? "bg-primary/10 text-primary font-medium" 
             : "hover:bg-accent/40 hover:text-primary"
@@ -232,7 +255,7 @@ const SubMenuItem = ({
       >
         <span className="w-4 h-4 mr-2">{icon}</span>
         <span className="text-sm">{label}</span>
-      </a>
+      </div>
     </Link>
   );
 };
@@ -271,6 +294,13 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
       }));
     }
   };
+
+  // Generate law firm secondary navigation if in a space
+  const renderFirmNavigation = () => {
+    if (location.startsWith('/spaces/') && location.split('/').length > 2) {
+      // Add code to render secondary navigation
+    }
+  };
   
   return (
     <aside className={cn(
@@ -281,12 +311,12 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
       <div className="flex h-10 items-center justify-between px-2 border-b">
         {!collapsed && (
           <Link href="/">
-            <a className="flex items-center gap-2">
+            <div className="flex items-center gap-2 cursor-pointer">
               <div className="w-5 h-5 bg-primary rounded flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xs">I</span>
               </div>
               <span className="text-base font-semibold">Intakely</span>
-            </a>
+            </div>
           </Link>
         )}
         
@@ -305,184 +335,241 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
       </div>
 
       <ScrollArea className="flex-1 py-2 px-1 h-[calc(100vh-6rem)]">
-        <nav className="space-y-1">
-          {/* Top navigation items */}
-          <NavigationItem 
-            icon={<MessageSquare size={14} />} 
-            label="Personal Assistant" 
-            path="/"
-            isActive={location === '/' || location === '/assistant'} 
-            isCollapsed={collapsed}
-          />
-          
-          {/* Agent Builder section */}
-          <ExpandableMenuItem
-            icon={<Bot size={14} />}
-            label="Agent Builder"
-            isOpen={expandedItems.agentBuilder}
-            onToggle={() => toggleExpanded('agentBuilder')}
-            isActive={isActivePath('/agent-builder')}
-            isCollapsed={collapsed}
-          >
-            <SubMenuItem
-              icon={<Users size={14} />}
-              label="Agents"
-              path="/agent-builder/agents"
-              isActive={isActivePath('/agent-builder/agents')}
-            />
-            <SubMenuItem
-              icon={<FileText size={14} />}
-              label="Knowledge Base"
-              path="/agent-builder/knowledge-base"
-              isActive={isActivePath('/agent-builder/knowledge-base')}
-            />
-            <SubMenuItem
-              icon={<Phone size={14} />}
-              label="Phone Numbers"
-              path="/agent-builder/phone-numbers"
-              isActive={isActivePath('/agent-builder/phone-numbers')}
-            />
-            <SubMenuItem
-              icon={<FileText size={14} />}
-              label="Batch Call"
-              path="/agent-builder/batch-call"
-              isActive={isActivePath('/agent-builder/batch-call')}
-            />
-            <SubMenuItem
-              icon={<Clock size={14} />}
-              label="Call History"
-              path="/agent-builder/call-history"
-              isActive={isActivePath('/agent-builder/call-history')}
-            />
-            <SubMenuItem
-              icon={<BarChart size={14} />}
-              label="Analytics"
-              path="/agent-builder/analytics"
-              isActive={isActivePath('/agent-builder/analytics')}
-            />
-            <SubMenuItem
-              icon={<Wrench size={14} />}
-              label="Tools"
-              path="/agent-builder/tools"
-              isActive={isActivePath('/agent-builder/tools')}
-            />
-          </ExpandableMenuItem>
-          
-          {/* Spaces: Law Firms section */}
-          <ExpandableMenuItem
-            icon={<Building size={14} />}
-            label="Spaces : Law Firms"
-            isOpen={expandedItems.spaces}
-            onToggle={() => toggleExpanded('spaces')}
-            isActive={isActivePath('/spaces')}
-            isCollapsed={collapsed}
-          >
-            {!collapsed && (
-              <div className="mb-2">
-                <input
-                  className="w-full px-2 py-1 text-xs rounded bg-accent/40 placeholder-muted-foreground outline-none"
-                  placeholder="Search spaces..."
-                />
-              </div>
-            )}
-            
-            <div className="text-[10px] uppercase font-semibold text-muted-foreground mb-1 px-1">
-              Recent Spaces
-            </div>
-            
-            <SubMenuItem
-              icon={<Building2 size={14} />}
-              label="Smith Law Group"
-              path="/spaces/smith-law"
-              isActive={isActivePath('/spaces/smith-law')}
-            />
-            <SubMenuItem
-              icon={<Building2 size={14} />}
-              label="Johnson Legal"
-              path="/spaces/johnson-legal"
-              isActive={isActivePath('/spaces/johnson-legal')}
+        <nav className="space-y-1 flex flex-col h-full">
+          {/* Top Section - The 4 main layers */}
+          <div>
+            <NavigationItem 
+              icon={<MessageSquare size={14} />} 
+              label="Personal Assistant" 
+              path="/"
+              isActive={location === '/' || location === '/assistant'} 
+              isCollapsed={collapsed}
             />
             
-            {!collapsed && (
-              <Button variant="ghost" size="sm" className="w-full mt-1 text-xs h-6">
-                <span className="mr-1 text-xs">+</span> New Space
-              </Button>
-            )}
-          </ExpandableMenuItem>
-          
-          {/* Intakely Operations section */}
-          <ExpandableMenuItem
-            icon={<BarChart size={14} />}
-            label="Intakely Operations"
-            isOpen={expandedItems.operations}
-            onToggle={() => toggleExpanded('operations')}
-            isActive={isActivePath('/operations')}
-            isCollapsed={collapsed}
-          >
-            <SubMenuItem
-              icon={<UserCog size={14} />}
-              label="User Management"
-              path="/operations/user-management"
-              isActive={isActivePath('/operations/user-management')}
-            />
-            <SubMenuItem
-              icon={<Target size={14} />}
-              label="Market Targeting"
-              path="/operations/market-targeting"
-              isActive={isActivePath('/operations/market-targeting')}
-            />
-            <SubMenuItem
-              icon={<Presentation size={14} />}
-              label="Sales Demos"
-              path="/operations/sales-demos"
-              isActive={isActivePath('/operations/sales-demos')}
-            />
-            <SubMenuItem
+            {/* Agent Builder section */}
+            <ExpandableMenuItem
               icon={<Bot size={14} />}
-              label="AI-Led Onboarding"
-              path="/operations/ai-onboarding"
-              isActive={isActivePath('/operations/ai-onboarding')}
-            />
-            <SubMenuItem
-              icon={<CreditCard size={14} />}
-              label="Subscription"
-              path="/operations/subscription"
-              isActive={isActivePath('/operations/subscription')}
-            />
-            <SubMenuItem
-              icon={<Users size={14} />}
-              label="Customer Success"
-              path="/operations/customer-success"
-              isActive={isActivePath('/operations/customer-success')}
-            />
-            <SubMenuItem
-              icon={<ClipboardList size={14} />}
-              label="Internal Operations"
-              path="/operations/internal-operations"
-              isActive={isActivePath('/operations/internal-operations')}
-            />
-            <SubMenuItem
-              icon={<Settings size={14} />}
-              label="Internal Automation"
-              path="/operations/internal-automation"
-              isActive={isActivePath('/operations/internal-automation')}
-            />
-            <SubMenuItem
-              icon={<Activity size={14} />}
-              label="Activity Logging"
-              path="/operations/activity-logging"
-              isActive={isActivePath('/operations/activity-logging')}
-            />
-            <SubMenuItem
+              label="Agent Builder"
+              isOpen={expandedItems.agentBuilder}
+              onToggle={() => toggleExpanded('agentBuilder')}
+              isActive={isActivePath('/agent-builder')}
+              isCollapsed={collapsed}
+              path="/agent-builder"
+            >
+              <SubMenuItem
+                icon={<Users size={14} />}
+                label="Agents"
+                path="/agent-builder/agents"
+                isActive={isActivePath('/agent-builder/agents')}
+              />
+              <SubMenuItem
+                icon={<FileText size={14} />}
+                label="Knowledge Base"
+                path="/agent-builder/knowledge-base"
+                isActive={isActivePath('/agent-builder/knowledge-base')}
+              />
+              <SubMenuItem
+                icon={<Phone size={14} />}
+                label="Phone Numbers"
+                path="/agent-builder/phone-numbers"
+                isActive={isActivePath('/agent-builder/phone-numbers')}
+              />
+              <SubMenuItem
+                icon={<FileText size={14} />}
+                label="Batch Call"
+                path="/agent-builder/batch-call"
+                isActive={isActivePath('/agent-builder/batch-call')}
+              />
+              <SubMenuItem
+                icon={<Clock size={14} />}
+                label="Call History"
+                path="/agent-builder/call-history"
+                isActive={isActivePath('/agent-builder/call-history')}
+              />
+              <SubMenuItem
+                icon={<BarChart size={14} />}
+                label="Analytics"
+                path="/agent-builder/analytics"
+                isActive={isActivePath('/agent-builder/analytics')}
+              />
+              <SubMenuItem
+                icon={<Wrench size={14} />}
+                label="Tools"
+                path="/agent-builder/tools"
+                isActive={isActivePath('/agent-builder/tools')}
+              />
+            </ExpandableMenuItem>
+            
+            {/* Spaces: Law Firms section */}
+            <ExpandableMenuItem
+              icon={<Building size={14} />}
+              label="Spaces : Law Firms"
+              isOpen={expandedItems.spaces}
+              onToggle={() => toggleExpanded('spaces')}
+              isActive={isActivePath('/spaces')}
+              isCollapsed={collapsed}
+              path="/spaces"
+            >
+              {!collapsed && (
+                <div className="mb-2">
+                  <input
+                    className="w-full px-2 py-1 text-xs rounded bg-accent/40 placeholder-muted-foreground outline-none"
+                    placeholder="Search spaces..."
+                  />
+                </div>
+              )}
+              
+              <div className="text-[10px] uppercase font-semibold text-muted-foreground mb-1 px-1">
+                Recent Spaces
+              </div>
+              
+              <SubMenuItem
+                icon={<Building2 size={14} />}
+                label="Smith Law Group"
+                path="/spaces/smith-law"
+                isActive={isActivePath('/spaces/smith-law')}
+              />
+              <SubMenuItem
+                icon={<Building2 size={14} />}
+                label="Johnson Legal"
+                path="/spaces/johnson-legal"
+                isActive={isActivePath('/spaces/johnson-legal')}
+              />
+              
+              {!collapsed && (
+                <Button variant="ghost" size="sm" className="w-full mt-1 text-xs h-6">
+                  <span className="mr-1 text-xs">+</span> New Space
+                </Button>
+              )}
+            </ExpandableMenuItem>
+            
+            {/* Intakely Operations section */}
+            <ExpandableMenuItem
               icon={<BarChart size={14} />}
-              label="Performance Metrics"
-              path="/operations/performance-metrics"
-              isActive={isActivePath('/operations/performance-metrics')}
-            />
-          </ExpandableMenuItem>
+              label="Intakely Operations"
+              isOpen={expandedItems.operations}
+              onToggle={() => toggleExpanded('operations')}
+              isActive={isActivePath('/operations')}
+              isCollapsed={collapsed}
+              path="/operations"
+            >
+              <SubMenuItem
+                icon={<UserCog size={14} />}
+                label="User Management"
+                path="/operations/user-management"
+                isActive={isActivePath('/operations/user-management')}
+              />
+              <SubMenuItem
+                icon={<Target size={14} />}
+                label="Market Targeting"
+                path="/operations/market-targeting"
+                isActive={isActivePath('/operations/market-targeting')}
+              />
+              <SubMenuItem
+                icon={<Presentation size={14} />}
+                label="Sales Demos"
+                path="/operations/sales-demos"
+                isActive={isActivePath('/operations/sales-demos')}
+              />
+              <SubMenuItem
+                icon={<Bot size={14} />}
+                label="AI-Led Onboarding"
+                path="/operations/ai-onboarding"
+                isActive={isActivePath('/operations/ai-onboarding')}
+              />
+              <SubMenuItem
+                icon={<CreditCard size={14} />}
+                label="Subscription"
+                path="/operations/subscription"
+                isActive={isActivePath('/operations/subscription')}
+              />
+              <SubMenuItem
+                icon={<Users size={14} />}
+                label="Customer Success"
+                path="/operations/customer-success"
+                isActive={isActivePath('/operations/customer-success')}
+              />
+              <SubMenuItem
+                icon={<ClipboardList size={14} />}
+                label="Internal Operations"
+                path="/operations/internal-operations"
+                isActive={isActivePath('/operations/internal-operations')}
+              />
+              <SubMenuItem
+                icon={<Settings size={14} />}
+                label="Internal Automation"
+                path="/operations/internal-automation"
+                isActive={isActivePath('/operations/internal-automation')}
+              />
+              <SubMenuItem
+                icon={<Activity size={14} />}
+                label="Activity Logging"
+                path="/operations/activity-logging"
+                isActive={isActivePath('/operations/activity-logging')}
+              />
+              <SubMenuItem
+                icon={<BarChart size={14} />}
+                label="Performance Metrics"
+                path="/operations/performance-metrics"
+                isActive={isActivePath('/operations/performance-metrics')}
+              />
+            </ExpandableMenuItem>
+          </div>
           
-          {/* Bottom section (always visible) */}
-          <div className="pt-2 mt-3 border-t border-border/40 space-y-1">
+          {/* Secondary Law Firm navigation items (only shown when a firm is selected) */}
+          {location.startsWith('/spaces/') && location.split('/').length > 2 && !collapsed && (
+            <div className="pt-2 mt-2 border-t border-border/40 space-y-1">
+              <div className="text-[10px] uppercase font-semibold text-muted-foreground mb-1 px-2">
+                Firm Navigation
+              </div>
+              <NavigationItem 
+                icon={<MessageSquare size={14} />} 
+                label="Communications" 
+                path={`${location}/communications`}
+                isActive={isActivePath(`${location}/communications`)} 
+                isCollapsed={collapsed}
+              />
+              <NavigationItem 
+                icon={<Calendar size={14} />} 
+                label="Appointments" 
+                path={`${location}/appointments`}
+                isActive={isActivePath(`${location}/appointments`)} 
+                isCollapsed={collapsed}
+                badge={5}
+              />
+              <NavigationItem 
+                icon={<ListTodo size={14} />} 
+                label="Interactions/Tasks" 
+                path={`${location}/interactions`}
+                isActive={isActivePath(`${location}/interactions`)} 
+                isCollapsed={collapsed}
+              />
+              <NavigationItem 
+                icon={<FileText size={14} />} 
+                label="Documents" 
+                path={`${location}/documents`}
+                isActive={isActivePath(`${location}/documents`)} 
+                isCollapsed={collapsed}
+              />
+              <NavigationItem 
+                icon={<CreditCardIcon size={14} />} 
+                label="Billing" 
+                path={`${location}/billing`}
+                isActive={isActivePath(`${location}/billing`)} 
+                isCollapsed={collapsed}
+              />
+              <NavigationItem 
+                icon={<Briefcase size={14} />} 
+                label="Cases/Matters" 
+                path={`${location}/cases`}
+                isActive={isActivePath(`${location}/cases`)} 
+                isCollapsed={collapsed}
+              />
+            </div>
+          )}
+          
+          {/* Bottom section (always visible) - pushed to the bottom of the menu */}
+          <div className="mt-auto pt-2 border-t border-border/40 space-y-1">
             <NavigationItem 
               icon={<Users size={14} />} 
               label="Contacts" 
