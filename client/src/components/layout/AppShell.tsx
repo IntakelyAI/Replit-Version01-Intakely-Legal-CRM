@@ -67,6 +67,24 @@ export function AppShell({ children }: PropsWithChildren) {
       setMainMenuCollapsed(true);
     }
   }, [location]);
+  
+  // Watch for changes in mainMenuCollapsed state to manage secondary menu
+  useEffect(() => {
+    if (!mainMenuCollapsed && secondaryMenuVisible) {
+      // Temporarily hide secondary menu when main menu is expanded
+      setSecondaryMenuVisible(false);
+      
+      // Set a timeout to check if we should show it again after animation completes
+      const timeoutId = setTimeout(() => {
+        const isFirmPath = location.startsWith('/spaces/') && location.split('/').length > 2;
+        if (isFirmPath) {
+          setSecondaryMenuVisible(true);
+        }
+      }, 350); // This should match the transition duration
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, [mainMenuCollapsed, location]);
 
   return (
     <div className="flex min-h-screen bg-background">

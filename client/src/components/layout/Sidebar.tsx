@@ -131,14 +131,14 @@ const NavigationItem = ({
     <Link href={path || '#'}>
       <div
         className={cn(
-          "flex items-center h-8 px-2 text-sm rounded-md cursor-pointer",
+          "flex items-center h-8 px-2 text-sm rounded-sm cursor-pointer border-l-2 transition-all",
           isActive 
-            ? "bg-primary/10 text-primary font-medium" 
-            : "hover:bg-accent/60 hover:text-primary"
+            ? "border-primary bg-primary/5 font-medium" 
+            : "border-transparent hover:bg-accent/30 hover:border-primary"
         )}
         onClick={handleClick}
       >
-        <span className="w-4 h-4 mr-2">{icon}</span>
+        <span className={cn("w-4 h-4 mr-2", isActive ? "text-primary" : "")}>{icon}</span>
         <span className="text-sm">{label}</span>
         {badge && (
           <span className="ml-auto bg-primary/90 text-primary-foreground text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
@@ -210,21 +210,17 @@ const ExpandableMenuItem = ({
     <div className="my-1">
       <div 
         className={cn(
-          "flex items-center h-7 px-2 text-sm rounded-sm cursor-pointer",
+          "flex items-center h-7 px-2 text-sm rounded-sm cursor-pointer border-l-2 transition-all",
           isActive || isOpen
-            ? "font-medium text-primary" 
-            : "hover:bg-accent/40 hover:text-primary"
+            ? "border-primary bg-primary/5 font-medium" 
+            : "border-transparent hover:bg-accent/30 hover:border-primary"
         )}
         onClick={onToggle}
       >
-        <span className="w-4 h-4 mr-2">{icon}</span>
+        <span className={cn("w-4 h-4 mr-2", (isActive || isOpen) ? "text-primary" : "")}>{icon}</span>
         <span className="text-sm flex-1">{label}</span>
-        <span className="text-muted-foreground">
-          {isOpen ? (
-            <ChevronDown className="h-3.5 w-3.5" />
-          ) : (
-            <ChevronRight className="h-3.5 w-3.5" />
-          )}
+        <span className={cn("transition-transform", isOpen ? "rotate-180" : "rotate-0")}>
+          <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
         </span>
       </div>
       
@@ -247,13 +243,13 @@ const SubMenuItem = ({
     <Link href={path || '#'}>
       <div
         className={cn(
-          "flex items-center h-7 px-2 text-sm rounded-sm cursor-pointer",
+          "flex items-center h-7 px-2 text-sm rounded-sm cursor-pointer border-l-2 transition-all",
           isActive 
-            ? "bg-primary/10 text-primary font-medium" 
-            : "hover:bg-accent/40 hover:text-primary"
+            ? "border-primary bg-primary/5 font-medium" 
+            : "border-transparent hover:bg-accent/30 hover:border-primary"
         )}
       >
-        <span className="w-4 h-4 mr-2">{icon}</span>
+        <span className={cn("w-4 h-4 mr-2", isActive ? "text-primary" : "")}>{icon}</span>
         <span className="text-sm">{label}</span>
       </div>
     </Link>
