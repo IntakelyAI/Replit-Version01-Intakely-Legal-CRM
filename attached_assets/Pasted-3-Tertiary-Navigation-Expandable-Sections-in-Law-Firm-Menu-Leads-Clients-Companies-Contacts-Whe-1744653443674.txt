@@ -1,0 +1,90 @@
+3. Tertiary Navigation (Expandable Sections in Law Firm Menu)
+Leads/Clients/Companies/Contacts
+When expanded, shows multiple subsections:
+Leads Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Leads | Crown | /leads | Lead management
+| LeadType | Layers | /leads/types | Lead categorization
+| LeadSource | Layers | /leads/sources | Lead origin tracking
+| LeadStatuses | Layers | /leads/statuses | Lead status management
+| LeadPipelineCategory | Layers | /leads/pipeline-categories | Pipeline categorization
+| LeadPipelineStages | Layers | /leads/pipeline-stages | Pipeline stage management
+| LeadNurturing | Layers | /leads/nurturing | Lead nurturing workflows
+| LeadConversion | Layers | /leads/conversion | Conversion tracking
+| MarketingCampaignManagement | BarChart | /leads/marketing | Marketing campaign tools
+Clients Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Clients | Users | /clients | Client management
+| ClientType | Layers | /clients/types | Client categorization
+| ClientStatuses | Layers | /clients/statuses | Client status tracking
+| ClientPipelineCategory | Layers | /clients/pipeline-categories | Client pipeline categories
+| ClientPipelineStages | Layers | /clients/pipeline-stages | Client pipeline stages
+| ClientOnboarding | ClipboardList | /clients/onboarding | Client onboarding process
+Company Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Company | Building | /companies | Company management
+| CompanyType | Layers | /companies/types | Company categorization
+| CompanyStatuses | Layers | /companies/statuses | Company status tracking
+Contacts Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Contacts | UserCircle | /contacts | Contact management
+| ContactTypes | Layers | /contacts/types | Contact categorization
+Linked Info Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Addresses | Building2 | /linked-info/addresses | Address management
+| City | Building2 | /linked-info/cities | City information
+| State/Region | Building2 | /linked-info/states | State/region information
+| Zip Code | Building2 | /linked-info/zip-codes | Postal code management
+| Country | Building2 | /linked-info/countries | Country information
+| SocialLinksInfo | LinkIcon | /linked-info/social | Social media links
+| AdditionalInfo | FileText | /linked-info/additional | Supplementary information
+| EmploymentInfo | Briefcase | /linked-info/employment | Employment details
+| SpouseInfo | Users | /linked-info/spouse | Spouse information
+| FinancialInfo | CreditCard | /linked-info/financial | Financial details
+| FinancialResponsibleParty | CreditCard | /linked-info/financial-responsible | Financial responsibility
+| EmergencyContact | Users | /linked-info/emergency | Emergency contacts
+| DateInformation | Calendar | /linked-info/dates | Important dates
+Referrals & Compliance Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| ComplianceChecks | FileCheck | /compliance/checks | Compliance verification
+| ComplianceTypes | Layers | /compliance/types | Compliance categorization
+| Referrals | Users | /compliance/referrals | Referral management
+AccountSettings
+When expanded, shows multiple subsections:
+LawFirm Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| LawFirmDetails | FileText | /settings/law-firm/details | Firm profile management
+| OfficeTimings | Clock | /settings/law-firm/office-timings | Office hours configuration
+| PrimaryPracticeAreas | Briefcase | /settings/law-firm/practice-areas | Practice area management
+| Specialization | Briefcase | /settings/law-firm/specialization | Specialization settings
+| Branches | Building2 | /settings/law-firm/branches | Branch office management
+Staff Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| StaffAIAgents | UserCircle | /settings/staff/ai-agents | AI agent configuration
+| StaffUsers | UserCircle | /settings/staff/users | Staff user management
+| StaffRoles | Layers | /settings/staff/roles | Role configuration
+| EmploymentTypes | Briefcase | /settings/staff/employment-types | Employment type settings
+| Departments | Building | /settings/staff/departments | Department management
+| Teams | Users | /settings/staff/teams | Team configuration
+| TimeCards | Clock | /settings/staff/time-cards | Time tracking
+| StaffCaseAssignments | Briefcase | /settings/staff/case-assignments | Case assignment management
+Onboarding-Forms Subsection
+| Menu Item | Icon | Path | Description
+|-----|-----|-----|-----|-----
+| Step01-LawFirmDetails-Form | FileText | /settings/onboarding/law-firm-details | Initial onboarding form
+Navigation Behavior
+Interaction Patterns
+Collapsible Main Menu: The primary navigation can be collapsed to a narrow icon bar to maximize workspace.
+Context-Sensitive Secondary Menu: The law firm menu appears only when a firm is selected.
+Expandable Sections: Menu items with children can be expanded/collapsed to show/hide deeper navigation options.
+Tooltips: When the main menu is collapsed, tooltips appear on hover to identify icons.
+Visual Indicators: Active and expanded items receive visual highlighting.
+Badges: Notification counts appear as badges on relevant menu items.

@@ -30,6 +30,7 @@ interface SecondaryNavItemProps {
   path: string;
   isActive?: boolean;
   hasSubmenu?: boolean;
+  children?: React.ReactNode;
 }
 
 interface TertiaryNavItemProps {
@@ -280,7 +281,217 @@ export function AppShell({ children }: PropsWithChildren) {
                 path={`${location}/contacts`}
                 isActive={location.includes('/contacts')}
                 hasSubmenu={true}
-              />
+              >
+                {/* Leads Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground mb-1 pl-1 pt-1">
+                  Leads
+                </div>
+                <TertiaryNavItem 
+                  label="Leads" 
+                  path={`${location}/contacts/leads`} 
+                  isActive={location.includes(`${location}/contacts/leads`)}
+                />
+                <TertiaryNavItem 
+                  label="Lead Types" 
+                  path={`${location}/contacts/leads/types`} 
+                  isActive={location.includes(`${location}/contacts/leads/types`)}
+                />
+                <TertiaryNavItem 
+                  label="Lead Sources" 
+                  path={`${location}/contacts/leads/sources`} 
+                  isActive={location.includes(`${location}/contacts/leads/sources`)}
+                />
+                <TertiaryNavItem 
+                  label="Lead Statuses" 
+                  path={`${location}/contacts/leads/statuses`} 
+                  isActive={location.includes(`${location}/contacts/leads/statuses`)}
+                />
+                <TertiaryNavItem 
+                  label="Pipeline Categories" 
+                  path={`${location}/contacts/leads/pipeline-categories`} 
+                  isActive={location.includes(`${location}/contacts/leads/pipeline-categories`)}
+                />
+                <TertiaryNavItem 
+                  label="Pipeline Stages" 
+                  path={`${location}/contacts/leads/pipeline-stages`} 
+                  isActive={location.includes(`${location}/contacts/leads/pipeline-stages`)}
+                />
+                <TertiaryNavItem 
+                  label="Lead Nurturing" 
+                  path={`${location}/contacts/leads/nurturing`} 
+                  isActive={location.includes(`${location}/contacts/leads/nurturing`)}
+                />
+                <TertiaryNavItem 
+                  label="Lead Conversion" 
+                  path={`${location}/contacts/leads/conversion`} 
+                  isActive={location.includes(`${location}/contacts/leads/conversion`)}
+                />
+                <TertiaryNavItem 
+                  label="Marketing Campaigns" 
+                  path={`${location}/contacts/leads/marketing`} 
+                  isActive={location.includes(`${location}/contacts/leads/marketing`)}
+                />
+                
+                {/* Clients Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Clients
+                </div>
+                <TertiaryNavItem 
+                  label="Clients" 
+                  path={`${location}/contacts/clients`} 
+                  isActive={location.includes(`${location}/contacts/clients`)}
+                />
+                <TertiaryNavItem 
+                  label="Client Types" 
+                  path={`${location}/contacts/clients/types`} 
+                  isActive={location.includes(`${location}/contacts/clients/types`)}
+                />
+                <TertiaryNavItem 
+                  label="Client Statuses" 
+                  path={`${location}/contacts/clients/statuses`} 
+                  isActive={location.includes(`${location}/contacts/clients/statuses`)}
+                />
+                <TertiaryNavItem 
+                  label="Pipeline Categories" 
+                  path={`${location}/contacts/clients/pipeline-categories`} 
+                  isActive={location.includes(`${location}/contacts/clients/pipeline-categories`)}
+                />
+                <TertiaryNavItem 
+                  label="Pipeline Stages" 
+                  path={`${location}/contacts/clients/pipeline-stages`} 
+                  isActive={location.includes(`${location}/contacts/clients/pipeline-stages`)}
+                />
+                <TertiaryNavItem 
+                  label="Client Onboarding" 
+                  path={`${location}/contacts/clients/onboarding`} 
+                  isActive={location.includes(`${location}/contacts/clients/onboarding`)}
+                />
+                
+                {/* Company Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Companies
+                </div>
+                <TertiaryNavItem 
+                  label="Companies" 
+                  path={`${location}/contacts/companies`} 
+                  isActive={location.includes(`${location}/contacts/companies`)}
+                />
+                <TertiaryNavItem 
+                  label="Company Types" 
+                  path={`${location}/contacts/companies/types`} 
+                  isActive={location.includes(`${location}/contacts/companies/types`)}
+                />
+                <TertiaryNavItem 
+                  label="Company Statuses" 
+                  path={`${location}/contacts/companies/statuses`} 
+                  isActive={location.includes(`${location}/contacts/companies/statuses`)}
+                />
+                
+                {/* Contacts Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Contacts
+                </div>
+                <TertiaryNavItem 
+                  label="Contacts" 
+                  path={`${location}/contacts/individual`} 
+                  isActive={location.includes(`${location}/contacts/individual`)}
+                />
+                <TertiaryNavItem 
+                  label="Contact Types" 
+                  path={`${location}/contacts/individual/types`} 
+                  isActive={location.includes(`${location}/contacts/individual/types`)}
+                />
+                
+                {/* Linked Info Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Linked Information
+                </div>
+                <TertiaryNavItem 
+                  label="Addresses" 
+                  path={`${location}/contacts/linked-info/addresses`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/addresses`)}
+                />
+                <TertiaryNavItem 
+                  label="Cities" 
+                  path={`${location}/contacts/linked-info/cities`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/cities`)}
+                />
+                <TertiaryNavItem 
+                  label="States/Regions" 
+                  path={`${location}/contacts/linked-info/states`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/states`)}
+                />
+                <TertiaryNavItem 
+                  label="Zip Codes" 
+                  path={`${location}/contacts/linked-info/zip-codes`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/zip-codes`)}
+                />
+                <TertiaryNavItem 
+                  label="Countries" 
+                  path={`${location}/contacts/linked-info/countries`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/countries`)}
+                />
+                <TertiaryNavItem 
+                  label="Social Links" 
+                  path={`${location}/contacts/linked-info/social`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/social`)}
+                />
+                <TertiaryNavItem 
+                  label="Additional Info" 
+                  path={`${location}/contacts/linked-info/additional`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/additional`)}
+                />
+                <TertiaryNavItem 
+                  label="Employment" 
+                  path={`${location}/contacts/linked-info/employment`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/employment`)}
+                />
+                <TertiaryNavItem 
+                  label="Spouse Info" 
+                  path={`${location}/contacts/linked-info/spouse`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/spouse`)}
+                />
+                <TertiaryNavItem 
+                  label="Financial Info" 
+                  path={`${location}/contacts/linked-info/financial`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/financial`)}
+                />
+                <TertiaryNavItem 
+                  label="Financial Responsibility" 
+                  path={`${location}/contacts/linked-info/financial-responsible`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/financial-responsible`)}
+                />
+                <TertiaryNavItem 
+                  label="Emergency Contacts" 
+                  path={`${location}/contacts/linked-info/emergency`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/emergency`)}
+                />
+                <TertiaryNavItem 
+                  label="Important Dates" 
+                  path={`${location}/contacts/linked-info/dates`} 
+                  isActive={location.includes(`${location}/contacts/linked-info/dates`)}
+                />
+                
+                {/* Referrals & Compliance Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Referrals & Compliance
+                </div>
+                <TertiaryNavItem 
+                  label="Compliance Checks" 
+                  path={`${location}/contacts/compliance/checks`} 
+                  isActive={location.includes(`${location}/contacts/compliance/checks`)}
+                />
+                <TertiaryNavItem 
+                  label="Compliance Types" 
+                  path={`${location}/contacts/compliance/types`} 
+                  isActive={location.includes(`${location}/contacts/compliance/types`)}
+                />
+                <TertiaryNavItem 
+                  label="Referrals" 
+                  path={`${location}/contacts/compliance/referrals`} 
+                  isActive={location.includes(`${location}/contacts/compliance/referrals`)}
+                />
+              </SecondaryNavItem>
               
               <SecondaryNavItem 
                 icon={<Settings className="h-4 w-4" />} 
@@ -288,7 +499,92 @@ export function AppShell({ children }: PropsWithChildren) {
                 path={`${location}/settings`}
                 isActive={location.includes('/settings')}
                 hasSubmenu={true}
-              />
+              >
+                {/* LawFirm Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground mb-1 pl-1 pt-1">
+                  Law Firm
+                </div>
+                <TertiaryNavItem 
+                  label="Firm Details" 
+                  path={`${location}/settings/law-firm/details`} 
+                  isActive={location.includes(`${location}/settings/law-firm/details`)}
+                />
+                <TertiaryNavItem 
+                  label="Office Timings" 
+                  path={`${location}/settings/law-firm/office-timings`} 
+                  isActive={location.includes(`${location}/settings/law-firm/office-timings`)}
+                />
+                <TertiaryNavItem 
+                  label="Practice Areas" 
+                  path={`${location}/settings/law-firm/practice-areas`} 
+                  isActive={location.includes(`${location}/settings/law-firm/practice-areas`)}
+                />
+                <TertiaryNavItem 
+                  label="Specialization" 
+                  path={`${location}/settings/law-firm/specialization`} 
+                  isActive={location.includes(`${location}/settings/law-firm/specialization`)}
+                />
+                <TertiaryNavItem 
+                  label="Branches" 
+                  path={`${location}/settings/law-firm/branches`} 
+                  isActive={location.includes(`${location}/settings/law-firm/branches`)}
+                />
+                
+                {/* Staff Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Staff
+                </div>
+                <TertiaryNavItem 
+                  label="AI Agents" 
+                  path={`${location}/settings/staff/ai-agents`} 
+                  isActive={location.includes(`${location}/settings/staff/ai-agents`)}
+                />
+                <TertiaryNavItem 
+                  label="Users" 
+                  path={`${location}/settings/staff/users`} 
+                  isActive={location.includes(`${location}/settings/staff/users`)}
+                />
+                <TertiaryNavItem 
+                  label="Roles" 
+                  path={`${location}/settings/staff/roles`} 
+                  isActive={location.includes(`${location}/settings/staff/roles`)}
+                />
+                <TertiaryNavItem 
+                  label="Employment Types" 
+                  path={`${location}/settings/staff/employment-types`} 
+                  isActive={location.includes(`${location}/settings/staff/employment-types`)}
+                />
+                <TertiaryNavItem 
+                  label="Departments" 
+                  path={`${location}/settings/staff/departments`} 
+                  isActive={location.includes(`${location}/settings/staff/departments`)}
+                />
+                <TertiaryNavItem 
+                  label="Teams" 
+                  path={`${location}/settings/staff/teams`} 
+                  isActive={location.includes(`${location}/settings/staff/teams`)}
+                />
+                <TertiaryNavItem 
+                  label="Time Cards" 
+                  path={`${location}/settings/staff/time-cards`} 
+                  isActive={location.includes(`${location}/settings/staff/time-cards`)}
+                />
+                <TertiaryNavItem 
+                  label="Case Assignments" 
+                  path={`${location}/settings/staff/case-assignments`} 
+                  isActive={location.includes(`${location}/settings/staff/case-assignments`)}
+                />
+                
+                {/* Onboarding-Forms Subsection */}
+                <div className="text-[10px] uppercase font-semibold text-muted-foreground my-1 pl-1 pt-2">
+                  Onboarding Forms
+                </div>
+                <TertiaryNavItem 
+                  label="Firm Details Form" 
+                  path={`${location}/settings/onboarding/law-firm-details`} 
+                  isActive={location.includes(`${location}/settings/onboarding/law-firm-details`)}
+                />
+              </SecondaryNavItem>
             </div>
           </ScrollArea>
           

@@ -262,7 +262,16 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
     // Set expanded state for menu sections
     agentBuilder: false,
     spaces: false,
-    operations: false
+    operations: false,
+    leads: false,
+    clients: false,
+    company: false,
+    contacts: false,
+    linkedInfo: false,
+    referrals: false,
+    lawFirm: false,
+    staff: false,
+    onboarding: false
   });
   
   // Local collapsed state if not provided from props
@@ -564,8 +573,19 @@ export function Sidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }: Side
             </div>
           )}
           
-          {/* Bottom section (always visible) - pushed to the bottom of the menu */}
-          <div className="mt-auto pt-2 border-t border-border/40 space-y-1">
+          {/* Bottom section for system controls */}
+          <div className="mt-auto space-y-1">
+            {!collapsed && (
+              <div className="pt-6 pb-2">
+                <Separator className="my-1 bg-border/40" />
+                {!collapsed && (
+                  <div className="text-[10px] uppercase font-semibold text-muted-foreground mx-2 my-2">
+                    Account & System
+                  </div>
+                )}
+              </div>
+            )}
+            
             <NavigationItem 
               icon={<Users size={14} />} 
               label="Contacts" 
