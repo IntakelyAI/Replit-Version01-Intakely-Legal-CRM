@@ -57,7 +57,7 @@ const TertiaryNavItem = ({ label, path, isActive }: TertiaryNavItemProps) => {
   );
 };
 
-const SecondaryNavItem = ({ icon, label, path, isActive, hasSubmenu = false }: SecondaryNavItemProps) => {
+const SecondaryNavItem = ({ icon, label, path, isActive, hasSubmenu = false, children }: SecondaryNavItemProps) => {
   const [expanded, setExpanded] = useState(false);
   const [location] = useLocation();
   
@@ -97,26 +97,30 @@ const SecondaryNavItem = ({ icon, label, path, isActive, hasSubmenu = false }: S
       
       {hasSubmenu && expanded && (
         <div className="ml-6 mt-1 space-y-0.5 border-l border-border/40 pl-2 py-1">
-          <TertiaryNavItem 
-            label="All Items" 
-            path={`${path}`} 
-            isActive={location === path}
-          />
-          <TertiaryNavItem 
-            label="Active Items" 
-            path={`${path}/active`} 
-            isActive={location.includes(`${path}/active`)}
-          />
-          <TertiaryNavItem 
-            label="Archived Items" 
-            path={`${path}/archived`} 
-            isActive={location.includes(`${path}/archived`)}
-          />
-          <TertiaryNavItem 
-            label="Add New" 
-            path={`${path}/new`} 
-            isActive={location.includes(`${path}/new`)}
-          />
+          {children ? children : (
+            <>
+              <TertiaryNavItem 
+                label="All Items" 
+                path={`${path}`} 
+                isActive={location === path}
+              />
+              <TertiaryNavItem 
+                label="Active Items" 
+                path={`${path}/active`} 
+                isActive={location.includes(`${path}/active`)}
+              />
+              <TertiaryNavItem 
+                label="Archived Items" 
+                path={`${path}/archived`} 
+                isActive={location.includes(`${path}/archived`)}
+              />
+              <TertiaryNavItem 
+                label="Add New" 
+                path={`${path}/new`} 
+                isActive={location.includes(`${path}/new`)}
+              />
+            </>
+          )}
         </div>
       )}
     </div>
