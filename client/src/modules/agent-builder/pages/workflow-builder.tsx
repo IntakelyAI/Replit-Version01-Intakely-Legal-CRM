@@ -1,11 +1,10 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { 
   ChevronLeft, 
   Mic, 
   Plus, 
-  Minus,  
+  Minus,
   CheckCircle2
 } from "lucide-react";
 import { useLocation } from 'wouter';
@@ -28,74 +27,20 @@ interface Edge {
   to: string;
 }
 
-const existingAgentNodes: Node[] = [
-  { 
-    id: '1', 
-    type: 'Initial Message', 
-    position: { x: 400, y: 100 },
-    config: {
-      prompt: "Hello, I'm here to help qualify your legal case. Could you briefly describe your situation?"
-    }
-  },
-  { 
-    id: '2', 
-    type: 'Lead Qualification', 
-    position: { x: 400, y: 250 },
-    config: {
-      prompt: "I understand. Let me ask a few qualifying questions to better assist you.",
-      tools: ['calendar-check', 'custom']
-    }
-  },
-  { 
-    id: '3', 
-    type: 'Calendar Booking', 
-    position: { x: 200, y: 400 },
-    config: {
-      tools: ['calendar']
-    }
-  },
-  { 
-    id: '4', 
-    type: 'Call Transfer', 
-    position: { x: 600, y: 400 },
-    config: {
-      tools: ['call-transfer']
-    }
-  },
-  { 
-    id: '5', 
-    type: 'End Call', 
-    position: { x: 400, y: 550 },
-    config: {
-      tools: ['end-call']
-    }
-  },
-];
-
-const existingAgentEdges: Edge[] = [
-  { from: '1', to: '2' },
-  { from: '2', to: '3' },
-  { from: '2', to: '4' },
-  { from: '3', to: '5' },
-  { from: '4', to: '5' },
-];
-
-const newAgentNodes: Node[] = [
-  { 
-    id: '1', 
-    type: 'Starting Point', 
-    position: { x: 400, y: 250 },
-    config: {
-      prompt: "Welcome! How can I assist you today?"
-    }
+const defaultNode: Node = {
+  id: '1',
+  type: 'Starting Point',
+  position: { x: 400, y: 250 },
+  config: {
+    prompt: "Welcome! How can I assist you today?"
   }
-];
+};
 
 export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
   const isNewAgent = new URLSearchParams(window.location.search).get('new') === 'true';
-  const [nodes, setNodes] = useState<Node[]>(isNewAgent ? newAgentNodes : existingAgentNodes);
-  const [edges] = useState<Edge[]>(isNewAgent ? [] : existingAgentEdges);
+  const [nodes, setNodes] = useState<Node[]>([defaultNode]);
+  const [edges] = useState<Edge[]>([]);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
@@ -121,29 +66,47 @@ export default function WorkflowBuilder() {
     setZoom(Math.max(0.5, Math.min(2, zoom + delta)));
   };
 
+  const addNewNode = () => {
+    const newNode: Node = {
+      id: `${nodes.length + 1}`,
+      type: 'Task Node',
+      position: { 
+        x: defaultNode.position.x,
+        y: defaultNode.position.y + (nodes.length * 150)
+      }
+    };
+    setNodes([...nodes, newNode]);
+  };
+
   return (
     <div className="flex flex-col h-full bg-gray-950">
-      {/* Header */}
       <div className="border-b border-border/30 bg-background/50 backdrop-blur z-10">
-        <div className="flex items-center px-4 h-10">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-6 w-6 mr-2" 
-            onClick={() => setLocation('/agent-builder')}
+        <div className="flex items-center justify-between px-4 h-14">
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => setLocation('/agent-builder')}
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Button>
+            <span className="text-sm font-medium">Workflow Builder</span>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={addNewNode}
+            className="bg-gray-900"
           >
-            <ChevronLeft size={16} />
+            <Plus className="h-4 w-4 mr-2" />
+            Add Node
           </Button>
-          <span className="text-sm font-medium">Workflow Builder</span>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 relative overflow-hidden">
-        {/* Canvas */}
         <div className="absolute inset-0" style={{ transform: `scale(${zoom})`, transformOrigin: '50% 0%' }}>
           <svg className="w-full h-full">
-            {/* Edges */}
             {edges.map((edge, index) => {
               const fromNode = nodes.find(n => n.id === edge.from);
               const toNode = nodes.find(n => n.id === edge.to);
@@ -159,8 +122,6 @@ export default function WorkflowBuilder() {
                 />
               );
             })}
-
-            {/* Arrow marker definition */}
             <defs>
               <marker
                 id="arrowhead"
@@ -178,13 +139,14 @@ export default function WorkflowBuilder() {
             </defs>
           </svg>
 
-          {/* Nodes */}
           {nodes.map((node) => (
             <div
               key={node.id}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2 w-48 h-24 
-                       bg-gray-900 border border-gray-800 rounded-lg p-4 cursor-pointer
-                       hover:border-green-500 transition-colors"
+              className={cn(
+                "absolute transform -translate-x-1/2 -translate-y-1/2 w-48 h-24",
+                "bg-gray-900 border border-gray-800 rounded-lg p-4 cursor-pointer",
+                "hover:border-green-500 transition-colors"
+              )}
               style={{ 
                 left: node.position.x, 
                 top: node.position.y,
@@ -205,7 +167,6 @@ export default function WorkflowBuilder() {
           ))}
         </div>
 
-        {/* Zoom Controls */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
           <Button variant="outline" size="sm" className="bg-gray-900" onClick={() => handleZoom(-0.1)}>
             <Minus className="h-4 w-4" />
@@ -215,7 +176,6 @@ export default function WorkflowBuilder() {
           </Button>
         </div>
 
-        {/* Right Panel */}
         <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center gap-4">
           <div className="w-24 h-24 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center">
             <Mic className="h-8 w-8 text-gray-400" />
