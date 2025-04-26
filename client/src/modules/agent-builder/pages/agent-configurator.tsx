@@ -342,6 +342,29 @@ phone_number: {{phone_number}}`}
                   defaultValue="Hello Sam. This is Chris. I've just got a minute?"
                 />
               </div>
+              <div className="mb-5">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Workflow Builder</div>
+                <div className="relative h-48 rounded-md border border-border/30 overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center opacity-10"
+                    style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='nodes' x='0' y='0' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23666'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23nodes)'/%3E%3Cpath d='M10 20 L30 20 M20 10 L20 30' stroke='%23666' stroke-width='1' stroke-dasharray='2,2'/%3E%3C/svg%3E")` 
+                    }}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Button 
+                      variant="outline" 
+                      size="lg"
+                      className="bg-background/80 backdrop-blur"
+                      onClick={() => {
+                        // Add your workflow builder navigation logic here
+                      }}
+                    >
+                      Open Workflow Builder
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </ScrollArea>
         </div>
