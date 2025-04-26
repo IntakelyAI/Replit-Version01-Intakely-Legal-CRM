@@ -215,7 +215,7 @@ export default function AgentConfigurator() {
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex gap-2">
                     <Select defaultValue="en-us" className="flex-1">
-                      <SelectTrigger className="h-8" style={{ width: '208px' }}>
+                      <SelectTrigger className="h-8">
                         <SelectValue>
                           <div className="flex items-center gap-2">
                             <span className="text-[18px]">🇺🇸</span>
@@ -460,18 +460,4 @@ phone_number: {{phone_number}}`}
   );
 }
 
-function ModelSettingsDialog({ open, onOpenChange }) {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Model Settings</DialogTitle>
-        </DialogHeader>
-        <div className="p-4">
-          {/* Add your model settings UI here */}
-          <p>This is a placeholder for model settings.</p>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
+// Remove duplicate ModelSettingsDialog definition
