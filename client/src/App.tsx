@@ -32,6 +32,7 @@ function Router() {
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
         <Route path="/agent-builder/configure" component={AgentConfiguration} />
         <Route path="/agent-builder/detail/:id" component={AgentDetail} />
+        <Route path="/agent-builder/agents" component={AgentBuilder} />
         <Route path="/agent-builder" component={AgentBuilder} />
         <Route path="/assistant" component={PersonalAssistant} />
         <Route path="/" component={PersonalAssistant} />
