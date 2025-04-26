@@ -21,12 +21,12 @@ function Router() {
   return (
     <AppShell>
       <Switch>
-        <Route path="/" component={PersonalAssistant} />
-        <Route path="/assistant" component={PersonalAssistant} />
-        <Route path="/agent-builder" component={Agents} />
-        <Route path="/agent-builder/configure" component={AgentConfiguration} />
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
+        <Route path="/agent-builder/configure" component={AgentConfiguration} />
         <Route path="/agent-builder/detail/:id" component={AgentDetail} />
+        <Route path="/agent-builder" component={Agents} />
+        <Route path="/assistant" component={PersonalAssistant} />
+        <Route path="/" component={PersonalAssistant} />
         <Route path="/spaces" component={Spaces} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/channels" component={Channels} />
