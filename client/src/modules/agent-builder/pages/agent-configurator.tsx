@@ -447,6 +447,10 @@ phone_number: {{phone_number}}`}
             <div className="p-4 border-b border-border/30">
               <div className="flex gap-2 mb-4">
                 <Button variant="outline" size="sm" className="flex-1">
+                  <PhoneCall className="h-4 w-4 mr-2" />
+                  Call
+                </Button>
+                <Button variant="outline" size="sm" className="flex-1">
                   <Phone className="h-4 w-4 mr-2" />
                   Test Audio
                 </Button>
