@@ -81,17 +81,8 @@ export default function AgentConfigurator() {
             <div className="p-4">
               <div className="mb-4 space-y-4">
                 <div className="space-y-2">
-                  <div className="text-xs text-muted-foreground font-semibold">Model & Voice Settings</div>
+                  <div className="text-xs text-muted-foreground font-semibold">Voice Settings</div>
                   <div className="flex flex-col gap-2 p-3 border rounded-md border-border/30">
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                        <span className="text-xs text-muted-foreground">GPT 4o mini</span>
-                        <ChevronLeft className="h-4 w-4 rotate-270" />
-                      </Button>
-                      <Button variant="outline" size="icon" className="h-8 w-8">
-                        <Settings className="h-4 w-4" />
-                      </Button>
-                    </div>
                     <div className="flex items-center gap-2">
                       <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
                         <div className="flex items-center gap-2">
@@ -127,6 +118,16 @@ export default function AgentConfigurator() {
           <ScrollArea className="flex-1">
             <div className="p-4">
               <div className="mb-5">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Model Selection</div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
+                    <span className="text-xs text-muted-foreground">GPT 4o mini</span>
+                    <ChevronLeft className="h-4 w-4 rotate-270" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="h-8 w-8">
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">## Role and Task</div>
                 <Textarea 
                   className="min-h-20 font-mono text-xs"
