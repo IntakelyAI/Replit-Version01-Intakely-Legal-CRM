@@ -20,6 +20,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Outlet } from "react-router-dom";
+import { CreateAgentDialog } from "./components/CreateAgentDialog";
 
 interface AgentData {
   id: string;
@@ -196,12 +197,7 @@ export default function AgentBuilder() {
                 Import
               </Button>
 
-              <Button size="sm" className="shadow-none">
-                Create an Agent
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="ml-1">
-                  <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Button>
+              <CreateAgentDialog />
             </div>
           </div>
 
