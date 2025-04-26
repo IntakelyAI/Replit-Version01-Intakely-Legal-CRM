@@ -1,103 +1,116 @@
 import { useState } from "react";
-import { useLocation, Link } from 'wouter';
+import { useLocation } from 'wouter';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { 
-  ChevronLeft, 
-  CirclePlay, 
-  Settings, 
-  Database, 
-  Mic, 
-  PhoneCall, 
-  FileText, 
-  Shield, 
-  Globe, 
-  CheckCircle2,
+import { Separator } from "@/components/ui/separator";
+import {
+  ChevronLeft,
+  CirclePlay,
+  Settings,
+  Database,
+  Mic,
+  Globe,
   Info
 } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
-export default function AgentDetail() {
-  const [selectedTab, setSelectedTab] = useState("prompt");
-  const [location, setLocation] = useLocation();
-  
+export default function AgentConfigurator() {
+  const [activeTab, setActiveTab] = useState("create");
+  const [, setLocation] = useLocation();
+
   return (
     <div className="flex flex-col h-full">
-      {/* Top Header */}
+      {/* Top Bar/Pane */}
       <div className="border-b border-border/30 bg-background z-10">
-        <div className="flex items-center px-4 h-10">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-6 w-6 mr-2" 
-            onClick={() => setLocation('/agent-builder')}
-          >
-            <ChevronLeft size={16} />
-          </Button>
-          
-          <span className="text-sm font-medium">Real-Estate-Outbound-Appointment</span>
-          <span className="text-xs text-muted-foreground ml-2">Agent ID: ag_566_13</span>
-          <span className="text-xs text-muted-foreground ml-2">• Retell LLM ID: 5_i.aZ6_13</span>
-          <span className="text-xs text-muted-foreground ml-2">• $0.07/min</span>
-          <span className="text-xs text-muted-foreground ml-2">• 900-1000ms latency</span>
-        </div>
-        
-        <div className="flex border-t border-border/30">
-          <Button 
-            variant={selectedTab === "create" ? "secondary" : "ghost"} 
-            className="text-sm rounded-none h-8 px-4"
-            onClick={() => setSelectedTab("create")}
-          >
-            Create
-          </Button>
-          <Button 
-            variant={selectedTab === "simulation" ? "secondary" : "ghost"}
-            className="text-sm rounded-none h-8 px-4"
-            onClick={() => setSelectedTab("simulation")}
-          >
-            Simulation
-          </Button>
-        </div>
-      </div>
-      
-      {/* Main Content */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Column */}
-        <div className="w-1/2 flex flex-col h-full border-r border-border/30">
-          {/* Model Selector */}
-          <div className="flex p-3 border-b border-border/30">
-            <div className="relative flex-1 mr-2">
-              <Button variant="outline" size="sm" className="w-full justify-between h-8">
-                <div className="flex items-center">
-                  <span className="text-xs text-muted-foreground mr-1">GPT 4o mini</span>
-                </div>
-                <ChevronLeft className="h-4 w-4 rotate-270" />
-              </Button>
-            </div>
-            
-            <Button variant="outline" size="icon" className="h-8 w-8">
-              <Settings className="h-4 w-4" />
+        <div className="flex items-center justify-between px-4 h-12">
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="h-8 w-8" 
+              onClick={() => setLocation('/agent-builder')}
+            >
+              <ChevronLeft className="h-5 w-5" />
             </Button>
-            
-            <div className="relative flex items-center ml-2">
-              <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
-                N
+
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium">Real-Estate-Outbound-Appointment</span>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <span>Agent ID: ag_566_13</span>
+                <span>•</span>
+                <span>Retell LLM ID: 5_i.aZ6_13</span>
+                <span>•</span>
+                <span>$0.07/min</span>
+                <span>•</span>
+                <span>900-1000ms latency</span>
               </div>
-              <span className="text-xs ml-1">Noah (en-AU)</span>
-              <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
-            </div>
-            
-            <div className="relative flex items-center ml-2">
-              <Globe className="h-4 w-4 text-muted-foreground" />
-              <span className="text-xs ml-1">English</span>
-              <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
             </div>
           </div>
-          
-          {/* Prompt Editor */}
+
+          <div className="flex gap-2">
+            <Button 
+              variant={activeTab === "create" ? "secondary" : "ghost"}
+              onClick={() => setActiveTab("create")}
+              className="h-8"
+            >
+              Create
+            </Button>
+            <Button 
+              variant={activeTab === "simulation" ? "secondary" : "ghost"}
+              onClick={() => setActiveTab("simulation")}
+              className="h-8"
+            >
+              Simulation
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      {/* Three Column Layout */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Section */}
+        <div className="w-1/3 border-r border-border/30 flex flex-col">
+          <div className="p-4 border-b border-border/30">
+            <h3 className="text-sm font-medium">Agent Configuration</h3>
+          </div>
+          <ScrollArea className="flex-1">
+            <div className="p-4">
+              {/* Model Selector */}
+              <div className="flex p-3 border-b border-border/30">
+                <div className="relative flex-1 mr-2">
+                  <Button variant="outline" size="sm" className="w-full justify-between h-8">
+                    <div className="flex items-center">
+                      <span className="text-xs text-muted-foreground mr-1">GPT 4o mini</span>
+                    </div>
+                    <ChevronLeft className="h-4 w-4 rotate-270" />
+                  </Button>
+                </div>
+                <Button variant="outline" size="icon" className="h-8 w-8">
+                  <Settings className="h-4 w-4" />
+                </Button>
+                <div className="relative flex items-center ml-2">
+                  <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
+                    N
+                  </div>
+                  <span className="text-xs ml-1">Noah (en-AU)</span>
+                  <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
+                </div>
+                <div className="relative flex items-center ml-2">
+                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-xs ml-1">English</span>
+                  <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
+                </div>
+              </div>
+            </div>
+          </ScrollArea>
+        </div>
+
+        {/* Middle Section */}
+        <div className="w-1/3 border-r border-border/30 flex flex-col">
+          <div className="p-4 border-b border-border/30">
+            <h3 className="text-sm font-medium">Conversation Design</h3>
+          </div>
           <ScrollArea className="flex-1">
             <div className="p-4">
               <div className="mb-5">
@@ -117,7 +130,6 @@ name : {{name}}
 phone_number: {{phone_number}}`}
                 />
               </div>
-              
               <div className="mb-5">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Welcome Message</div>
                 <Textarea 
@@ -125,14 +137,12 @@ phone_number: {{phone_number}}`}
                   value="Use a warm, relaxed tone with occasional light humor when appropriate."
                 />
               </div>
-              
               <div className="p-2 border rounded-md">
                 <div className="flex items-center">
                   <div className="text-xs font-semibold">AI Initiates:</div>
                   <div className="text-xs ml-2">AI begins with your defined begin message.</div>
                   <ChevronLeft className="h-4 w-4 rotate-270 ml-auto" />
                 </div>
-                
                 <Textarea 
                   className="mt-2 min-h-12 font-mono text-xs"
                   value="Hello Sam. This is Chris. I've just got a minute?"
@@ -141,10 +151,12 @@ phone_number: {{phone_number}}`}
             </div>
           </ScrollArea>
         </div>
-        
-        {/* Right Column */}
-        <div className="w-1/2 flex flex-col h-full">
-          {/* Configuration Sections */}
+
+        {/* Right Section */}
+        <div className="w-1/3 flex flex-col">
+          <div className="p-4 border-b border-border/30">
+            <h3 className="text-sm font-medium">Settings & Integration</h3>
+          </div>
           <ScrollArea className="flex-1">
             <div className="p-4">
               <div className="border rounded-md mb-4">
@@ -161,7 +173,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -176,7 +187,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -191,7 +201,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -206,7 +215,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -221,7 +229,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -236,7 +243,6 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
                   <div className="flex items-center">
@@ -251,31 +257,27 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-            </div>
-          </ScrollArea>
-          
-          {/* Bottom Test Area */}
-          <div className="border-t border-border/30 p-4">
-            <div className="flex items-center mb-3">
-              <Mic className="h-4 w-4 mr-2 text-primary" />
-              <span className="text-sm font-medium">Test your agent</span>
-              <Info className="h-4 w-4 ml-1 text-muted-foreground" />
-            </div>
-            
-            <div className="flex items-center">
-              <div className="relative flex-1 mr-2">
-                <div className="w-20 h-20 rounded-full bg-background mx-auto flex items-center justify-center border-2 border-muted-foreground/20">
-                  <CirclePlay className="h-10 w-10 text-primary" />
+              <div className="border-t border-border/30 p-4">
+                <div className="flex items-center mb-3">
+                  <Mic className="h-4 w-4 mr-2 text-primary" />
+                  <span className="text-sm font-medium">Test your agent</span>
+                  <Info className="h-4 w-4 ml-1 text-muted-foreground" />
+                </div>
+                <div className="flex items-center">
+                  <div className="relative flex-1 mr-2">
+                    <div className="w-20 h-20 rounded-full bg-background mx-auto flex items-center justify-center border-2 border-muted-foreground/20">
+                      <CirclePlay className="h-10 w-10 text-primary" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-center mt-3">
+                  <Button variant="secondary" size="sm" className="w-32">
+                    Test
+                  </Button>
                 </div>
               </div>
             </div>
-            
-            <div className="flex justify-center mt-3">
-              <Button variant="secondary" size="sm" className="w-32">
-                Test
-              </Button>
-            </div>
-          </div>
+          </ScrollArea>
         </div>
       </div>
     </div>
