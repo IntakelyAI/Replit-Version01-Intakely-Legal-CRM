@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { useLocation } from 'wouter';
 import ReactFlow, { 
@@ -38,7 +37,17 @@ export default function WorkflowBuilder() {
         padding: '15px',
         borderRadius: '8px',
         border: '1px solid rgba(255,255,255,0.1)',
-        width: 200
+        width: 200,
+        color: '#fff',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        '&:hover': {
+          borderColor: 'rgba(255,255,255,0.2)',
+          transform: 'translateY(-1px)',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+        }
       },
       data: { 
         label: 'Initial Contact',
@@ -55,7 +64,17 @@ export default function WorkflowBuilder() {
         padding: '15px',
         borderRadius: '8px',
         border: '1px solid rgba(255,255,255,0.1)',
-        width: 200
+        width: 200,
+        color: '#fff',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        '&:hover': {
+          borderColor: 'rgba(255,255,255,0.2)',
+          transform: 'translateY(-1px)',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+        }
       },
       data: {
         label: 'Qualification',
@@ -72,7 +91,17 @@ export default function WorkflowBuilder() {
         padding: '15px',
         borderRadius: '8px',
         border: '1px solid rgba(255,255,255,0.1)',
-        width: 200
+        width: 200,
+        color: '#fff',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        '&:hover': {
+          borderColor: 'rgba(255,255,255,0.2)',
+          transform: 'translateY(-1px)',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+        }
       },
       data: {
         label: 'Schedule Meeting',
@@ -139,7 +168,17 @@ export default function WorkflowBuilder() {
         padding: '15px',
         borderRadius: '8px',
         border: '1px solid rgba(255,255,255,0.1)',
-        width: 200
+        width: 200,
+        color: '#fff',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease-in-out',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        '&:hover': {
+          borderColor: 'rgba(255,255,255,0.2)',
+          transform: 'translateY(-1px)',
+          boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+        }
       },
       data: {
         label: `New Node ${nodes.length + 1}`,
