@@ -15,7 +15,7 @@ import 'reactflow/dist/style.css';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
 import { ChevronLeft, Plus } from 'lucide-react';
-import NodeConfigDialog from '../components/NodeConfigDialog';
+import { NodeConfigDialog } from '../components/NodeConfigDialog';
 
 interface WorkflowNode extends Node {
   data: {
