@@ -18,11 +18,31 @@ import {
   Shield
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+
+
+function ModelSettingsDialog({ open, onOpenChange }) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Model Settings</DialogTitle>
+        </DialogHeader>
+        <div className="p-4">
+          {/* Add your model settings UI here */}
+          <p>This is a placeholder for model settings.</p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 
 export default function AgentConfigurator() {
   const [activeTab, setActiveTab] = useState("create");
   const [expandedSection, setExpandedSection] = useState("");
   const [, setLocation] = useLocation();
+  const [isModelSettingsOpen, setIsModelSettingsOpen] = useState(false);
 
   return (
     <div className="flex flex-col h-full">
@@ -144,7 +164,13 @@ export default function AgentConfigurator() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <Button variant="outline" size="icon" className="h-8 w-8 mt-2">
+                <ModelSettingsDialog open={isModelSettingsOpen} onOpenChange={setIsModelSettingsOpen} />
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="h-8 w-8 mt-2"
+                  onClick={() => setIsModelSettingsOpen(true)}
+                >
                   <Settings className="h-4 w-4" />
                 </Button>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Voice Settings</div>
