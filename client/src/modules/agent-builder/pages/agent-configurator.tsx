@@ -230,13 +230,72 @@ export default function AgentConfigurator() {
                 </div>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1 justify-between h-8" style={{ width: '208px' }}>
-                      <div className="flex items-center gap-2">
-                        <Globe className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-xs">English</span>
-                      </div>
-                      <ChevronLeft className="h-4 w-4 rotate-270" />
-                    </Button>
+                    <Select defaultValue="en-us" className="flex-1">
+                      <SelectTrigger className="h-8" style={{ width: '208px' }}>
+                        <SelectValue>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇺🇸</span>
+                            <span className="text-xs">English (US)</span>
+                          </div>
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="en-us">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇺🇸</span>
+                            <span>English (US)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="multilingual">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🌐</span>
+                            <span>Multilingual</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="es-es">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇪🇸</span>
+                            <span>Spanish (Spain)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="es-la">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇲🇽</span>
+                            <span>Spanish (Latin America)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="en-in">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇮🇳</span>
+                            <span>English (India)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="en-gb">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇬🇧</span>
+                            <span>English (UK)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="en-au">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇦🇺</span>
+                            <span>English (Australia)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="en-nz">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇳🇿</span>
+                            <span>English (New Zealand)</span>
+                          </div>
+                        </SelectItem>
+                        <SelectItem value="fr">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[18px]">🇫🇷</span>
+                            <span>French</span>
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">## Role and Task</div>
