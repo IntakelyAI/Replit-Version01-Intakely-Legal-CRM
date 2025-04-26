@@ -30,8 +30,12 @@ function Router() {
           <Switch>
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
         <Route path="/agent-builder/detail/:id" component={AgentConfigurator} />
-        <Route path="/agent-builder/agents" component={AgentBuilder} />
-        <Route path="/agent-builder" component={AgentBuilder} />
+        <Route path="/agent-builder/agents">
+          {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
+        </Route>
+        <Route path="/agent-builder">
+          {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
+        </Route>
         <Route path="/assistant" component={PersonalAssistant} />
         <Route path="/" component={PersonalAssistant} />
         <Route path="/spaces" component={Spaces} />

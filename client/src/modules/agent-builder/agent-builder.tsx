@@ -37,7 +37,11 @@ interface AgentData {
   };
 }
 
-export default function AgentBuilder() {
+interface AgentBuilderProps {
+  setIsCollapsed: (collapsed: boolean) => void;
+}
+
+export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTab, setSelectedTab] = useState("all");
   const [location, navigate] = useLocation();
