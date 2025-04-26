@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+
+import React from 'react';
+import { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
@@ -16,14 +18,12 @@ import Channels from "@/pages/Channels";
 import Notifications from "@/pages/Notifications";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/not-found";
-import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; // Added import
-
+import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder";
 
 function Router() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [location] = useWouterLocation();
+  const [location] = useLocation();
   
-  // Auto-collapse sidebar on agent configurator route
   useEffect(() => {
     if (location.startsWith('/agent-builder/detail/')) {
       setSidebarCollapsed(true);
@@ -36,23 +36,23 @@ function Router() {
       <div className={cn("flex-1 transition-all duration-300", sidebarCollapsed ? "ml-12" : "ml-56")}>
         <AppShell>
           <Switch>
-        <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
-        <Route path="/agent-builder/detail/:id" component={AgentConfigurator} />
-        <Route path="/agent-builder/agents">
-          {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
-        </Route>
-        <Route path="/agent-builder">
-          {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
-        </Route>
-        <Route path="/assistant" component={PersonalAssistant} />
-        <Route path="/" component={PersonalAssistant} />
-        <Route path="/spaces" component={Spaces} />
-        <Route path="/contacts" component={Contacts} />
-        <Route path="/channels" component={Channels} />
-        <Route path="/notifications" component={Notifications} />
-        <Route path="/settings" component={Settings} />
-        <Route component={NotFound} />
-      </Switch>
+            <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
+            <Route path="/agent-builder/detail/:id" component={AgentConfigurator} />
+            <Route path="/agent-builder/agents">
+              {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
+            </Route>
+            <Route path="/agent-builder">
+              {() => <AgentBuilder setIsCollapsed={setSidebarCollapsed} />}
+            </Route>
+            <Route path="/assistant" component={PersonalAssistant} />
+            <Route path="/" component={PersonalAssistant} />
+            <Route path="/spaces" component={Spaces} />
+            <Route path="/contacts" component={Contacts} />
+            <Route path="/channels" component={Channels} />
+            <Route path="/notifications" component={Notifications} />
+            <Route path="/settings" component={Settings} />
+            <Route component={NotFound} />
+          </Switch>
         </AppShell>
       </div>
     </div>
