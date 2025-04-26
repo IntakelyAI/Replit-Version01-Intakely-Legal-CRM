@@ -32,10 +32,10 @@ interface Edge {
 
 const defaultNode: Node = {
   id: 'start',
-  type: 'Starting State',
+  type: 'Starting Point',
   position: { x: 400, y: 100 },
   config: {
-    prompt: "Warm Lead Qualification"
+    prompt: "Initial Node"
   }
 };
 
@@ -79,14 +79,13 @@ export default function WorkflowBuilder() {
       }
     };
     
-    // Add edge from last node to new node
     if (nodes.length > 0) {
       const lastNode = nodes[nodes.length - 1];
       setEdges([...edges, {
         id: `edge-${edges.length + 1}`,
         from: lastNode.id,
         to: newNode.id,
-        label: 'Edge'
+        label: 'Next'
       }]);
     }
     
