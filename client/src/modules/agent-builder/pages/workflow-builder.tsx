@@ -110,21 +110,7 @@ export default function WorkflowBuilder() {
   };
 
 
-  const onConfigSave = (nodeId: string, config: any) => {
-    setNodes(nodes.map(node => 
-      node.id === nodeId 
-        ? { 
-            ...node, 
-            data: { 
-              ...node.data,
-              ...config,
-              label: config.type || node.data.label
-            }
-          }
-        : node
-    ));
-    setIsConfigOpen(false);
-  };
+  
 
   return (
     <div className="flex flex-col h-full bg-background">
