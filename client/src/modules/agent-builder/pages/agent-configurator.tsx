@@ -71,7 +71,7 @@ export default function AgentConfigurator() {
       {/* Three Column Layout */}
       <div className="flex flex-1 overflow-hidden">
         {/* Left Section - Conversation Design */}
-        <div className="w-1/3 border-r border-border/30 flex flex-col">
+        <div className="w-[45%] border-r border-border/30 flex flex-col">
           <div className="p-4 border-b border-border/30">
             <h3 className="text-sm font-medium">Conversation Design</h3>
           </div>
@@ -356,7 +356,7 @@ phone_number: {{phone_number}}`}
         </div>
 
         {/* Middle Section - Settings & Integration */}
-        <div className="w-1/3 border-r border-border/30 flex flex-col">
+        <div className="w-[27.5%] border-r border-border/30 flex flex-col">
           <div className="p-4 border-b border-border/30">
             <h3 className="text-sm font-medium">Settings & Integration</h3>
           </div>
@@ -438,7 +438,7 @@ phone_number: {{phone_number}}`}
         </div>
 
         {/* Right Section - Test Your Agent */}
-        <div className="w-1/3 flex flex-col">
+        <div className="w-[27.5%] flex flex-col">
           <div className="p-4 border-b border-border/30">
             <h3 className="text-sm font-medium">Test Your Agent</h3>
           </div>
