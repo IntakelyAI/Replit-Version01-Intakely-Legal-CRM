@@ -1,7 +1,13 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Mic, Plus, Minus } from "lucide-react";
+import { 
+  ChevronLeft, 
+  Mic, 
+  Plus, 
+  Minus,  
+  CheckCircle2
+} from "lucide-react";
 import { useLocation } from 'wouter';
 import { NodeConfigDialog } from '../components/NodeConfigDialog';
 import { cn } from "@/lib/utils";
@@ -25,12 +31,12 @@ interface Edge {
 export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
   const [nodes, setNodes] = useState<Node[]>([
-    { id: '1', type: 'Starting State', position: { x: 400, y: 50 } },
-    { id: '2', type: 'Warm Lead Qualification', position: { x: 400, y: 150 } },
-    { id: '3', type: 'Booking Calendar Agent', position: { x: 200, y: 250 } },
-    { id: '4', type: 'Follow-Up Agent', position: { x: 400, y: 250 } },
-    { id: '5', type: 'Call Transfer Agent', position: { x: 600, y: 250 } },
-    { id: '6', type: 'End Call', position: { x: 400, y: 350 } },
+    { id: '1', type: 'Initial Message', position: { x: 400, y: 100 } },
+    { id: '2', type: 'Lead Qualification', position: { x: 400, y: 250 } },
+    { id: '3', type: 'Calendar Booking', position: { x: 200, y: 400 } },
+    { id: '4', type: 'Follow-Up', position: { x: 400, y: 400 } },
+    { id: '5', type: 'Call Transfer', position: { x: 600, y: 400 } },
+    { id: '6', type: 'End Call', position: { x: 400, y: 550 } },
   ]);
 
   const [edges] = useState<Edge[]>([
