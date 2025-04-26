@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function AgentConfigurator() {
   const [activeTab, setActiveTab] = useState("create");
+  const [expandedSection, setExpandedSection] = useState("");
   const [, setLocation] = useLocation();
 
   return (
@@ -157,18 +158,27 @@ phone_number: {{phone_number}}`}
           <ScrollArea className="flex-1">
             <div className="p-4">
               <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
+                <div 
+                  className="flex items-center justify-between p-3 border-b border-border/30 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'functions' ? '' : 'functions')}
+                >
                   <div className="flex items-center">
                     <Settings className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Functions</span>
                   </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-90' : 'rotate-270'}`} />
                 </div>
-                <div className="p-4">
-                  <p className="text-xs text-muted-foreground">
-                    Configure custom functions that your agent can call during a conversation.
-                  </p>
-                </div>
+                {expandedSection === 'functions' && (
+                  <div className="p-4">
+                    <p className="text-xs text-muted-foreground mb-4">
+                      Configure custom functions that your agent can call during a conversation.
+                    </p>
+                    <Button variant="outline" size="sm" className="w-full">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Function
+                    </Button>
+                  </div>
+                )}
               </div>
               <div className="border rounded-md mb-4">
                 <div className="flex items-center justify-between p-3 border-b border-border/30">
