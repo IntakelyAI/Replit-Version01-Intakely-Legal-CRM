@@ -1,18 +1,6 @@
 import { useState } from "react";
 import { useLocation } from 'wouter';
-import { 
-  Plus,
-  Settings, 
-  ChevronLeft, 
-  CirclePlay, 
-  Database, 
-  Mic, 
-  Globe, 
-  Info, 
-  PhoneCall, 
-  FileText, 
-  Shield 
-} from "lucide-react";
+import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
