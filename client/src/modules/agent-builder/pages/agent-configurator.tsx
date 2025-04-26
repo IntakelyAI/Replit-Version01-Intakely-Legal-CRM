@@ -23,22 +23,6 @@ import { ModelSettingsDialog } from "../components/ModelSettingsDialog";
 import { VoiceSettingsDialog } from "../components/VoiceSettingsDialog";
 
 
-function ModelSettingsDialog({ open, onOpenChange }) {
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Model Settings</DialogTitle>
-        </DialogHeader>
-        <div className="p-4">
-          {/* Add your model settings UI here */}
-          <p>This is a placeholder for model settings.</p>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
 
 export default function AgentConfigurator() {
   const [activeTab, setActiveTab] = useState("create");
