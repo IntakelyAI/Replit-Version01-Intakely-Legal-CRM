@@ -450,9 +450,6 @@ phone_number: {{phone_number}}`}
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Test LLM
                 </Button>
-                <Button variant="outline" size="sm">
-                  <BracesIcon className="h-4 w-4" />
-                </Button>
               </div>
             </div>
             
@@ -483,16 +480,14 @@ phone_number: {{phone_number}}`}
                 className="mb-3 min-h-[80px]"
                 defaultValue="You are a customer who wants to return a package..."
               />
-              <div className="flex gap-2">
-                <Button variant="secondary" className="flex-1">
-                  <Play className="h-4 w-4 mr-2" />
-                  Simulate Text Chat
-                </Button>
-                <Button variant="secondary" className="flex-1">
-                  <Phone className="h-4 w-4 mr-2" />
-                  Test Voice Call
-                </Button>
-              </div>
+              <Button variant="secondary" className="w-full mb-2">
+                <Play className="h-4 w-4 mr-2" />
+                Simulate Conversation
+              </Button>
+              <Button variant="secondary" className="w-full">
+                <Phone className="h-4 w-4 mr-2" />
+                Start Voice Call
+              </Button>
             </div>
           </div>
           </ScrollArea>
