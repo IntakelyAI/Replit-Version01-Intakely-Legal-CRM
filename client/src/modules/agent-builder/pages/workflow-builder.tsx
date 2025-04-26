@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Mic, Plus, Minus } from "lucide-react";
+import { NodeConfigDialog } from '../components/NodeConfigDialog';
 import { useLocation } from 'wouter';
 
 interface Node {
@@ -21,10 +22,26 @@ export default function WorkflowBuilder() {
     { id: '6', type: 'End Call', position: { x: 400, y: 350 } },
   ]);
 
-  const handleNodeClick = (nodeId: string) => {
-    console.log(`Node ${nodeId} clicked`);
-    // Handle node click - can be expanded to show node details/configuration
-  };
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+const [isConfigOpen, setIsConfigOpen] = useState(false);
+
+const handleNodeClick = (nodeId: string) => {
+  const node = nodes.find(n => n.id === nodeId);
+  if (node) {
+    setSelectedNode(node);
+    setIsConfigOpen(true);
+  }
+};
+
+const handleConfigSave = (config: any) => {
+  // Here you would update the node configuration in your state
+  console.log('Saving config:', config);
+  setNodes(nodes.map(node => 
+    node.id === config.id 
+      ? { ...node, config } 
+      : node
+  ));
+};
 
   return (
     <div className="flex flex-col h-full bg-gray-950">
@@ -99,6 +116,13 @@ export default function WorkflowBuilder() {
           </Button>
         </div>
       </div>
+
+      <NodeConfigDialog
+        open={isConfigOpen}
+        onClose={() => setIsConfigOpen(false)}
+        node={selectedNode}
+        onSave={handleConfigSave}
+      />
     </div>
   );
 }
