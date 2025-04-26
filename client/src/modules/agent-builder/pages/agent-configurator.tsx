@@ -297,11 +297,9 @@ export default function AgentConfigurator() {
 name : {{name}}
 phone_number: {{phone_number}}`}
                 />
-              </div>
-              <div className="mb-5">
-                <div className="text-xs text-muted-foreground font-semibold mb-2">Welcome Message</div>
+                <div className="text-xs text-muted-foreground font-semibold mb-2">## Interaction Style</div>
                 <Textarea 
-                  className="min-h-12 font-mono text-xs"
+                  className="min-h-12 font-mono text-xs mb-5"
                   value="Use a warm, relaxed tone with occasional light humor when appropriate."
                 />
               </div>
