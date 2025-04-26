@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Mic, Plus, Minus } from "lucide-react";
@@ -103,7 +102,7 @@ export default function WorkflowBuilder() {
                 />
               );
             })}
-            
+
             {/* Arrow marker definition */}
             <defs>
               <marker
@@ -121,7 +120,7 @@ export default function WorkflowBuilder() {
               </marker>
             </defs>
           </svg>
-          
+
           {/* Nodes */}
           {nodes.map((node) => (
             <div
