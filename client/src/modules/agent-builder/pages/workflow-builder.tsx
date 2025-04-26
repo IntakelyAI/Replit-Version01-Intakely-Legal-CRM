@@ -198,7 +198,7 @@ export default function WorkflowBuilder() {
             <Button 
               variant="ghost" 
               size="icon"
-              onClick={() => setLocation('/agent-builder')}
+              onClick={() => setLocation('/agent-builder/detail/ag_566_13')}
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
