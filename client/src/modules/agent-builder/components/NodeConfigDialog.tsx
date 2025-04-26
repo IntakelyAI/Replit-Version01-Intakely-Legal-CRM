@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogHeader, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
@@ -75,7 +74,7 @@ export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDial
                     id={tool.id}
                     checked={selectedTools.includes(tool.id)}
                     onCheckedChange={(checked) => {
-                      setSelectedTools(checked 
+                      setSelectedTools(checked
                         ? [...selectedTools, tool.id]
                         : selectedTools.filter(id => id !== tool.id)
                       );
@@ -96,9 +95,9 @@ export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDial
               value={jsonSchema}
               onChange={(e) => setJsonSchema(e.target.value)}
             />
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="mt-2"
               onClick={() => {
                 try {
