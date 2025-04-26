@@ -447,6 +447,10 @@ phone_number: {{phone_number}}`}
             <div className="p-4 border-b border-border/30">
               <div className="flex gap-2 mb-4">
                 <Button variant="outline" size="sm" className="flex-1">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Test Audio
+                </Button>
+                <Button variant="outline" size="sm" className="flex-1">
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Test LLM
                 </Button>
@@ -480,14 +484,16 @@ phone_number: {{phone_number}}`}
                 className="mb-3 min-h-[80px]"
                 defaultValue="You are a customer who wants to return a package..."
               />
-              <Button variant="secondary" className="w-full mb-2">
-                <Play className="h-4 w-4 mr-2" />
-                Simulate Conversation
-              </Button>
-              <Button variant="secondary" className="w-full">
-                <Phone className="h-4 w-4 mr-2" />
-                Start Voice Call
-              </Button>
+              <div className="space-y-2">
+                <Button variant="secondary" className="w-full">
+                  <Play className="h-4 w-4 mr-2" />
+                  Simulate Chat
+                </Button>
+                <Button variant="primary" className="w-full">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Start Voice Call
+                </Button>
+              </div>
             </div>
           </div>
           </ScrollArea>
