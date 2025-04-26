@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { useLocation } from 'wouter';
 import ReactFlow, { 
@@ -68,7 +67,7 @@ export default function WorkflowBuilder() {
 
   const onConfigSave = useCallback((config: any) => {
     if (!selectedNode) return;
-    
+
     setNodes(nodes.map(node => 
       node.id === selectedNode.id 
         ? {
@@ -103,6 +102,13 @@ export default function WorkflowBuilder() {
 
     setNodes([...nodes, newNode]);
   };
+
+  const defaultEdgeOptions = {
+    style: { stroke: '#888' },
+    animated: true,
+    type: 'smoothstep',
+  };
+
 
   const onConfigSave = (nodeId: string, config: any) => {
     setNodes(nodes.map(node => 
@@ -145,7 +151,7 @@ export default function WorkflowBuilder() {
           </Button>
         </div>
       </div>
-      
+
       <div className="flex-1 w-full h-[calc(100vh-3.5rem)]">
         <ReactFlow
           nodes={nodes}
@@ -154,6 +160,7 @@ export default function WorkflowBuilder() {
           onConnect={onConnect}
           onNodeClick={onNodeClick}
           connectionMode={ConnectionMode.Loose}
+          defaultEdgeOptions={defaultEdgeOptions}
           fitView
         >
           <Background />
