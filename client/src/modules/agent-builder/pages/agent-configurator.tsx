@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from 'wouter';
-import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield } from "lucide-react";
+import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield, Phone, MessageSquare, BracesIcon, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -443,15 +443,56 @@ phone_number: {{phone_number}}`}
             <h3 className="text-sm font-medium">Test Your Agent</h3>
           </div>
           <ScrollArea className="flex-1">
-            <div className="p-4 flex flex-col items-center justify-center h-full">
-              <div className="w-32 h-32 rounded-full bg-background border-2 border-muted-foreground/20 flex items-center justify-center mb-4">
-                <CirclePlay className="h-16 w-16 text-primary" />
+            <div className="flex flex-col h-full">
+            <div className="p-4 border-b border-border/30">
+              <div className="flex gap-2 mb-4">
+                <Button variant="outline" size="sm" className="flex-1">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Test Audio
+                </Button>
+                <Button variant="outline" size="sm" className="flex-1">
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  Test LLM
+                </Button>
+                <Button variant="outline" size="sm">
+                  <BracesIcon className="h-4 w-4" />
+                </Button>
               </div>
-              <span className="text-sm text-muted-foreground mb-4">Click to test your agent</span>
-              <Button variant="secondary" size="sm" className="w-32">
-                Start Test
+            </div>
+            
+            {/* Chat Interface */}
+            <div className="flex-1 p-4">
+              <ScrollArea className="h-[calc(100%-160px)]">
+                <div className="space-y-4">
+                  <div className="flex gap-2">
+                    <div className="bg-primary/10 rounded-lg p-3 max-w-[80%]">
+                      <p className="text-sm">How are you doing?</p>
+                      <span className="text-xs text-muted-foreground mt-1">User</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 justify-end">
+                    <div className="bg-primary rounded-lg p-3 max-w-[80%] text-primary-foreground">
+                      <p className="text-sm">I am doing well</p>
+                      <span className="text-xs text-primary-foreground/70 mt-1">Agent</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollArea>
+            </div>
+
+            {/* User Prompt Section */}
+            <div className="p-4 border-t border-border/30">
+              <Textarea
+                placeholder="Enter your test scenario here..."
+                className="mb-3 min-h-[80px]"
+                defaultValue="You are a customer who wants to return a package..."
+              />
+              <Button variant="secondary" className="w-full">
+                <Play className="h-4 w-4 mr-2" />
+                Simulate Conversation
               </Button>
             </div>
+          </div>
           </ScrollArea>
         </div>
       </div>
