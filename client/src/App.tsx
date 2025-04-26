@@ -23,9 +23,10 @@ function Router() {
       <Switch>
         <Route path="/" component={PersonalAssistant} />
         <Route path="/assistant" component={PersonalAssistant} />
-        <Route path="/agent-builder/agents" component={Agents} />
+        <Route path="/agent-builder" component={Agents} />
         <Route path="/agent-builder/configure" component={AgentBuilder} />
-        <Route path="/agent-builder/workflow" component={WorkflowBuilder} /> {/* Added route */}
+        <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
+        <Route path="/agent-builder/:id" component={AgentDetail} />
         <Route path="/spaces" component={Spaces} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/channels" component={Channels} />
