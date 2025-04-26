@@ -49,11 +49,11 @@ export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
   const agentData: AgentData[] = [
     {
       id: "1",
-      name: "Real-Estate-Outbound-Appointment",
+      name: "Oakwood-Law-Benjamin-Intake-Closer",
       type: "Multi Prompt",
       voice: {
-        name: "Noah",
-        avatar: "https://ui-avatars.com/api/?name=Noah&background=f97316&color=fff"
+        name: "Benjamin",
+        avatar: "https://ui-avatars.com/api/?name=Benjamin&background=f97316&color=fff"
       },
       phone: "+1 (772) 777-1112",
       lastEdited: {
@@ -63,11 +63,11 @@ export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
     },
     {
       id: "2",
-      name: "Oakwood-Law-Intake-Specialist",
+      name: "Oakwood-Law-Sofia-Case-Evaluator",
       type: "Multi Prompt",
       voice: {
-        name: "Angelo",
-        avatar: "https://ui-avatars.com/api/?name=A&background=6366f1&color=fff"
+        name: "Sofia",
+        avatar: "https://ui-avatars.com/api/?name=S&background=6366f1&color=fff"
       },
       phone: null,
       lastEdited: {
@@ -77,10 +77,10 @@ export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
     },
     {
       id: "3",
-      name: "Healthcare-Compliance-Advisor",
+      name: "Oakwood-Law-Marcus-Compliance-Guard",
       type: "Multi Prompt",
       voice: {
-        name: "Max",
+        name: "Marcus",
         avatar: "https://ui-avatars.com/api/?name=M&background=ec4899&color=fff"
       },
       phone: null,
@@ -91,11 +91,11 @@ export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
     },
     {
       id: "4",
-      name: "Multi state-Personal-Injury-Intake",
+      name: "Oakwood-Law-Elena-Injury-Specialist",
       type: "Multi Prompt",
       voice: {
-        name: "Adrian",
-        avatar: "https://ui-avatars.com/api/?name=A&background=ca8a04&color=fff"
+        name: "Elena",
+        avatar: "https://ui-avatars.com/api/?name=E&background=ca8a04&color=fff"
       },
       phone: null,
       lastEdited: {
@@ -105,10 +105,10 @@ export default function AgentBuilder({ setIsCollapsed }: AgentBuilderProps) {
     },
     {
       id: "5",
-      name: "Custom LLM Family Law Assistant",
+      name: "Oakwood-Law-Yusuf-Billing-Guard",
       type: "Custom LLM",
       voice: {
-        name: "Myra",
+        name: "Yusuf",
         avatar: "https://ui-avatars.com/api/?name=M&background=a855f7&color=fff"
       },
       phone: null,
