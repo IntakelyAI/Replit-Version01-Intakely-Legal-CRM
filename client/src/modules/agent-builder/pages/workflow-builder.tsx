@@ -12,7 +12,8 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, Plus } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { ChevronLeft, Plus, Phone } from 'lucide-react';
 import { NodeConfigDialog } from '../components/NodeConfigDialog';
 
 interface WorkflowNode extends Node {
@@ -215,30 +216,54 @@ export default function WorkflowBuilder() {
         </div>
       </div>
 
-      <div style={{ width: '100%', height: 'calc(100vh - 56px)' }}>
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onConnect={onConnect}
-          onNodeClick={onNodeClick}
-          connectionMode={ConnectionMode.Loose}
-          defaultEdgeOptions={{
-            style: { stroke: '#555' },
-            animated: true
-          }}
-          fitView
-        >
-          <Background color="#333" gap={16} />
-          <Controls />
-          <MiniMap 
-            style={{ 
-              backgroundColor: '#1a1b1e',
-              maskImage: 'none'
-            }} 
-            nodeColor="#666"
-          />
-        </ReactFlow>
+      <div className="flex" style={{ height: 'calc(100vh - 56px)' }}>
+        <div style={{ flex: 1 }}>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onConnect={onConnect}
+            onNodeClick={onNodeClick}
+            connectionMode={ConnectionMode.Loose}
+            defaultEdgeOptions={{
+              style: { stroke: '#555' },
+              animated: true
+            }}
+            fitView
+          >
+            <Background color="#333" gap={16} />
+            <Controls />
+            <MiniMap 
+              style={{ 
+                backgroundColor: '#1a1b1e',
+                maskImage: 'none'
+              }} 
+              nodeColor="#666"
+            />
+          </ReactFlow>
+        </div>
+        
+        <div className="w-80 border-l border-border/30 bg-background/95 p-4">
+          <div className="space-y-4">
+            <h3 className="text-sm font-medium">Test Voice Agent</h3>
+            <div className="rounded-lg border border-border/30 p-4 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Agent Status</span>
+                <Badge variant="outline">Ready</Badge>
+              </div>
+              <Button className="w-full" onClick={() => console.log("Start test call")}>
+                <Phone className="mr-2 h-4 w-4" />
+                Start Test Call
+              </Button>
+            </div>
+            <div className="space-y-2">
+              <h4 className="text-sm font-medium">Execution Path</h4>
+              <div className="rounded-lg border border-border/30 p-2 min-h-[200px] text-sm">
+                <div className="text-muted-foreground">No execution path yet</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {selectedNode && (
