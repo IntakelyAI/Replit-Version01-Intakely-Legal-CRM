@@ -79,30 +79,40 @@ export default function AgentConfigurator() {
           </div>
           <ScrollArea className="flex-1">
             <div className="p-4">
-              {/* Model Selector */}
-              <div className="flex p-3 border-b border-border/30">
-                <div className="relative flex-1 mr-2">
-                  <Button variant="outline" size="sm" className="w-full justify-between h-8">
-                    <div className="flex items-center">
-                      <span className="text-xs text-muted-foreground mr-1">GPT 4o mini</span>
+              <div className="mb-4 space-y-4">
+                <div className="space-y-2">
+                  <div className="text-xs text-muted-foreground font-semibold">Model & Voice Settings</div>
+                  <div className="flex flex-col gap-2 p-3 border rounded-md border-border/30">
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
+                        <span className="text-xs text-muted-foreground">GPT 4o mini</span>
+                        <ChevronLeft className="h-4 w-4 rotate-270" />
+                      </Button>
+                      <Button variant="outline" size="icon" className="h-8 w-8">
+                        <Settings className="h-4 w-4" />
+                      </Button>
                     </div>
-                    <ChevronLeft className="h-4 w-4 rotate-270" />
-                  </Button>
-                </div>
-                <Button variant="outline" size="icon" className="h-8 w-8">
-                  <Settings className="h-4 w-4" />
-                </Button>
-                <div className="relative flex items-center ml-2">
-                  <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
-                    N
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
+                            N
+                          </div>
+                          <span className="text-xs">Noah (en-AU)</span>
+                        </div>
+                        <ChevronLeft className="h-4 w-4 rotate-270" />
+                      </Button>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
+                        <div className="flex items-center gap-2">
+                          <Globe className="h-4 w-4 text-muted-foreground" />
+                          <span className="text-xs">English</span>
+                        </div>
+                        <ChevronLeft className="h-4 w-4 rotate-270" />
+                      </Button>
+                    </div>
                   </div>
-                  <span className="text-xs ml-1">Noah (en-AU)</span>
-                  <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
-                </div>
-                <div className="relative flex items-center ml-2">
-                  <Globe className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-xs ml-1">English</span>
-                  <ChevronLeft className="h-4 w-4 rotate-270 ml-1" />
                 </div>
               </div>
             </div>
