@@ -48,6 +48,14 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
+args = "cd /home/runner/workspace"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
 args = "cd client"
 
 [[workflows.workflow.tasks]]
@@ -56,4 +64,4 @@ args = "npm install"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
+args = "npm run dev -- --host 0.0.0.0 --port 5000"
