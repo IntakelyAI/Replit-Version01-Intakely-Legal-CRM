@@ -7,7 +7,7 @@ import Dashboard from "@/pages/Dashboard";
 import PersonalAssistant from "@/pages/PersonalAssistant";
 import AgentBuilder from "@/modules/agent-builder/pages/agent-configuration";
 import Agents from "@/modules/agent-builder/pages/agents";
-import AgentDetail from "@/pages/AgentDetail";
+import AgentDetail from "@/modules/agent-builder/pages/agent-detail";
 import Spaces from "@/pages/Spaces";
 import Contacts from "@/pages/Contacts";
 import Channels from "@/pages/Channels";
