@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ModelSettingsDialog } from "../components/ModelSettingsDialog";
+import { VoiceSettingsDialog } from "../components/VoiceSettingsDialog";
 
 
 function ModelSettingsDialog({ open, onOpenChange }) {
@@ -43,6 +45,7 @@ export default function AgentConfigurator() {
   const [expandedSection, setExpandedSection] = useState("");
   const [, setLocation] = useLocation();
   const [isModelSettingsOpen, setIsModelSettingsOpen] = useState(false);
+  const [isVoiceSettingsOpen, setIsVoiceSettingsOpen] = useState(false); // Added state for VoiceSettingsDialog
 
   return (
     <div className="flex flex-col h-full">
@@ -219,10 +222,11 @@ export default function AgentConfigurator() {
                     variant="outline" 
                     size="icon" 
                     className="h-8 w-8"
-                    onClick={() => {}}
+                    onClick={() => setIsVoiceSettingsOpen(true)} // Added onClick handler
                   >
                     <Settings className="h-4 w-4" />
                   </Button>
+                  <VoiceSettingsDialog open={isVoiceSettingsOpen} onOpenChange={setIsVoiceSettingsOpen} /> {/* Added VoiceSettingsDialog */}
                 </div>
                 <div className="flex items-center gap-2 mb-4">
                   <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
