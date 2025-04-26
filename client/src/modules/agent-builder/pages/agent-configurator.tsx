@@ -15,7 +15,8 @@ import {
   Info,
   PhoneCall,
   FileText,
-  Shield
+  Shield,
+  Plus
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -88,7 +89,7 @@ export default function AgentConfigurator() {
           </div>
           <ScrollArea className="flex-1">
             <div className="p-4">
-              <div className="mb-5">
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Model Selection</div>
                 <div className="flex gap-2">
                   <Select defaultValue="gpt4mini" className="flex-1">
@@ -282,10 +283,11 @@ export default function AgentConfigurator() {
                     </Select>
                   </div>
                 </div>
-                <div className="text-xs text-muted-foreground font-semibold mb-2">## Role and Task</div>
-                <Textarea 
-                  className="min-h-20 font-mono text-xs"
-                  value={`*Your role is to be approachable, friendly, and professional—like a helpful neighbor rather than a pushy salesperson. Think of yourself as someone who enjoys a genuine chat, makes people smile, and helps them make informed decisions—without pressure.
+                <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                  <div className="text-xs text-muted-foreground font-semibold mb-2">Role and Task</div>
+                  <Textarea 
+                    className="min-h-20 font-mono text-xs"
+                    value={`*Your role is to be approachable, friendly, and professional—like a helpful neighbor rather than a pushy salesperson. Think of yourself as someone who enjoys a genuine chat, makes people smile, and helps them make informed decisions—without pressure.
 
 ##Key changes
 *Use getDateTime for date and time.
@@ -296,14 +298,17 @@ export default function AgentConfigurator() {
 
 name : {{name}}
 phone_number: {{phone_number}}`}
-                />
-                <div className="text-xs text-muted-foreground font-semibold mb-2">Welcome Message</div>
-                <Textarea 
-                  className="min-h-12 font-mono text-xs mb-5"
-                  value="Hello! I'm your AI assistant ready to help schedule appointments."
-                />
+                  />
+                </div>
+                <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                  <div className="text-xs text-muted-foreground font-semibold mb-2">Welcome Message</div>
+                  <Textarea 
+                    className="min-h-12 font-mono text-xs mb-5"
+                    value="Hello! I'm your AI assistant ready to help schedule appointments."
+                  />
+                </div>
               </div>
-              <div className="mb-5">
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Conversation Initiation</div>
                 <Select defaultValue="ai_initiates" className="flex-1 mb-2">
                   <SelectTrigger>
@@ -337,7 +342,7 @@ phone_number: {{phone_number}}`}
                   defaultValue="Hello Sam. This is Chris. I've just got a minute?"
                 />
               </div>
-              <div className="mb-5">
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Workflow Builder</div>
                 <div className="relative h-48 rounded-md border border-border/30 overflow-hidden">
                   <div 
@@ -394,84 +399,48 @@ phone_number: {{phone_number}}`}
                   </div>
                 )}
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <Database className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Knowledge Base</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Knowledge Base</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Link knowledge bases to provide additional context and information to your agent.
                   </p>
                 </div>
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <Mic className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Speech Settings</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Speech Settings</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Customize speech patterns, speed, and tone for a more natural conversation flow.
                   </p>
                 </div>
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <PhoneCall className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Call Settings</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Call Settings</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Set up call handling preferences, routing rules, and response strategies.
                   </p>
                 </div>
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <FileText className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Post-Call Analysis</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Post-Call Analysis</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Configure how call data is processed and analyzed after completion.
                   </p>
                 </div>
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <Shield className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Security & Fallback Settings</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Security & Fallback Settings</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Configure security protocols and fallback options if the agent encounters problems.
                   </p>
                 </div>
               </div>
-              <div className="border rounded-md mb-4">
-                <div className="flex items-center justify-between p-3 border-b border-border/30">
-                  <div className="flex items-center">
-                    <Globe className="h-4 w-4 mr-2" />
-                    <span className="text-sm font-medium">Webhook Settings</span>
-                  </div>
-                  <ChevronLeft className="h-4 w-4 rotate-270" />
-                </div>
+              <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Webhook Settings</div>
                 <div className="p-4">
                   <p className="text-xs text-muted-foreground">
                     Set up webhooks to integrate with external systems and applications.
