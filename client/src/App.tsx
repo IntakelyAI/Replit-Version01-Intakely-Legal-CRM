@@ -21,7 +21,6 @@ function Router() {
       <Switch>
         <Route path="/" component={PersonalAssistant} />
         <Route path="/assistant" component={PersonalAssistant} />
-        <Route path="/agent-builder" component={AgentBuilder} />
         <Route path="/agent-builder/agents" component={Agents} />
         <Route path="/agent-builder/configure" component={AgentBuilder} />
         <Route path="/agent-builder/:id" component={AgentDetail} />
