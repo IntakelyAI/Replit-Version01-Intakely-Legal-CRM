@@ -45,7 +45,7 @@ export default function Agents() {
               variant="outline" 
               size="sm" 
               className="w-28 hover:bg-violet-100 transition-colors"
-              onClick={() => window.location.href = '/agent-builder/configure'}
+              onClick={() => window.location.href = '/agent-builder/detail'}
             >
               <Settings className="h-4 w-4 mr-2" />
               Configure
@@ -86,7 +86,7 @@ export default function Agents() {
               variant="outline" 
               size="sm" 
               className="w-28 hover:bg-violet-100 transition-colors"
-              onClick={() => window.location.href = '/agent-builder/configure'}
+              onClick={() => window.location.href = '/agent-builder/detail'}
             >
               <Settings className="h-4 w-4 mr-2" />
               Configure
