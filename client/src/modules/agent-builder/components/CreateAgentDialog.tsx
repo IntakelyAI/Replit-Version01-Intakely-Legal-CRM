@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useLocation } from "wouter";
 import {
   Dialog,
   DialogContent,
@@ -41,6 +42,7 @@ const agentTypes: AgentType[] = [
 
 export function CreateAgentDialog() {
   const [open, setOpen] = useState(false);
+  const [, navigate] = useLocation();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
