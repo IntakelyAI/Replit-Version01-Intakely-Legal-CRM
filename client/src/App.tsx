@@ -19,11 +19,14 @@ import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; //
 
 
 function Router() {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  
   return (
-    <div className="flex">
-      <Sidebar isOpen={true} setIsOpen={() => {}} />
-      <AppShell>
-        <Switch>
+    <div className="flex h-screen bg-background">
+      <Sidebar isOpen={true} setIsOpen={() => {}} isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
+      <div className={cn("flex-1 transition-all duration-300", sidebarCollapsed ? "ml-12" : "ml-56")}>
+        <AppShell>
+          <Switch>
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
         <Route path="/agent-builder/configure" component={AgentConfiguration} />
         <Route path="/agent-builder/detail/:id" component={AgentDetail} />
@@ -37,7 +40,8 @@ function Router() {
         <Route path="/settings" component={Settings} />
         <Route component={NotFound} />
       </Switch>
-    </AppShell>
+        </AppShell>
+      </div>
     </div>
   );
 }
