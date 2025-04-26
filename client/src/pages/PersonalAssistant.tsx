@@ -155,7 +155,7 @@ export default function PersonalAssistant() {
                     </div>
                     <span className="text-xs text-muted-foreground">2:30 PM</span>
                   </div>
-                  
+
                   <div className="flex items-start justify-between group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                     <div className="flex items-start">
                       <div className="h-4 w-4 rounded-full bg-primary/20 flex-shrink-0 mt-0.5 mr-3 flex items-center justify-center">
@@ -167,7 +167,7 @@ export default function PersonalAssistant() {
                     </div>
                     <span className="text-xs text-muted-foreground">4:00 PM</span>
                   </div>
-                  
+
                   <div className="flex items-start justify-between group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                     <div className="flex items-start">
                       <div className="h-4 w-4 rounded-full bg-primary/20 flex-shrink-0 mt-0.5 mr-3 flex items-center justify-center">
@@ -209,7 +209,7 @@ export default function PersonalAssistant() {
                     </div>
                     <span className="text-xs text-muted-foreground">11:30 AM</span>
                   </div>
-                  
+
                   <div className="flex items-start justify-between group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                     <div className="flex items-start">
                       <div className="h-4 w-4 rounded-full bg-primary/20 flex-shrink-0 mt-0.5 mr-3 flex items-center justify-center">
@@ -221,7 +221,7 @@ export default function PersonalAssistant() {
                     </div>
                     <span className="text-xs text-muted-foreground">2:00 PM</span>
                   </div>
-                  
+
                   <div className="flex items-start justify-between group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                     <div className="flex items-start">
                       <div className="h-4 w-4 rounded-full bg-primary/20 flex-shrink-0 mt-0.5 mr-3 flex items-center justify-center">
@@ -277,7 +277,7 @@ export default function PersonalAssistant() {
                 </div>
               </div>
             </CardHeader>
-            
+
             <CardContent className="flex-1 p-0 overflow-hidden">
               <ScrollArea className="h-full p-4">
                 <div className="flex flex-col space-y-4">
@@ -305,7 +305,7 @@ export default function PersonalAssistant() {
                             <AvatarFallback>AI</AvatarFallback>
                           </Avatar>
                         )}
-                        
+
                         <div 
                           className={`py-3 px-4 rounded-lg shadow-sm max-w-[75%] ${
                             message.sender === 'assistant' 
@@ -322,7 +322,7 @@ export default function PersonalAssistant() {
                             {message.timestamp}
                           </span>
                         </div>
-                        
+
                         {message.sender === 'user' && (
                           <Avatar className="h-8 w-8 ml-3 bg-muted text-muted-foreground">
                             <AvatarFallback>AH</AvatarFallback>
@@ -334,7 +334,7 @@ export default function PersonalAssistant() {
                 </div>
               </ScrollArea>
             </CardContent>
-            
+
             <CardFooter className="p-4 border-t">
               <form onSubmit={handleSubmit} className="flex items-center w-full">
                 <Input

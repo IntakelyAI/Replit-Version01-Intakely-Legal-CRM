@@ -1,9 +1,10 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, Mic, Plus, Minus } from "lucide-react";
 import { useLocation } from 'wouter';
 import { NodeConfigDialog } from '../components/NodeConfigDialog';
+import { cn } from "@/lib/utils";
 
 interface Node {
   id: string;
