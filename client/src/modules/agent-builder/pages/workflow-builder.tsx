@@ -28,17 +28,67 @@ interface WorkflowNode extends Node {
 
 export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
-  const [nodes, setNodes] = useState<WorkflowNode[]>([{
-    id: 'start',
-    type: 'input',
-    position: { x: 400, y: 100 },
-    data: { 
-      label: 'Start',
-      type: 'Starting Point',
-      prompt: 'Initial greeting'
+  const [nodes, setNodes] = useState<WorkflowNode[]>([
+    {
+      id: 'warm-lead',
+      type: 'input',
+      position: { x: 400, y: 50 },
+      data: { 
+        label: 'Warm Lead Qualification',
+        type: 'Starting Point',
+        prompt: 'Initial qualification process'
+      }
+    },
+    {
+      id: 'booking',
+      type: 'default',
+      position: { x: 200, y: 200 },
+      data: {
+        label: 'Booking Calendar Agent',
+        type: 'Processing Node',
+        prompt: 'Schedule appointment'
+      }
+    },
+    {
+      id: 'follow-up',
+      type: 'default',
+      position: { x: 400, y: 200 },
+      data: {
+        label: 'Follow Up Agent',
+        type: 'Processing Node',
+        prompt: 'Follow up with client'
+      }
+    },
+    {
+      id: 'transfer',
+      type: 'default',
+      position: { x: 600, y: 200 },
+      data: {
+        label: 'Call Transfer Agent',
+        type: 'Processing Node',
+        prompt: 'Transfer call to representative'
+      }
+    },
+    {
+      id: 'end',
+      type: 'output',
+      position: { x: 400, y: 350 },
+      data: {
+        label: 'End Call',
+        type: 'End Point',
+        prompt: 'End conversation'
+      }
     }
-  }]);
-  const [edges, setEdges] = useState<Edge[]>([]);
+  ]);
+
+  const [edges, setEdges] = useState<Edge[]>([
+    { id: 'e1', source: 'warm-lead', target: 'booking', type: 'smoothstep', animated: true },
+    { id: 'e2', source: 'warm-lead', target: 'follow-up', type: 'smoothstep', animated: true },
+    { id: 'e3', source: 'warm-lead', target: 'transfer', type: 'smoothstep', animated: true },
+    { id: 'e4', source: 'booking', target: 'end', type: 'smoothstep', animated: true },
+    { id: 'e5', source: 'follow-up', target: 'end', type: 'smoothstep', animated: true },
+    { id: 'e6', source: 'transfer', target: 'end', type: 'smoothstep', animated: true }
+  ]);
   const [selectedNode, setSelectedNode] = useState<WorkflowNode | null>(null);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
 
