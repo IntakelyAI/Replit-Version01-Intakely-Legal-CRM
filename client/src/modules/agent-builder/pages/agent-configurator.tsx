@@ -356,9 +356,7 @@ phone_number: {{phone_number}}`}
                       variant="outline" 
                       size="lg"
                       className="bg-background/80 backdrop-blur"
-                      onClick={() => {
-                        // Add your workflow builder navigation logic here
-                      }}
+                      onClick={() => setLocation('/agent-builder/workflow')}
                     >
                       Open Workflow Builder
                     </Button>
