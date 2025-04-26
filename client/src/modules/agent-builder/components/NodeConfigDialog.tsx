@@ -6,29 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-interface Tool {
-  id: string;
-  name: string;
-  icon: string;
-}
-
 interface NodeConfigDialogProps {
   open: boolean;
-  onClose: () => void;
+  onOpenChange: (open: boolean) => void;
   node: any;
   onSave: (config: any) => void;
 }
 
-const tools: Tool[] = [
-  { id: 'end-call', name: 'End Call', icon: '📞' },
-  { id: 'call-transfer', name: 'Call Transfer', icon: '↗️' },
-  { id: 'calendar', name: 'Calendar Booking', icon: '📅' },
-  { id: 'ivr', name: 'Press Digit (IVR Navigation)', icon: '🔢' },
-  { id: 'calendar-check', name: 'Check Calendar Availability', icon: '✓' },
-  { id: 'custom', name: 'Custom Function', icon: '⚙️' },
-];
-
-export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDialogProps) {
+export function NodeConfigDialog({ open, onOpenChange, node, onSave }: NodeConfigDialogProps) {
   const [prompt, setPrompt] = React.useState('');
   const [selectedTools, setSelectedTools] = React.useState<string[]>([]);
   const [jsonSchema, setJsonSchema] = React.useState('');
@@ -40,11 +25,11 @@ export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDial
       tools: selectedTools,
       jsonSchema: jsonSchema ? JSON.parse(jsonSchema) : null,
     });
-    onClose();
+    onOpenChange(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Configure Node: {node?.type}</DialogTitle>
@@ -66,7 +51,7 @@ export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDial
             />
           </TabsContent>
 
-          <TabsContent value="tools" className="space-y-4">
+          <TabsContent value="tools">
             <div className="grid grid-cols-2 gap-4">
               {tools.map((tool) => (
                 <div key={tool.id} className="flex items-center space-x-2">
@@ -95,29 +80,23 @@ export function NodeConfigDialog({ open, onClose, node, onSave }: NodeConfigDial
               value={jsonSchema}
               onChange={(e) => setJsonSchema(e.target.value)}
             />
-            <Button
-              variant="outline"
-              size="sm"
-              className="mt-2"
-              onClick={() => {
-                try {
-                  const formatted = JSON.stringify(JSON.parse(jsonSchema), null, 2);
-                  setJsonSchema(formatted);
-                } catch (e) {
-                  console.error('Invalid JSON');
-                }
-              }}
-            >
-              Format JSON
-            </Button>
           </TabsContent>
         </Tabs>
 
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
           <Button onClick={handleSave}>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
+
+const tools = [
+  { id: 'end-call', name: 'End Call', icon: '📞' },
+  { id: 'call-transfer', name: 'Call Transfer', icon: '↗️' },
+  { id: 'calendar', name: 'Calendar Booking', icon: '📅' },
+  { id: 'ivr', name: 'Press Digit (IVR Navigation)', icon: '🔢' },
+  { id: 'calendar-check', name: 'Check Calendar Availability', icon: '✓' },
+  { id: 'custom', name: 'Custom Function', icon: '⚙️' },
+];
