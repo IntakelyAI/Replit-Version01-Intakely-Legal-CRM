@@ -229,13 +229,15 @@ export default function AgentConfigurator() {
                   <VoiceSettingsDialog open={isVoiceSettingsOpen} onOpenChange={setIsVoiceSettingsOpen} /> {/* Added VoiceSettingsDialog */}
                 </div>
                 <div className="flex items-center gap-2 mb-4">
-                  <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                    <div className="flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-xs">English</span>
-                    </div>
-                    <ChevronLeft className="h-4 w-4 rotate-270" />
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button variant="outline" size="sm" className="flex-1 justify-between h-8" style={{ width: '208px' }}>
+                      <div className="flex items-center gap-2">
+                        <Globe className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-xs">English</span>
+                      </div>
+                      <ChevronLeft className="h-4 w-4 rotate-270" />
+                    </Button>
+                  </div>
                 </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">## Role and Task</div>
                 <Textarea 
