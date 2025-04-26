@@ -305,15 +305,38 @@ phone_number: {{phone_number}}`}
                   value="Use a warm, relaxed tone with occasional light humor when appropriate."
                 />
               </div>
-              <div className="p-2 border rounded-md">
-                <div className="flex items-center">
-                  <div className="text-xs font-semibold">AI Initiates:</div>
-                  <div className="text-xs ml-2">AI begins with your defined begin message.</div>
-                  <ChevronLeft className="h-4 w-4 rotate-270 ml-auto" />
-                </div>
+              <div className="mb-5">
+                <div className="text-xs text-muted-foreground font-semibold mb-2">Conversation Initiation</div>
+                <Select defaultValue="ai_initiates" className="flex-1 mb-2">
+                  <SelectTrigger>
+                    <SelectValue>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs">AI Initiates: AI begins with your defined begin message</span>
+                      </div>
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ai_initiates">
+                      <div className="flex items-center gap-2">
+                        <span>AI Initiates: AI begins with your defined begin message</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="caller_initiates">
+                      <div className="flex items-center gap-2">
+                        <span>Caller Initiates: Wait for caller to speak first</span>
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="outbound_wait">
+                      <div className="flex items-center gap-2">
+                        <span>Outbound Call: Wait for response before speaking</span>
+                      </div>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
                 <Textarea 
-                  className="mt-2 min-h-12 font-mono text-xs"
-                  value="Hello Sam. This is Chris. I've just got a minute?"
+                  className="min-h-12 font-mono text-xs"
+                  placeholder="Enter your initial message here..."
+                  defaultValue="Hello Sam. This is Chris. I've just got a minute?"
                 />
               </div>
             </div>
