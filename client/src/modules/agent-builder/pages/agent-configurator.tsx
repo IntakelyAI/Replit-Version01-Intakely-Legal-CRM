@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { useLocation } from 'wouter';
-import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield } from "lucide-react";
+import { 
+  Plus,
+  Settings, 
+  ChevronLeft, 
+  CirclePlay, 
+  Database, 
+  Mic, 
+  Globe, 
+  Info, 
+  PhoneCall, 
+  FileText, 
+  Shield 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import {
-  ChevronLeft,
-  CirclePlay,
-  Settings,
-  Database,
-  Mic,
-  Globe,
-  Info,
-  PhoneCall,
-  FileText,
-  Shield,
-  Plus
-} from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ModelSettingsDialog } from "../components/ModelSettingsDialog";
@@ -288,7 +287,7 @@ export default function AgentConfigurator() {
                   <div className="text-xs text-muted-foreground font-semibold mb-2">Role and Task</div>
                   <Textarea 
                     className="min-h-20 font-mono text-xs"
-                    value={`*Your role is to be approachable, friendly, and professional—like a helpful neighbor rather than a pushy salesperson. Think of yourself as someone who enjoys a genuine chat, makes people smile, and helps them make informed decisions—without pressure.
+                    defaultValue={`*Your role is to be approachable, friendly, and professional—like a helpful neighbor rather than a pushy salesperson. Think of yourself as someone who enjoys a genuine chat, makes people smile, and helps them make informed decisions—without pressure.
 
 ##Key changes
 *Use getDateTime for date and time.
