@@ -46,7 +46,7 @@ export function NodeConfigDialog({ open, onOpenChange, node, onSave }: NodeConfi
             <Textarea
               placeholder="Enter your prompt here..."
               className="min-h-[200px]"
-              value={prompt}
+              defaultValue={node?.data?.prompt || ''}
               onChange={(e) => setPrompt(e.target.value)}
             />
           </TabsContent>

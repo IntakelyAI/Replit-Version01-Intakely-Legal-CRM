@@ -110,7 +110,7 @@ export default function WorkflowBuilder() {
   };
 
 
-  
+
 
   return (
     <div className="flex flex-col h-full bg-background">
@@ -138,7 +138,7 @@ export default function WorkflowBuilder() {
         </div>
       </div>
 
-      <div className="flex-1 w-full h-[calc(100vh-3.5rem)]">
+      <div className="flex-1 w-full h-[calc(100vh-3.5rem)]"> {/* Modified this div */}
         <ReactFlow
           nodes={nodes}
           edges={edges}
