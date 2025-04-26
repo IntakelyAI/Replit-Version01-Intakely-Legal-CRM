@@ -9,6 +9,16 @@ interface Node {
   id: string;
   type: string;
   position: { x: number, y: number };
+  config?: {
+    prompt?: string;
+    tools?: string[];
+    jsonSchema?: any;
+  };
+}
+
+interface Edge {
+  from: string;
+  to: string;
 }
 
 export default function WorkflowBuilder() {
@@ -22,26 +32,38 @@ export default function WorkflowBuilder() {
     { id: '6', type: 'End Call', position: { x: 400, y: 350 } },
   ]);
 
+  const [edges] = useState<Edge[]>([
+    { from: '1', to: '2' },
+    { from: '2', to: '3' },
+    { from: '2', to: '4' },
+    { from: '2', to: '5' },
+    { from: '4', to: '6' },
+  ]);
+
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
-const [isConfigOpen, setIsConfigOpen] = useState(false);
+  const [isConfigOpen, setIsConfigOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
 
-const handleNodeClick = (nodeId: string) => {
-  const node = nodes.find(n => n.id === nodeId);
-  if (node) {
-    setSelectedNode(node);
-    setIsConfigOpen(true);
-  }
-};
+  const handleNodeClick = (nodeId: string) => {
+    const node = nodes.find(n => n.id === nodeId);
+    if (node) {
+      setSelectedNode(node);
+      setIsConfigOpen(true);
+    }
+  };
 
-const handleConfigSave = (config: any) => {
-  // Here you would update the node configuration in your state
-  console.log('Saving config:', config);
-  setNodes(nodes.map(node => 
-    node.id === config.id 
-      ? { ...node, config } 
-      : node
-  ));
-};
+  const handleConfigSave = (config: any) => {
+    setNodes(nodes.map(node => 
+      node.id === selectedNode?.id 
+        ? { ...node, config } 
+        : node
+    ));
+    setIsConfigOpen(false);
+  };
+
+  const handleZoom = (delta: number) => {
+    setZoom(Math.max(0.5, Math.min(2, zoom + delta)));
+  };
 
   return (
     <div className="flex flex-col h-full bg-gray-950">
@@ -63,14 +85,41 @@ const handleConfigSave = (config: any) => {
       {/* Main Content */}
       <div className="flex-1 relative overflow-hidden">
         {/* Canvas */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0" style={{ transform: `scale(${zoom})`, transformOrigin: '50% 0%' }}>
           <svg className="w-full h-full">
             {/* Edges */}
-            <path d="M 400 100 L 400 150" className="stroke-gray-600" strokeWidth="2" />
-            <path d="M 400 200 L 200 250" className="stroke-gray-600" strokeWidth="2" />
-            <path d="M 400 200 L 400 250" className="stroke-gray-600" strokeWidth="2" />
-            <path d="M 400 200 L 600 250" className="stroke-gray-600" strokeWidth="2" />
-            <path d="M 400 300 L 400 350" className="stroke-gray-600" strokeWidth="2" />
+            {edges.map((edge, index) => {
+              const fromNode = nodes.find(n => n.id === edge.from);
+              const toNode = nodes.find(n => n.id === edge.to);
+              if (!fromNode || !toNode) return null;
+
+              return (
+                <path
+                  key={index}
+                  d={`M ${fromNode.position.x} ${fromNode.position.y + 30} L ${toNode.position.x} ${toNode.position.y - 30}`}
+                  className="stroke-gray-600"
+                  strokeWidth="2"
+                  markerEnd="url(#arrowhead)"
+                />
+              );
+            })}
+            
+            {/* Arrow marker definition */}
+            <defs>
+              <marker
+                id="arrowhead"
+                markerWidth="10"
+                markerHeight="7"
+                refX="9"
+                refY="3.5"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 10 3.5, 0 7"
+                  fill="#4B5563"
+                />
+              </marker>
+            </defs>
           </svg>
           
           {/* Nodes */}
@@ -78,30 +127,35 @@ const handleConfigSave = (config: any) => {
             <div
               key={node.id}
               className="absolute transform -translate-x-1/2 -translate-y-1/2 w-48 h-24 
-                         bg-gray-900 border border-gray-800 rounded-lg p-4 cursor-pointer
-                         hover:border-green-500 transition-colors"
-              style={{ left: node.position.x, top: node.position.y }}
+                       bg-gray-900 border border-gray-800 rounded-lg p-4 cursor-pointer
+                       hover:border-green-500 transition-colors"
+              style={{ 
+                left: node.position.x, 
+                top: node.position.y,
+                borderColor: node.config ? '#22C55E' : undefined
+              }}
               onClick={() => handleNodeClick(node.id)}
             >
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full" />
+                <div className={`w-2 h-2 rounded-full ${node.config ? 'bg-green-500' : 'bg-gray-500'}`} />
                 <span className="text-sm text-gray-300">{node.type}</span>
               </div>
+              {node.config?.prompt && (
+                <div className="mt-2 text-xs text-gray-400 truncate">
+                  {node.config.prompt.substring(0, 50)}...
+                </div>
+              )}
             </div>
           ))}
         </div>
 
-        {/* Bottom Controls */}
+        {/* Zoom Controls */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-          <Button variant="outline" size="sm" className="bg-gray-900">
-            <Plus className="h-4 w-4 mr-2" />
-            New State
-          </Button>
-          <Button variant="outline" size="sm" className="bg-gray-900">
-            <Plus className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="sm" className="bg-gray-900">
+          <Button variant="outline" size="sm" className="bg-gray-900" onClick={() => handleZoom(-0.1)}>
             <Minus className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="sm" className="bg-gray-900" onClick={() => handleZoom(0.1)}>
+            <Plus className="h-4 w-4" />
           </Button>
         </div>
 
