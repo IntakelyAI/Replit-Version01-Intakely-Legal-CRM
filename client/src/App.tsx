@@ -21,6 +21,14 @@ import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; //
 
 function Router() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [location] = useLocation();
+  
+  // Auto-collapse sidebar on agent configurator route
+  useEffect(() => {
+    if (location.startsWith('/agent-builder/detail/')) {
+      setSidebarCollapsed(true);
+    }
+  }, [location]);
 
   return (
     <div className="flex h-screen bg-background">
