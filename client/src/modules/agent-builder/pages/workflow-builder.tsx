@@ -28,60 +28,74 @@ interface Edge {
   to: string;
 }
 
+const existingAgentNodes: Node[] = [
+  { 
+    id: '1', 
+    type: 'Initial Message', 
+    position: { x: 400, y: 100 },
+    config: {
+      prompt: "Hello, I'm here to help qualify your legal case. Could you briefly describe your situation?"
+    }
+  },
+  { 
+    id: '2', 
+    type: 'Lead Qualification', 
+    position: { x: 400, y: 250 },
+    config: {
+      prompt: "I understand. Let me ask a few qualifying questions to better assist you.",
+      tools: ['calendar-check', 'custom']
+    }
+  },
+  { 
+    id: '3', 
+    type: 'Calendar Booking', 
+    position: { x: 200, y: 400 },
+    config: {
+      tools: ['calendar']
+    }
+  },
+  { 
+    id: '4', 
+    type: 'Call Transfer', 
+    position: { x: 600, y: 400 },
+    config: {
+      tools: ['call-transfer']
+    }
+  },
+  { 
+    id: '5', 
+    type: 'End Call', 
+    position: { x: 400, y: 550 },
+    config: {
+      tools: ['end-call']
+    }
+  },
+];
+
+const existingAgentEdges: Edge[] = [
+  { from: '1', to: '2' },
+  { from: '2', to: '3' },
+  { from: '2', to: '4' },
+  { from: '3', to: '5' },
+  { from: '4', to: '5' },
+];
+
+const newAgentNodes: Node[] = [
+  { 
+    id: '1', 
+    type: 'Starting Point', 
+    position: { x: 400, y: 250 },
+    config: {
+      prompt: "Welcome! How can I assist you today?"
+    }
+  }
+];
+
 export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
-  const [nodes, setNodes] = useState<Node[]>([
-    { 
-      id: '1', 
-      type: 'Initial Message', 
-      position: { x: 400, y: 100 },
-      config: {
-        prompt: "Hello, I'm here to help qualify your legal case. Could you briefly describe your situation?"
-      }
-    },
-    { 
-      id: '2', 
-      type: 'Lead Qualification', 
-      position: { x: 400, y: 250 },
-      config: {
-        prompt: "I understand. Let me ask a few qualifying questions to better assist you.",
-        tools: ['calendar-check', 'custom']
-      }
-    },
-    { 
-      id: '3', 
-      type: 'Calendar Booking', 
-      position: { x: 200, y: 400 },
-      config: {
-        tools: ['calendar']
-      }
-    },
-    { 
-      id: '4', 
-      type: 'Call Transfer', 
-      position: { x: 600, y: 400 },
-      config: {
-        tools: ['call-transfer']
-      }
-    },
-    { 
-      id: '5', 
-      type: 'End Call', 
-      position: { x: 400, y: 550 },
-      config: {
-        tools: ['end-call']
-      }
-    },
-  ]);
-
-  const [edges] = useState<Edge[]>([
-    { from: '1', to: '2' },
-    { from: '2', to: '3' },
-    { from: '2', to: '4' },
-    { from: '3', to: '5' },
-    { from: '4', to: '5' },
-  ]);
-
+  const isNewAgent = new URLSearchParams(window.location.search).get('new') === 'true';
+  const [nodes, setNodes] = useState<Node[]>(isNewAgent ? newAgentNodes : existingAgentNodes);
+  const [edges] = useState<Edge[]>(isNewAgent ? [] : existingAgentEdges);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
