@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Switch, Route, useLocation } from "wouter";
+import { useState, useEffect } from "react";
+import { Switch, Route, useLocation as useWouterLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { cn } from "@/lib/utils";
@@ -21,7 +21,7 @@ import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; //
 
 function Router() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [location] = useLocation();
+  const [location] = useWouterLocation();
   
   // Auto-collapse sidebar on agent configurator route
   useEffect(() => {
