@@ -8,9 +8,8 @@ import { AppShell } from "@/components/layout/AppShell";
 import { Sidebar } from "@/components/layout/Sidebar";
 import Dashboard from "@/pages/Dashboard";
 import PersonalAssistant from "@/pages/PersonalAssistant";
-import AgentConfiguration from "@/modules/agent-builder/pages/agent-configuration";
 import AgentBuilder from "@/modules/agent-builder/agent-builder";
-import AgentDetail from "@/modules/agent-builder/pages/agent-configurator.tsx";
+import AgentConfigurator from "@/modules/agent-builder/pages/agent-configurator";
 import Spaces from "@/pages/Spaces";
 import Contacts from "@/pages/Contacts";
 import Channels from "@/pages/Channels";
@@ -30,8 +29,7 @@ function Router() {
         <AppShell>
           <Switch>
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
-        <Route path="/agent-builder/configure" component={AgentConfiguration} />
-        <Route path="/agent-builder/detail/:id" component={AgentDetail} />
+        <Route path="/agent-builder/detail/:id" component={AgentConfigurator} />
         <Route path="/agent-builder/agents" component={AgentBuilder} />
         <Route path="/agent-builder" component={AgentBuilder} />
         <Route path="/assistant" component={PersonalAssistant} />
