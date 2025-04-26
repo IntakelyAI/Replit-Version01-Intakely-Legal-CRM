@@ -72,45 +72,7 @@ export default function AgentConfigurator() {
 
       {/* Three Column Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Left Section */}
-        <div className="w-1/3 border-r border-border/30 flex flex-col">
-          <div className="p-4 border-b border-border/30">
-            <h3 className="text-sm font-medium">Agent Configuration</h3>
-          </div>
-          <ScrollArea className="flex-1">
-            <div className="p-4">
-              <div className="mb-4 space-y-4">
-                <div className="space-y-2">
-                  <div className="text-xs text-muted-foreground font-semibold">Voice Settings</div>
-                  <div className="flex flex-col gap-2 p-3 border rounded-md border-border/30">
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                        <div className="flex items-center gap-2">
-                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
-                            N
-                          </div>
-                          <span className="text-xs">Noah (en-AU)</span>
-                        </div>
-                        <ChevronLeft className="h-4 w-4 rotate-270" />
-                      </Button>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                        <div className="flex items-center gap-2">
-                          <Globe className="h-4 w-4 text-muted-foreground" />
-                          <span className="text-xs">English</span>
-                        </div>
-                        <ChevronLeft className="h-4 w-4 rotate-270" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollArea>
-        </div>
-
-        {/* Middle Section */}
+        {/* Left Section - Conversation Design */}
         <div className="w-1/3 border-r border-border/30 flex flex-col">
           <div className="p-4 border-b border-border/30">
             <h3 className="text-sm font-medium">Conversation Design</h3>
@@ -126,27 +88,6 @@ export default function AgentConfigurator() {
                   </Button>
                   <Button variant="outline" size="icon" className="h-8 w-8">
                     <Settings className="h-4 w-4" />
-                  </Button>
-                </div>
-                <div className="text-xs text-muted-foreground font-semibold mb-2">Voice Settings</div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
-                        N
-                      </div>
-                      <span className="text-xs">Noah (en-AU)</span>
-                    </div>
-                    <ChevronLeft className="h-4 w-4 rotate-270" />
-                  </Button>
-                </div>
-                <div className="flex items-center gap-2 mb-4">
-                  <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                    <div className="flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-xs">English</span>
-                    </div>
-                    <ChevronLeft className="h-4 w-4 rotate-270" />
                   </Button>
                 </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">## Role and Task</div>
@@ -187,8 +128,8 @@ phone_number: {{phone_number}}`}
           </ScrollArea>
         </div>
 
-        {/* Right Section */}
-        <div className="w-1/3 flex flex-col">
+        {/* Middle Section - Settings & Integration */}
+        <div className="w-1/3 border-r border-border/30 flex flex-col">
           <div className="p-4 border-b border-border/30">
             <h3 className="text-sm font-medium">Settings & Integration</h3>
           </div>
@@ -292,25 +233,24 @@ phone_number: {{phone_number}}`}
                   </p>
                 </div>
               </div>
-              <div className="border-t border-border/30 p-4">
-                <div className="flex items-center mb-3">
-                  <Mic className="h-4 w-4 mr-2 text-primary" />
-                  <span className="text-sm font-medium">Test your agent</span>
-                  <Info className="h-4 w-4 ml-1 text-muted-foreground" />
-                </div>
-                <div className="flex items-center">
-                  <div className="relative flex-1 mr-2">
-                    <div className="w-20 h-20 rounded-full bg-background mx-auto flex items-center justify-center border-2 border-muted-foreground/20">
-                      <CirclePlay className="h-10 w-10 text-primary" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex justify-center mt-3">
-                  <Button variant="secondary" size="sm" className="w-32">
-                    Test
-                  </Button>
-                </div>
+            </div>
+          </ScrollArea>
+        </div>
+
+        {/* Right Section - Test Your Agent */}
+        <div className="w-1/3 flex flex-col">
+          <div className="p-4 border-b border-border/30">
+            <h3 className="text-sm font-medium">Test Your Agent</h3>
+          </div>
+          <ScrollArea className="flex-1">
+            <div className="p-4 flex flex-col items-center justify-center h-full">
+              <div className="w-32 h-32 rounded-full bg-background border-2 border-muted-foreground/20 flex items-center justify-center mb-4">
+                <CirclePlay className="h-16 w-16 text-primary" />
               </div>
+              <span className="text-sm text-muted-foreground mb-4">Click to test your agent</span>
+              <Button variant="secondary" size="sm" className="w-32">
+                Start Test
+              </Button>
             </div>
           </ScrollArea>
         </div>
