@@ -30,22 +30,24 @@ export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
   const [nodes, setNodes] = useState<WorkflowNode[]>([
     {
-      id: 'warm-lead',
+      id: 'starting-state',
       type: 'input',
       position: { x: 400, y: 50 },
+      style: { background: '#0f1117', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px', minWidth: '180px' },
       data: { 
-        label: 'Warm Lead Qualification',
+        label: 'Starting State',
         type: 'Starting Point',
-        prompt: 'Initial qualification process'
+        prompt: 'Initial state'
       }
     },
     {
       id: 'booking',
       type: 'default',
       position: { x: 200, y: 200 },
+      style: { background: '#0f1117', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px', minWidth: '180px' },
       data: {
         label: 'Booking Calendar Agent',
-        type: 'Processing Node',
+        type: 'Agent',
         prompt: 'Schedule appointment'
       }
     },
@@ -53,26 +55,29 @@ export default function WorkflowBuilder() {
       id: 'follow-up',
       type: 'default',
       position: { x: 400, y: 200 },
+      style: { background: '#0f1117', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px', minWidth: '180px' },
       data: {
         label: 'Follow Up Agent',
-        type: 'Processing Node',
-        prompt: 'Follow up with client'
+        type: 'Agent',
+        prompt: 'Follow up process'
       }
     },
     {
       id: 'transfer',
       type: 'default',
       position: { x: 600, y: 200 },
+      style: { background: '#0f1117', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px', minWidth: '180px' },
       data: {
         label: 'Call Transfer Agent',
-        type: 'Processing Node',
-        prompt: 'Transfer call to representative'
+        type: 'Agent',
+        prompt: 'Transfer call'
       }
     },
     {
-      id: 'end',
+      id: 'end-call',
       type: 'output',
       position: { x: 400, y: 350 },
+      style: { background: '#0f1117', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px', minWidth: '180px' },
       data: {
         label: 'End Call',
         type: 'End Point',
