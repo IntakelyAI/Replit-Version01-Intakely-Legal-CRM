@@ -300,12 +300,7 @@ phone_number: {{phone_number}}`}
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Welcome Message</div>
                 <Textarea 
                   className="min-h-12 font-mono text-xs mb-5"
-                  value="Use a warm, relaxed tone with occasional light humor when appropriate."
-                />
-                <div className="text-xs text-muted-foreground font-semibold mb-2">Interaction Style</div>
-                <Textarea 
-                  className="min-h-12 font-mono text-xs mb-5"
-                  value="Use a warm, relaxed tone with occasional light humor when appropriate."
+                  value="Hello! I'm your AI assistant ready to help schedule appointments."
                 />
               </div>
               <div className="mb-5">
