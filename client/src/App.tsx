@@ -3,6 +3,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { AppShell } from "@/components/layout/AppShell";
+import { Sidebar } from "@/components/layout/Sidebar";
 import Dashboard from "@/pages/Dashboard";
 import PersonalAssistant from "@/pages/PersonalAssistant";
 import AgentConfiguration from "@/modules/agent-builder/pages/agent-configuration";
@@ -19,8 +20,10 @@ import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; //
 
 function Router() {
   return (
-    <AppShell>
-      <Switch>
+    <div className="flex">
+      <Sidebar isOpen={true} setIsOpen={() => {}} />
+      <AppShell>
+        <Switch>
         <Route path="/agent-builder/workflow" component={WorkflowBuilder} />
         <Route path="/agent-builder/configure" component={AgentConfiguration} />
         <Route path="/agent-builder/detail/:id" component={AgentDetail} />
@@ -35,6 +38,7 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
     </AppShell>
+    </div>
   );
 }
 
