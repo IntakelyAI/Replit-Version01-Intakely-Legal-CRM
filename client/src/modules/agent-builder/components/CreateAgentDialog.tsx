@@ -61,7 +61,10 @@ export function CreateAgentDialog() {
             <div
               key={index}
               className="flex items-center gap-4 p-4 rounded-lg transition-all cursor-pointer hover:bg-accent/30 border border-transparent hover:border-primary"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                navigate('/agent-builder/detail/new');
+              }}
             >
               <div className="p-2 rounded-full bg-primary/10 text-primary">
                 {type.icon}

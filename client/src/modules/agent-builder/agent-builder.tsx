@@ -219,7 +219,10 @@ export default function AgentBuilder() {
                     <tr
                       key={agent.id}
                       className="border-t border-border/20 hover:bg-accent/30 cursor-pointer"
-                      onClick={() => navigate(`/agent-builder/${agent.id}`)}
+                      onClick={() => {
+                        navigate(`/agent-builder/detail/${agent.id}`);
+                        setIsCollapsed(true);
+                      }}
                     >
                       <td className="py-3 flex items-center">
                         <div className="w-6 h-6 flex items-center justify-center mr-4">
