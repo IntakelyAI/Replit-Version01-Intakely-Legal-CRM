@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { 
   Bot,
@@ -42,11 +41,20 @@ export default function Agents() {
             </div>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="w-28">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-28 hover:bg-violet-100 transition-colors"
+              onClick={() => window.location.href = '/agent-builder'}
+            >
               <Settings className="h-4 w-4 mr-2" />
               Configure
             </Button>
-            <Button variant="secondary" size="sm" className="w-28">
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              className="w-28 hover:bg-violet-600 transition-colors"
+            >
               <Play className="h-4 w-4 mr-2" />
               Run
             </Button>
@@ -74,11 +82,20 @@ export default function Agents() {
             </div>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm" className="w-28">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-28 hover:bg-violet-100 transition-colors"
+              onClick={() => window.location.href = '/agent-builder'}
+            >
               <Settings className="h-4 w-4 mr-2" />
               Configure
             </Button>
-            <Button variant="secondary" size="sm" className="w-28">
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              className="w-28 hover:bg-violet-600 transition-colors"
+            >
               <Play className="h-4 w-4 mr-2" />
               Run
             </Button>

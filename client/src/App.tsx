@@ -23,6 +23,7 @@ function Router() {
         <Route path="/assistant" component={PersonalAssistant} />
         <Route path="/agent-builder" component={AgentBuilder} />
         <Route path="/agent-builder/agents" component={Agents} />
+        <Route path="/agent-builder/configure" component={AgentBuilder} />
         <Route path="/agent-builder/:id" component={AgentDetail} />
         <Route path="/spaces" component={Spaces} />
         <Route path="/contacts" component={Contacts} />
