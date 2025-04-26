@@ -223,7 +223,7 @@ export default function AgentConfigurator() {
                           </div>
                         </SelectValue>
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="sm:w-[425px]">
                         <SelectItem value="en-us">
                           <div className="flex items-center gap-2">
                             <span className="text-[18px]">🇺🇸</span>
