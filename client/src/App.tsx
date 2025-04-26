@@ -10,7 +10,7 @@ import Dashboard from "@/pages/Dashboard";
 import PersonalAssistant from "@/pages/PersonalAssistant";
 import AgentConfiguration from "@/modules/agent-builder/pages/agent-configuration";
 import AgentBuilder from "@/modules/agent-builder/AgentBuilder";
-import AgentDetail from "@/modules/agent-builder/pages/AgentDetail";
+import AgentDetail from "@/modules/agent-builder/pages/agent-configurator";
 import Spaces from "@/pages/Spaces";
 import Contacts from "@/pages/Contacts";
 import Channels from "@/pages/Channels";
