@@ -177,14 +177,51 @@ export default function AgentConfigurator() {
                 </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Voice Settings</div>
                 <div className="flex items-center gap-2 mb-4">
-                  <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
-                        N
-                      </div>
-                      <span className="text-xs">Noah (en-AU)</span>
-                    </div>
-                    <ChevronLeft className="h-4 w-4 rotate-270" />
+                  <Select defaultValue="noah" className="flex-1">
+                    <SelectTrigger className="h-8">
+                      <SelectValue>
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
+                            N
+                          </div>
+                          <span className="text-xs">Noah (en-AU)</span>
+                        </div>
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="noah">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs">
+                            N
+                          </div>
+                          <span>Noah (en-AU)</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="emma">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs">
+                            E
+                          </div>
+                          <span>Emma (en-GB)</span>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="james">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs">
+                            J
+                          </div>
+                          <span>James (en-US)</span>
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8"
+                    onClick={() => {}}
+                  >
+                    <Settings className="h-4 w-4" />
                   </Button>
                 </div>
                 <div className="flex items-center gap-2 mb-4">
