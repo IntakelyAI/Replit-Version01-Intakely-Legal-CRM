@@ -103,76 +103,78 @@ export default function AgentConfigurator() {
             <div className="p-4">
               <div className="mb-5">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Model Selection</div>
-                <Select defaultValue="gpt4mini">
-                  <SelectTrigger className="h-8">
-                    <SelectValue placeholder="Select a model" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="gpt4realtime">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Settings className="h-3 w-3 text-white" />
+                <div className="flex gap-2">
+                  <Select defaultValue="gpt4mini" className="flex-1">
+                    <SelectTrigger className="h-8">
+                      <SelectValue placeholder="Select a model" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="gpt4realtime">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                            <Settings className="h-3 w-3 text-white" />
+                          </div>
+                          <span>GPT 4o Realtime</span>
+                          <span className="text-xs text-muted-foreground">($0.5/min)</span>
                         </div>
-                        <span>GPT 4o Realtime</span>
-                        <span className="text-xs text-muted-foreground">($0.5/min)</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="gpt4minirt">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Settings className="h-3 w-3 text-white" />
+                      </SelectItem>
+                      <SelectItem value="gpt4minirt">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                            <Settings className="h-3 w-3 text-white" />
+                          </div>
+                          <span>GPT 4o mini Realtime</span>
+                          <span className="text-xs text-muted-foreground">($0.125/min)</span>
                         </div>
-                        <span>GPT 4o mini Realtime</span>
-                        <span className="text-xs text-muted-foreground">($0.125/min)</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="gpt4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Settings className="h-3 w-3 text-white" />
+                      </SelectItem>
+                      <SelectItem value="gpt4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                            <Settings className="h-3 w-3 text-white" />
+                          </div>
+                          <span>GPT 4o</span>
+                          <span className="text-xs text-muted-foreground">($0.05/min)</span>
                         </div>
-                        <span>GPT 4o</span>
-                        <span className="text-xs text-muted-foreground">($0.05/min)</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="gpt4mini">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
-                          <Settings className="h-3 w-3 text-white" />
+                      </SelectItem>
+                      <SelectItem value="gpt4mini">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center">
+                            <Settings className="h-3 w-3 text-white" />
+                          </div>
+                          <span>GPT 4o mini</span>
+                          <span className="text-xs text-muted-foreground">($0.006/min)</span>
                         </div>
-                        <span>GPT 4o mini</span>
-                        <span className="text-xs text-muted-foreground">($0.006/min)</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="claude37">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
-                          <Globe className="h-3 w-3 text-white" />
+                      </SelectItem>
+                      <SelectItem value="claude37">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
+                            <Globe className="h-3 w-3 text-white" />
+                          </div>
+                          <span>Claude 3.7 Sonnet</span>
+                          <span className="text-xs text-muted-foreground">($0.06/min)</span>
                         </div>
-                        <span>Claude 3.7 Sonnet</span>
-                        <span className="text-xs text-muted-foreground">($0.06/min)</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="claude35">
-                      <div className="flex items-center gap-2">
-                        <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
-                          <Globe className="h-3 w-3 text-white" />
+                      </SelectItem>
+                      <SelectItem value="claude35">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
+                            <Globe className="h-3 w-3 text-white" />
+                          </div>
+                          <span>Claude 3.5 Haiku</span>
+                          <span className="text-xs text-muted-foreground">($0.02/min)</span>
                         </div>
-                        <span>Claude 3.5 Haiku</span>
-                        <span className="text-xs text-muted-foreground">($0.02/min)</span>
-                      </div>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                <ModelSettingsDialog open={isModelSettingsOpen} onOpenChange={setIsModelSettingsOpen} />
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="h-8 w-8 mt-2"
-                  onClick={() => setIsModelSettingsOpen(true)}
-                >
-                  <Settings className="h-4 w-4" />
-                </Button>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <ModelSettingsDialog open={isModelSettingsOpen} onOpenChange={setIsModelSettingsOpen} />
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className="h-8 w-8"
+                    onClick={() => setIsModelSettingsOpen(true)}
+                  >
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                </div>
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Voice Settings</div>
                 <div className="flex items-center gap-2 mb-4">
                   <Button variant="outline" size="sm" className="flex-1 justify-between h-8">
