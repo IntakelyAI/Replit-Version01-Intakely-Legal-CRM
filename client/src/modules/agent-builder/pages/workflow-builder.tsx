@@ -1,63 +1,109 @@
-import React, { useState } from 'react';
+
+import React, { useState, useCallback } from 'react';
 import { useLocation } from 'wouter';
+import ReactFlow, { 
+  Node, 
+  Edge,
+  Connection, 
+  Background,
+  Controls,
+  MiniMap,
+  addEdge,
+  ConnectionMode
+} from 'reactflow';
+import 'reactflow/dist/style.css';
 import { Button } from '@/components/ui/button';
+import { Dialog } from '@/components/ui/dialog';
 import { ChevronLeft, Plus } from 'lucide-react';
+import NodeConfigDialog from '../components/NodeConfigDialog';
 
-interface Node {
-  id: string;
-  type: string;
-  position: { x: number; y: number };
-  config?: any;
-}
-
-interface Edge {
-  id: string;
-  from: string;
-  to: string;
-  label: string;
-}
-
-const defaultNode: Node = {
-  id: 'start',
-  type: 'Starting Point',
-  position: { x: 400, y: 100 },
-  config: {
-    prompt: "Initial Node"
+interface WorkflowNode extends Node {
+  data: {
+    label: string;
+    type: string;
+    prompt?: string;
+    tools?: string[];
+    schema?: string;
   }
-};
+}
 
 export default function WorkflowBuilder() {
   const [, setLocation] = useLocation();
-  const [nodes, setNodes] = useState<Node[]>([defaultNode]);
+  const [nodes, setNodes] = useState<WorkflowNode[]>([{
+    id: 'start',
+    type: 'input',
+    position: { x: 400, y: 100 },
+    data: { 
+      label: 'Start',
+      type: 'Starting Point',
+      prompt: 'Initial greeting'
+    }
+  }]);
   const [edges, setEdges] = useState<Edge[]>([]);
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [selectedNode, setSelectedNode] = useState<WorkflowNode | null>(null);
+  const [isConfigOpen, setIsConfigOpen] = useState(false);
+
+  const onNodesChange = useCallback((changes: any) => {
+    setNodes((nds) => {
+      const updatedNodes = nds.map((node) => {
+        const change = changes.find((c: any) => c.id === node.id);
+        if (change && change.position) {
+          return { ...node, position: change.position };
+        }
+        return node;
+      });
+      return updatedNodes;
+    });
+  }, []);
+
+  const onConnect = useCallback((params: Connection) => {
+    setEdges((eds) => addEdge({ ...params, type: 'smoothstep', animated: true }, eds));
+  }, []);
+
+  const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
+    setSelectedNode(node as WorkflowNode);
+    setIsConfigOpen(true);
+  }, []);
 
   const addNewNode = () => {
-    const newNode: Node = {
+    const newNode: WorkflowNode = {
       id: `node-${nodes.length + 1}`,
-      type: 'Task Node',
+      type: 'default',
       position: { 
-        x: defaultNode.position.x,
-        y: defaultNode.position.y + (nodes.length * 150)
+        x: 400,
+        y: 100 + (nodes.length * 150)
+      },
+      data: {
+        label: `Task ${nodes.length + 1}`,
+        type: 'Processing Node',
+        prompt: '',
+        tools: [],
+        schema: '{}'
       }
     };
-
-    if (nodes.length > 0) {
-      const lastNode = nodes[nodes.length - 1];
-      setEdges([...edges, {
-        id: `edge-${edges.length + 1}`,
-        from: lastNode.id,
-        to: newNode.id,
-        label: 'Next'
-      }]);
-    }
 
     setNodes([...nodes, newNode]);
   };
 
+  const onConfigSave = (nodeId: string, config: any) => {
+    setNodes(nodes.map(node => 
+      node.id === nodeId 
+        ? { 
+            ...node, 
+            data: { 
+              ...node.data,
+              ...config,
+              label: config.type || node.data.label
+            }
+          }
+        : node
+    ));
+    setIsConfigOpen(false);
+  };
+
   return (
-    <div className="flex flex-col h-full bg-gray-950">
-      <div className="border-b border-border/30 bg-background/50 backdrop-blur z-10">
+    <div className="flex flex-col h-full bg-background">
+      <div className="border-b border-border/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center justify-between px-4 h-14">
           <div className="flex items-center gap-2">
             <Button 
@@ -73,28 +119,38 @@ export default function WorkflowBuilder() {
             variant="outline"
             size="sm"
             onClick={addNewNode}
-            className="bg-gray-900"
+            className="bg-background"
           >
             <Plus className="h-4 w-4 mr-2" />
-            New State
+            Add Node
           </Button>
         </div>
       </div>
-      <div className="flex-1 relative overflow-hidden">
-        {nodes.map((node) => (
-          <div
-            key={node.id}
-            className="absolute p-4 bg-gray-900 rounded-lg border border-border/30"
-            style={{
-              left: node.position.x,
-              top: node.position.y,
-              transform: 'translate(-50%, -50%)'
-            }}
-          >
-            <div className="text-sm font-medium">{node.type}</div>
-          </div>
-        ))}
+      
+      <div className="flex-1 w-full h-[calc(100vh-3.5rem)]">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onConnect={onConnect}
+          onNodeClick={onNodeClick}
+          connectionMode={ConnectionMode.Loose}
+          fitView
+        >
+          <Background />
+          <Controls />
+          <MiniMap />
+        </ReactFlow>
       </div>
+
+      {selectedNode && (
+        <NodeConfigDialog
+          open={isConfigOpen}
+          onOpenChange={setIsConfigOpen}
+          node={selectedNode}
+          onSave={(config) => onConfigSave(selectedNode.id, config)}
+        />
+      )}
     </div>
   );
 }
