@@ -61,9 +61,28 @@ export default function WorkflowBuilder() {
   }, []);
 
   const onNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
+    event.preventDefault();
     setSelectedNode(node as WorkflowNode);
     setIsConfigOpen(true);
   }, []);
+
+  const onConfigSave = useCallback((config: any) => {
+    if (!selectedNode) return;
+    
+    setNodes(nodes.map(node => 
+      node.id === selectedNode.id 
+        ? {
+            ...node,
+            data: {
+              ...node.data,
+              ...config,
+              label: config.type || node.data.label
+            }
+          }
+        : node
+    ));
+    setIsConfigOpen(false);
+  }, [nodes, selectedNode]);
 
   const addNewNode = () => {
     const newNode: WorkflowNode = {
@@ -148,7 +167,7 @@ export default function WorkflowBuilder() {
           open={isConfigOpen}
           onOpenChange={setIsConfigOpen}
           node={selectedNode}
-          onSave={(config) => onConfigSave(selectedNode.id, config)}
+          onSave={onConfigSave}
         />
       )}
     </div>
