@@ -214,7 +214,7 @@ export default function AgentConfigurator() {
                 </div>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="flex gap-2">
-                    <Select defaultValue="en-us" className="flex-1">
+                    <Select defaultValue="en-us" className="sm:max-w-[425px]">
                       <SelectTrigger className="h-8">
                         <SelectValue>
                           <div className="flex items-center gap-2">
