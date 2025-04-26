@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import React from 'react';
 import { ChatMessage } from '@/lib/types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -20,9 +20,9 @@ const initialMessages: ChatMessage[] = [
 ];
 
 export function useChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
-  const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [messages, setMessages] = React.useState<ChatMessage[]>(initialMessages);
+  const [loading, setLoading] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState('');
 
   const sendMessage = useCallback((content: string) => {
     // Add user message
