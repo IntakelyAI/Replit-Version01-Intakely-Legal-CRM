@@ -14,6 +14,8 @@ import Channels from "@/pages/Channels";
 import Notifications from "@/pages/Notifications";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/not-found";
+import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; // Added import
+
 
 function Router() {
   return (
@@ -22,7 +24,8 @@ function Router() {
         <Route path="/" component={PersonalAssistant} />
         <Route path="/assistant" component={PersonalAssistant} />
         <Route path="/agent-builder/agents" component={Agents} />
-        <Route path="/agent-builder/detail" component={AgentDetail} />
+        <Route path="/agent-builder/configure" component={AgentBuilder} />
+        <Route path="/agent-builder/workflow" component={WorkflowBuilder} /> {/* Added route */}
         <Route path="/spaces" component={Spaces} />
         <Route path="/contacts" component={Contacts} />
         <Route path="/channels" component={Channels} />
