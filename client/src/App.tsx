@@ -22,7 +22,7 @@ import WorkflowBuilder from "@/modules/agent-builder/pages/workflow-builder"; //
 
 function Router() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  
+
   return (
     <div className="flex h-screen bg-background">
       <Sidebar isOpen={true} setIsOpen={() => {}} isCollapsed={sidebarCollapsed} setIsCollapsed={setSidebarCollapsed} />
