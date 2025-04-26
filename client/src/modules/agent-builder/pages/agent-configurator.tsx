@@ -11,7 +11,10 @@ import {
   Database,
   Mic,
   Globe,
-  Info
+  Info,
+  PhoneCall,
+  FileText,
+  Shield
 } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
