@@ -18,13 +18,10 @@ export function ModelSettingsDialog({ open, onOpenChange }: ModelSettingsDialogP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-background">
-        <DialogHeader>
-          <DialogTitle>Model Settings</DialogTitle>
-        </DialogHeader>
-        <div className="space-y-6 py-4">
+      <DialogContent className="sm:max-w-[425px] bg-background text-foreground">
+        <div className="space-y-6">
           <div className="space-y-2">
-            <Label>LLM Temperature</Label>
+            <Label className="text-lg font-medium">LLM Temperature</Label>
             <p className="text-sm text-muted-foreground">Lower value yields better function call results.</p>
             <div className="flex items-center gap-4">
               <Slider
@@ -39,11 +36,9 @@ export function ModelSettingsDialog({ open, onOpenChange }: ModelSettingsDialogP
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Structured Output</Label>
-                <p className="text-sm text-muted-foreground">Always generate responses that adhere to your supplied JSON Schema. This will make functions longer to save or update.</p>
-              </div>
+            <div className="space-y-2">
+              <Label className="text-lg font-medium">Structured Output</Label>
+              <p className="text-sm text-muted-foreground">Always generate responses that adhere to your supplied JSON Schema. This will make functions longer to save or update.</p>
               <Switch
                 checked={structuredOutput}
                 onCheckedChange={setStructuredOutput}
@@ -52,11 +47,9 @@ export function ModelSettingsDialog({ open, onOpenChange }: ModelSettingsDialogP
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>High Priority</Label>
-                <p className="text-sm text-muted-foreground">Use more dedicated resource pool to ensure lower and more consistent latency. This feature incurs a higher cost.</p>
-              </div>
+            <div className="space-y-2">
+              <Label className="text-lg font-medium">High Priority</Label>
+              <p className="text-sm text-muted-foreground">Use more dedicated resource pool to ensure lower and more consistent latency. This feature incurs a higher cost.</p>
               <Switch
                 checked={highPriority}
                 onCheckedChange={setHighPriority}
@@ -64,7 +57,8 @@ export function ModelSettingsDialog({ open, onOpenChange }: ModelSettingsDialogP
             </div>
           </div>
         </div>
-        <DialogFooter>
+
+        <DialogFooter className="mt-6">
           <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
           <Button>Save</Button>
         </DialogFooter>
