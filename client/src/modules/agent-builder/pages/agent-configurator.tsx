@@ -372,8 +372,45 @@ phone_number: {{phone_number}}`}
                     <BracesIcon className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Functions</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-180' : ''}`} />
                 </div>
+                {expandedSection === 'functions' && (
+                  <div className="p-3 space-y-2 border-t">
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Enable your agent with capabilities such as calendar bookings, call termination, etc.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <Phone className="h-4 w-4 mr-2" />
+                        <span className="text-sm">End Call</span>
+                      </div>
+                      <div className="flex items-center">
+                        <PhoneForwarded className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Call Transfer</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Check Calendar Availability (Cal.com)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CalendarPlus className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Book on the Calendar (Cal.com)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Keyboard className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Press Digit (IVR Navigation)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Code2 className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Custom Function</span>
+                      </div>
+                      <Button variant="outline" size="sm" className="w-full mt-4">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Knowledge Base */}
@@ -386,7 +423,7 @@ phone_number: {{phone_number}}`}
                     <Database className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Knowledge Base</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'knowledge' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'knowledge' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
 
@@ -400,7 +437,7 @@ phone_number: {{phone_number}}`}
                     <Mic className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Speech Settings</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'speech' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'speech' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
 
@@ -414,7 +451,7 @@ phone_number: {{phone_number}}`}
                     <PhoneCall className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Call Settings</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'call' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'call' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
 
@@ -428,7 +465,7 @@ phone_number: {{phone_number}}`}
                     <FileText className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Post-Call Analysis</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'analysis' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'analysis' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
 
@@ -442,7 +479,7 @@ phone_number: {{phone_number}}`}
                     <Shield className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Security & Fallback Settings</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'security' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'security' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
 
@@ -456,7 +493,7 @@ phone_number: {{phone_number}}`}
                     <Globe className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Webhook Settings</span>
                   </div>
-                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'webhook' ? 'rotate-90' : 'rotate-270'}`} />
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'webhook' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
               <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
