@@ -183,13 +183,24 @@ export function ChatWidget({ voiceEnabled = false }: ChatWidgetProps) {
                   <div className="flex flex-col space-y-3">
                     {messages.length === 0 ? (
                       <div className="flex flex-col items-center justify-center h-48 text-center">
-                        <div className="mb-4 rounded-full bg-primary/10 p-4">
-                          <BotIcon className="h-10 w-10 text-primary" />
+                        <div className="space-y-4">
+                          <div className="rounded-full bg-primary/10 p-4">
+                            <BotIcon className="h-10 w-10 text-primary" />
+                          </div>
+                          <div className="flex gap-2">
+                            <Button onClick={() => sendMessage("Starting agent test call...")} className="bg-green-500 hover:bg-green-600">
+                              <Phone className="h-4 w-4 mr-2" />
+                              Test Call
+                            </Button>
+                            <Button variant="destructive" onClick={() => sendMessage("Ending agent test call...")}>
+                              <X className="h-4 w-4 mr-2" />
+                              End Test
+                            </Button>
+                          </div>
+                          <p className="text-xs text-muted-foreground max-w-md mt-2">
+                            Test your agent's voice responses and behavior.
+                          </p>
                         </div>
-                        <h3 className="text-sm font-medium mb-2">How can I help you today?</h3>
-                        <p className="text-xs text-muted-foreground max-w-md">
-                          Ask me anything about legal research, document drafting, case analysis, or other legal tasks.
-                        </p>
                       </div>
                     ) : (
                       messages.map((message) => (
