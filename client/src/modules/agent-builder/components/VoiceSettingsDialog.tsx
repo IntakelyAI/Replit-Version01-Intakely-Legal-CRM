@@ -23,12 +23,130 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
   const [backchannelWords, setBackchannelWords] = React.useState("\"I see\" \"I understand\" \"Got it\" \"That's right\"");
   const [transcriptionMode, setTranscriptionMode] = React.useState("speed");
   const [boostKeywords, setBoostKeywords] = React.useState("");
-  const [enableSpeechNormalization, setEnableSpeechNormalization] = React.useState(true);
-  const [enableTranscriptFormatting, setEnableTranscriptFormatting] = React.useState(true);
-  const [reminderFrequency, setReminderFrequency] = React.useState({ seconds: 30, times: 3 });
+  const [voiceModel, setVoiceModel] = React.useState("enhanced");
+  const [speechStyle, setSpeechStyle] = React.useState("casual");
+  const [voiceSpeed, setVoiceSpeed] = React.useState(1);
+  const [voicePitch, setVoicePitch] = React.useState(1);
+  const [voiceEmotion, setVoiceEmotion] = React.useState("neutral");
+  const [enableBackgroundNoise, setEnableBackgroundNoise] = React.useState(false);
+  const [backgroundNoiseType, setBackgroundNoiseType] = React.useState("office");
+  const [noiseLevel, setNoiseLevel] = React.useState(0.2);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Voice & Speech Settings</DialogTitle>
+        </DialogHeader>
+        
+        <div className="grid gap-4 py-4">
+          <div className="space-y-2">
+            <Label>Voice Model</Label>
+            <Select value={voiceModel} onValueChange={setVoiceModel}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="standard">Standard</SelectItem>
+                <SelectItem value="enhanced">Enhanced</SelectItem>
+                <SelectItem value="premium">Premium HD</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Speech Style</Label>
+            <Select value={speechStyle} onValueChange={setSpeechStyle}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="formal">Formal</SelectItem>
+                <SelectItem value="casual">Casual</SelectItem>
+                <SelectItem value="professional">Professional</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Voice Speed</Label>
+            <Slider 
+              value={[voiceSpeed]}
+              onValueChange={([value]) => setVoiceSpeed(value)}
+              min={0.5}
+              max={2}
+              step={0.1}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Voice Pitch</Label>
+            <Slider 
+              value={[voicePitch]}
+              onValueChange={([value]) => setVoicePitch(value)}
+              min={0.5}
+              max={2}
+              step={0.1}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Voice Emotion</Label>
+            <Select value={voiceEmotion} onValueChange={setVoiceEmotion}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="neutral">Neutral</SelectItem>
+                <SelectItem value="friendly">Friendly</SelectItem>
+                <SelectItem value="professional">Professional</SelectItem>
+                <SelectItem value="empathetic">Empathetic</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label>Enable Background Noise</Label>
+              <Switch checked={enableBackgroundNoise} onCheckedChange={setEnableBackgroundNoise} />
+            </div>
+          </div>
+
+          {enableBackgroundNoise && (
+            <>
+              <div className="space-y-2">
+                <Label>Background Type</Label>
+                <Select value={backgroundNoiseType} onValueChange={setBackgroundNoiseType}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="office">Office</SelectItem>
+                    <SelectItem value="callcenter">Call Center</SelectItem>
+                    <SelectItem value="ambient">Ambient</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Noise Level</Label>
+                <Slider 
+                  value={[noiseLevel]}
+                  onValueChange={([value]) => setNoiseLevel(value)}
+                  min={0}
+                  max={1}
+                  step={0.1}
+                />
+              </div>
+            </>
+          )}
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
+          <Button>Save Changes</Button>
+        </DialogFooter>
+      </DialogContent>
       <DialogContent className="sm:max-w-[425px] bg-background text-foreground max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Speech Settings</DialogTitle>
