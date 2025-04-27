@@ -24,7 +24,6 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
   const [enableSpeechNormalization, setEnableSpeechNormalization] = React.useState(true);
   const [enableTranscriptFormatting, setEnableTranscriptFormatting] = React.useState(true);
   const [reminderFrequency, setReminderFrequency] = React.useState({ seconds: 30, times: 3 });
-  const [voiceModel, setVoiceModel] = React.useState("auto");
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
