@@ -361,29 +361,103 @@ phone_number: {{phone_number}}`}
             <h3 className="text-sm font-medium">Settings & Integration</h3>
           </div>
           <ScrollArea className="flex-1">
-            <div className="p-4">
-              <div className="border rounded-md mb-4">
+            <div className="p-4 space-y-2">
+              {/* Functions */}
+              <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 border-b border-border/30 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
                   onClick={() => setExpandedSection(expandedSection === 'functions' ? '' : 'functions')}
                 >
                   <div className="flex items-center">
-                    <Settings className="h-4 w-4 mr-2" />
+                    <BracesIcon className="h-4 w-4 mr-2" />
                     <span className="text-sm font-medium">Functions</span>
                   </div>
                   <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-90' : 'rotate-270'}`} />
                 </div>
-                {expandedSection === 'functions' && (
-                  <div className="p-4">
-                    <p className="text-xs text-muted-foreground mb-4">
-                      Configure custom functions that your agent can call during a conversation.
-                    </p>
-                    <Button variant="outline" size="sm" className="w-full">
-                      <Plus className="h-4 w-4 mr-2" />
-                      Add Function
-                    </Button>
+              </div>
+
+              {/* Knowledge Base */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'knowledge' ? '' : 'knowledge')}
+                >
+                  <div className="flex items-center">
+                    <Database className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Knowledge Base</span>
                   </div>
-                )}
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'knowledge' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
+              </div>
+
+              {/* Speech Settings */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'speech' ? '' : 'speech')}
+                >
+                  <div className="flex items-center">
+                    <Mic className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Speech Settings</span>
+                  </div>
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'speech' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
+              </div>
+
+              {/* Call Settings */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'call' ? '' : 'call')}
+                >
+                  <div className="flex items-center">
+                    <PhoneCall className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Call Settings</span>
+                  </div>
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'call' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
+              </div>
+
+              {/* Post-Call Analysis */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'analysis' ? '' : 'analysis')}
+                >
+                  <div className="flex items-center">
+                    <FileText className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Post-Call Analysis</span>
+                  </div>
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'analysis' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
+              </div>
+
+              {/* Security & Fallback Settings */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'security' ? '' : 'security')}
+                >
+                  <div className="flex items-center">
+                    <Shield className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Security & Fallback Settings</span>
+                  </div>
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'security' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
+              </div>
+
+              {/* Webhook Settings */}
+              <div className="border rounded-md">
+                <div 
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  onClick={() => setExpandedSection(expandedSection === 'webhook' ? '' : 'webhook')}
+                >
+                  <div className="flex items-center">
+                    <Globe className="h-4 w-4 mr-2" />
+                    <span className="text-sm font-medium">Webhook Settings</span>
+                  </div>
+                  <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'webhook' ? 'rotate-90' : 'rotate-270'}`} />
+                </div>
               </div>
               <div className="mb-8 p-4 rounded-lg shadow-sm bg-background border border-border/30">
                 <div className="text-xs text-muted-foreground font-semibold mb-2">Knowledge Base</div>
