@@ -402,7 +402,7 @@ phone_number: {{phone_number}}`}
                   </div>
                   <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-180' : ''}`} />
                 </div>
-                {expandedSection === 'call' && (
+                {expandedSection === 'functions' && (
                   <div className="p-3 space-y-2 border-t">
                     <div className="space-y-2">
                       <div className="flex items-center">
@@ -415,11 +415,11 @@ phone_number: {{phone_number}}`}
                       </div>
                       <div className="flex items-center">
                         <Calendar className="h-4 w-4 mr-2" />
-                        <span className="text-sm">Check Calendar Availability</span>
+                        <span className="text-sm">Check Calendar Availability (Cal.com)</span>
                       </div>
                       <div className="flex items-center">
-                        <CalendarPlus className="h-4 w-4 mr-2" />
-                        <span className="text-sm">Book Calendar Appointment</span>
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Book on the Calendar (Cal.com)</span>
                       </div>
                       <div className="flex items-center">
                         <Navigation className="h-4 w-4 mr-2" />
@@ -585,5 +585,3 @@ phone_number: {{phone_number}}`}
     </div>
   );
 }
-
-// Remove duplicate ModelSettingsDialog definition
