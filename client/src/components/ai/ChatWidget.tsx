@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { MessageSquare, X, Send, Mic, MicOff, BotIcon, Volume2 } from 'lucide-react';
+import { MessageSquare, X, Send, Mic, MicOff, BotIcon, Volume2, Phone } from 'lucide-react';
 import { useChat } from '@/hooks/use-chat';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -91,6 +91,11 @@ export function ChatWidget({ voiceEnabled = false }: ChatWidgetProps) {
       setIsListening(true);
     }
   };
+
+  const startVoiceCall = () => {
+    // Initialize voice call
+    console.log("Starting voice call...");
+  };
   
   const speakMessage = (text: string) => {
     if (!synth) return;
@@ -155,6 +160,14 @@ export function ChatWidget({ voiceEnabled = false }: ChatWidgetProps) {
                         <Volume2 className="h-4 w-4" />
                       </Button>
                     )}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={startVoiceCall}
+                      className="text-primary-foreground hover:text-primary-foreground/90 hover:bg-primary/90 h-8 w-8 p-0"
+                    >
+                      <Phone className="h-4 w-4" />
+                    </Button>
                     <Button 
                       variant="ghost" 
                       size="icon" 
