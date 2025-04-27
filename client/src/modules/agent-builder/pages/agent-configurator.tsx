@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation } from 'wouter';
-import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield, Phone, MessageSquare, BracesIcon, Play } from "lucide-react";
+import { Plus, Settings, ChevronLeft, CirclePlay, Database, Mic, Globe, Info, PhoneCall, FileText, Shield, Phone, MessageSquare, BracesIcon, Play, PhoneForwarded, Calendar, CalendarPlus, Navigation, Code2, VolumeX, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -402,7 +402,7 @@ phone_number: {{phone_number}}`}
                   </div>
                   <ChevronLeft className={`h-4 w-4 transition-transform duration-200 ${expandedSection === 'functions' ? 'rotate-180' : ''}`} />
                 </div>
-                {expandedSection === 'functions' && (
+                {expandedSection === 'call' && (
                   <div className="p-3 space-y-2 border-t">
                     <div className="space-y-2">
                       <div className="flex items-center">
@@ -410,16 +410,51 @@ phone_number: {{phone_number}}`}
                         <span className="text-sm">End Call</span>
                       </div>
                       <div className="flex items-center">
+                        <PhoneForwarded className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Call Transfer</span>
+                      </div>
+                      <div className="flex items-center">
                         <Calendar className="h-4 w-4 mr-2" />
-                        <span className="text-sm">Calendar Management</span>
+                        <span className="text-sm">Check Calendar Availability</span>
+                      </div>
+                      <div className="flex items-center">
+                        <CalendarPlus className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Book Calendar Appointment</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Navigation className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Press Digit (IVR Navigation)</span>
                       </div>
                       <div className="flex items-center">
                         <Code2 className="h-4 w-4 mr-2" />
-                        <span className="text-sm">Custom Actions</span>
+                        <span className="text-sm">Custom Function</span>
                       </div>
                       <Button variant="outline" size="sm" className="w-full mt-4">
                         <Plus className="h-4 w-4 mr-2" />
-                        Add Capability
+                        Add Function
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+                {expandedSection === 'speech' && (
+                  <div className="p-3 space-y-2 border-t">
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <VolumeX className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Silence Detection</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Mic className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Voice Activity</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Languages className="h-4 w-4 mr-2" />
+                        <span className="text-sm">Language Detection</span>
+                      </div>
+                      <Button variant="outline" size="sm" className="w-full mt-4">
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Voice Setting
                       </Button>
                     </div>
                   </div>
