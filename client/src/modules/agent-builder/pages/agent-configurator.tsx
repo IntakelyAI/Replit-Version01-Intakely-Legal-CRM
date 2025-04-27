@@ -365,7 +365,7 @@ phone_number: {{phone_number}}`}
               {/* Core Settings */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'call' ? '' : 'call')}
                 >
                   <div className="flex items-center">
@@ -379,7 +379,7 @@ phone_number: {{phone_number}}`}
               {/* Voice & Speech */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'speech' ? '' : 'speech')}
                 >
                   <div className="flex items-center">
@@ -393,7 +393,7 @@ phone_number: {{phone_number}}`}
               {/* Agent Capabilities */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'functions' ? '' : 'functions')}
                 >
                   <div className="flex items-center">
@@ -429,7 +429,7 @@ phone_number: {{phone_number}}`}
               {/* Knowledge & Training */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'knowledge' ? '' : 'knowledge')}
                 >
                   <div className="flex items-center">
@@ -443,7 +443,7 @@ phone_number: {{phone_number}}`}
               {/* Analytics */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'analysis' ? '' : 'analysis')}
                 >
                   <div className="flex items-center">
@@ -457,7 +457,7 @@ phone_number: {{phone_number}}`}
               {/* Advanced Settings */}
               <div className="border rounded-md">
                 <div 
-                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30"
+                  className="flex items-center justify-between p-3 cursor-pointer hover:bg-accent/30 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all"
                   onClick={() => setExpandedSection(expandedSection === 'advanced' ? '' : 'advanced')}
                 >
                   <div className="flex items-center">
@@ -494,17 +494,17 @@ phone_number: {{phone_number}}`}
             <div className="flex flex-col h-full">
             <div className="p-4 border-b border-border/30">
               <div className="flex gap-2 mb-4">
-                <Button variant="outline" size="sm" className="flex-1">
+                <Button variant="outline" size="sm" className="flex-1 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                   <Phone className="h-4 w-4 mr-2" />
                   Test Audio
                 </Button>
-                <Button variant="outline" size="sm" className="flex-1">
+                <Button variant="outline" size="sm" className="flex-1 flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Test LLM
                 </Button>
               </div>
             </div>
-            
+
             {/* Chat Interface */}
             <div className="flex-1 p-4">
               <ScrollArea className="h-[calc(100%-160px)]">
@@ -533,11 +533,11 @@ phone_number: {{phone_number}}`}
                 defaultValue="You are a customer who wants to return a package..."
               />
               <div className="space-y-2">
-                <Button variant="secondary" className="w-full">
+                <Button variant="secondary" className="w-full flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                   <Play className="h-4 w-4 mr-2" />
                   Simulate Chat
                 </Button>
-                <Button variant="primary" className="w-full">
+                <Button variant="primary" className="w-full flex items-start group hover:bg-accent/30 rounded-md p-2 cursor-pointer border-l-2 border-transparent hover:border-primary transition-all">
                   <Phone className="h-4 w-4 mr-2" />
                   Start Voice Call
                 </Button>
