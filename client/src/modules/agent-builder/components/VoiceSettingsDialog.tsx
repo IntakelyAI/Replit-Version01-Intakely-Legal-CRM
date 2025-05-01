@@ -14,12 +14,9 @@ interface VoiceSettingsDialogProps {
 export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogProps) {
   const [voiceModel, setVoiceModel] = React.useState("enhanced");
   const [speechStyle, setSpeechStyle] = React.useState("casual");
-  const [voiceSpeed, setVoiceSpeed] = React.useState(1);
-  const [voicePitch, setVoicePitch] = React.useState(1);
-  const [voiceEmotion, setVoiceEmotion] = React.useState("neutral");
-  const [enableBackgroundNoise, setEnableBackgroundNoise] = React.useState(false);
-  const [backgroundNoiseType, setBackgroundNoiseType] = React.useState("office");
-  const [noiseLevel, setNoiseLevel] = React.useState(0.2);
+  const [silenceDetection, setSilenceDetection] = React.useState(false);
+  const [voiceActivity, setVoiceActivity] = React.useState(false);
+  const [languageDetection, setLanguageDetection] = React.useState(false);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -29,18 +26,30 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
         </DialogHeader>
 
         <div className="grid gap-4 py-4">
-          <div className="space-y-2">
-            <Label>Voice Model</Label>
-            <Select value={voiceModel} onValueChange={setVoiceModel}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="standard">Standard</SelectItem>
-                <SelectItem value="enhanced">Enhanced</SelectItem>
-                <SelectItem value="premium">Premium HD</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label>Silence Detection</Label>
+                <p className="text-sm text-muted-foreground">Detect periods of silence during speech</p>
+              </div>
+              <Switch checked={silenceDetection} onCheckedChange={setSilenceDetection} />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label>Voice Activity</Label>
+                <p className="text-sm text-muted-foreground">Monitor and detect voice activity</p>
+              </div>
+              <Switch checked={voiceActivity} onCheckedChange={setVoiceActivity} />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label>Language Detection</Label>
+                <p className="text-sm text-muted-foreground">Automatically detect spoken language</p>
+              </div>
+              <Switch checked={languageDetection} onCheckedChange={setLanguageDetection} />
+            </div>
           </div>
 
           <div className="space-y-2">
