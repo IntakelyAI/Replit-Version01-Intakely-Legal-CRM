@@ -20,7 +20,7 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
   const [interruptionSensitivity, setInterruptionSensitivity] = React.useState(0.75);
   const [backchanneling, setBackchanneling] = React.useState(false);
   const [backchannelFrequency, setBackchannelFrequency] = React.useState(0.4);
-  const [backchannelWords, setBackchannelWords] = React.useState("I see, I understand, Got it, That's right");
+  const [backchannelWords, setBackchannelWords] = React.useState("");
   const [transcriptionMode, setTranscriptionMode] = React.useState("speed");
   const [boostedKeywords, setBoostedKeywords] = React.useState("");
   const [speechNormalization, setSpeechNormalization] = React.useState(false);
