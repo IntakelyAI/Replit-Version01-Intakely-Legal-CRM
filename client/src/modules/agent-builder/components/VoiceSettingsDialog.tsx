@@ -1,10 +1,13 @@
+
 import * as React from "react";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 
 interface VoiceSettingsDialogProps {
   open: boolean;
@@ -12,11 +15,17 @@ interface VoiceSettingsDialogProps {
 }
 
 export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogProps) {
-  const [voiceModel, setVoiceModel] = React.useState("enhanced");
-  const [speechStyle, setSpeechStyle] = React.useState("casual");
-  const [silenceDetection, setSilenceDetection] = React.useState(false);
-  const [voiceActivity, setVoiceActivity] = React.useState(false);
-  const [languageDetection, setLanguageDetection] = React.useState(false);
+  const [responsiveness, setResponsiveness] = React.useState(1);
+  const [interruptionSensitivity, setInterruptionSensitivity] = React.useState(0.75);
+  const [backchanneling, setBackchanneling] = React.useState(false);
+  const [backchannelFrequency, setBackchannelFrequency] = React.useState(0.4);
+  const [backchannelWords, setBackchannelWords] = React.useState("\"I see\", \"I understand\", \"Got it\", \"That's right\"");
+  const [transcriptionMode, setTranscriptionMode] = React.useState("speed");
+  const [boostedKeywords, setBoostedKeywords] = React.useState("");
+  const [speechNormalization, setSpeechNormalization] = React.useState(false);
+  const [transcriptFormatting, setTranscriptFormatting] = React.useState(false);
+  const [reminderSeconds, setReminderSeconds] = React.useState(30);
+  const [reminderTimes, setReminderTimes] = React.useState(3);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -27,117 +36,120 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
 
         <div className="grid gap-4 py-4">
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Silence Detection</Label>
-                <p className="text-sm text-muted-foreground">Detect periods of silence during speech</p>
+            <div className="space-y-2">
+              <Label>Responsiveness</Label>
+              <p className="text-sm text-muted-foreground">Controls how fast the agent responds after users finish talking.</p>
+              <Slider 
+                value={[responsiveness]}
+                onValueChange={([value]) => setResponsiveness(value)}
+                max={1}
+                step={0.01}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Interruption Sensitivity</Label>
+              <p className="text-sm text-muted-foreground">Controls how easily the agent can be interrupted by human speech.</p>
+              <Slider 
+                value={[interruptionSensitivity]}
+                onValueChange={([value]) => setInterruptionSensitivity(value)}
+                max={1}
+                step={0.01}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>Enable Backchanneling</Label>
+                  <p className="text-sm text-muted-foreground">Allows the agent to use affirmations like "yeah", "ok", "naturally".</p>
+                </div>
+                <Switch checked={backchanneling} onCheckedChange={setBackchanneling} />
               </div>
-              <Switch checked={silenceDetection} onCheckedChange={setSilenceDetection} />
+
+              {backchanneling && (
+                <>
+                  <div className="space-y-2 mt-2">
+                    <Label>Backchannel Frequency</Label>
+                    <Slider 
+                      value={[backchannelFrequency]}
+                      onValueChange={([value]) => setBackchannelFrequency(value)}
+                      max={1}
+                      step={0.01}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Backchannel Words</Label>
+                    <Textarea 
+                      value={backchannelWords}
+                      onChange={(e) => setBackchannelWords(e.target.value)}
+                      placeholder="Enter words separated by commas"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label>Transcription Mode</Label>
+              <RadioGroup value={transcriptionMode} onValueChange={setTranscriptionMode}>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="speed" id="speed" />
+                  <Label htmlFor="speed">Optimize for speed</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="accuracy" id="accuracy" />
+                  <Label htmlFor="accuracy">Optimize for accuracy</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Boosted Keywords</Label>
+              <p className="text-sm text-muted-foreground">Split by comma. Example: Retail Walrus</p>
+              <Textarea 
+                value={boostedKeywords}
+                onChange={(e) => setBoostedKeywords(e.target.value)}
+                placeholder="Enter keywords to boost"
+              />
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Voice Activity</Label>
-                <p className="text-sm text-muted-foreground">Monitor and detect voice activity</p>
+              <div>
+                <Label>Enable Speech Normalization</Label>
+                <p className="text-sm text-muted-foreground">Automatically normalize numbers, currency, and dates.</p>
               </div>
-              <Switch checked={voiceActivity} onCheckedChange={setVoiceActivity} />
+              <Switch checked={speechNormalization} onCheckedChange={setSpeechNormalization} />
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <Label>Language Detection</Label>
-                <p className="text-sm text-muted-foreground">Automatically detect spoken language</p>
+              <div>
+                <Label>Enable Transcript Formatting</Label>
+                <p className="text-sm text-muted-foreground">Format phone numbers and timestamps.</p>
               </div>
-              <Switch checked={languageDetection} onCheckedChange={setLanguageDetection} />
+              <Switch checked={transcriptFormatting} onCheckedChange={setTranscriptFormatting} />
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label>Speech Style</Label>
-            <Select value={speechStyle} onValueChange={setSpeechStyle}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="formal">Formal</SelectItem>
-                <SelectItem value="casual">Casual</SelectItem>
-                <SelectItem value="professional">Professional</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Voice Speed</Label>
-            <Slider 
-              value={[voiceSpeed]}
-              onValueChange={([value]) => setVoiceSpeed(value)}
-              min={0.5}
-              max={2}
-              step={0.1}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Voice Pitch</Label>
-            <Slider 
-              value={[voicePitch]}
-              onValueChange={([value]) => setVoicePitch(value)}
-              min={0.5}
-              max={2}
-              step={0.1}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Voice Emotion</Label>
-            <Select value={voiceEmotion} onValueChange={setVoiceEmotion}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="neutral">Neutral</SelectItem>
-                <SelectItem value="friendly">Friendly</SelectItem>
-                <SelectItem value="professional">Professional</SelectItem>
-                <SelectItem value="empathetic">Empathetic</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label>Enable Background Noise</Label>
-              <Switch checked={enableBackgroundNoise} onCheckedChange={setEnableBackgroundNoise} />
-            </div>
-          </div>
-
-          {enableBackgroundNoise && (
-            <>
-              <div className="space-y-2">
-                <Label>Background Type</Label>
-                <Select value={backgroundNoiseType} onValueChange={setBackgroundNoiseType}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="office">Office</SelectItem>
-                    <SelectItem value="callcenter">Call Center</SelectItem>
-                    <SelectItem value="ambient">Ambient</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Label>Noise Level</Label>
-                <Slider 
-                  value={[noiseLevel]}
-                  onValueChange={([value]) => setNoiseLevel(value)}
-                  min={0}
-                  max={1}
-                  step={0.1}
+            <div className="space-y-2">
+              <Label>Reminder Message Frequency</Label>
+              <div className="flex items-center gap-2">
+                <Input 
+                  type="number"
+                  value={reminderSeconds}
+                  onChange={(e) => setReminderSeconds(parseInt(e.target.value))}
+                  className="w-20"
                 />
+                <span>seconds,</span>
+                <Input 
+                  type="number"
+                  value={reminderTimes}
+                  onChange={(e) => setReminderTimes(parseInt(e.target.value))}
+                  className="w-20"
+                />
+                <span>times</span>
               </div>
-            </>
-          )}
+            </div>
+          </div>
         </div>
 
         <DialogFooter>
