@@ -8,6 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface VoiceSettingsDialogProps {
   open: boolean;
@@ -19,13 +20,18 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
   const [interruptionSensitivity, setInterruptionSensitivity] = React.useState(0.75);
   const [backchanneling, setBackchanneling] = React.useState(false);
   const [backchannelFrequency, setBackchannelFrequency] = React.useState(0.4);
-  const [backchannelWords, setBackchannelWords] = React.useState("\"I see\", \"I understand\", \"Got it\", \"That's right\"");
+  const [backchannelWords, setBackchannelWords] = React.useState("I see, I understand, Got it, That's right");
   const [transcriptionMode, setTranscriptionMode] = React.useState("speed");
   const [boostedKeywords, setBoostedKeywords] = React.useState("");
   const [speechNormalization, setSpeechNormalization] = React.useState(false);
   const [transcriptFormatting, setTranscriptFormatting] = React.useState(false);
   const [reminderSeconds, setReminderSeconds] = React.useState(30);
   const [reminderTimes, setReminderTimes] = React.useState(3);
+  const [selectedIPA, setSelectedIPA] = React.useState("");
+
+  const handleSave = () => {
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -149,12 +155,26 @@ export function VoiceSettingsDialog({ open, onOpenChange }: VoiceSettingsDialogP
                 <span>times</span>
               </div>
             </div>
+
+            <div className="space-y-2">
+              <Label>Pronunciation</Label>
+              <Select value={selectedIPA} onValueChange={setSelectedIPA}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select IPA" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ipa1">IPA Symbol 1</SelectItem>
+                  <SelectItem value="ipa2">IPA Symbol 2</SelectItem>
+                  <SelectItem value="ipa3">IPA Symbol 3</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
-          <Button>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
